@@ -1,2 +1,4 @@
-package Model;public class ClaseBasura2 {
+package Model;
+
+public class ClaseBasura2 {
 }

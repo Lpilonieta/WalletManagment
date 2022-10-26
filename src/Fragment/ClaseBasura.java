@@ -1,2 +1,4 @@
-package Fragment;public class ClaseBasura {
+package Fragment;
+
+public class ClaseBasura {
 }

@@ -1,2 +1,4 @@
-package ViewModel;public class ClaseBasura3 {
+package ViewModel;
+
+public class ClaseBasura3 {
 }

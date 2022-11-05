@@ -18,8 +18,6 @@ public class Pasives {
 
     private static float currentPasiveValue = Pasives.getPreviousValue();
     private static float noCurrentPasiveValue = Pasives.getPreviousValue();
-    //todo error de recursividad
-    private static float totalPasiveValue = Pasives.getTotalPasiveValue();
 
     public static final byte NONE = -1;
     public static final byte NO_CURRENT = 0;
@@ -174,17 +172,19 @@ public class Pasives {
         return 0;
     }
     public static float getTotalPasiveValue(){
-        return Pasives.totalPasiveValue;
+        //todo ajustar que en el valor de los pasivos se tenga en cuenta el interés
+        float value;
+        value=0;
+
+        for (Pasives asset:totalPasives
+        ) {
+            value+= asset.getValue();
+        }
+
+        return value;
     }
 
-    public static void setTotalPasiveValue(Pasives[] totalPasives) {
-        //todo ajustar que en el valor de los pasivos se tenga en cuenta el interés
-        Pasives.totalPasiveValue =0;
-        for (Pasives pasive:totalPasives
-        ) {
-            Pasives.totalPasiveValue = Pasives.totalPasiveValue + pasive.value;
-        }
-    }
+
 
     private boolean isCurrentType() {
         if (this.getType()==CURRENT){

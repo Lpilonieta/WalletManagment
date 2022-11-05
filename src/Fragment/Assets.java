@@ -121,6 +121,17 @@ public class Assets {
     public static Assets[] getTotalAssets() {
         return totalAssets;
     }
+    public static float getTotalAssetsValue(){
+        float value;
+        value=0;
+
+        for (Assets asset:totalAssets
+             ) {
+            value+= asset.getValue();
+        }
+
+        return value;
+    }
     //todo implementar que se recuperen assets de acuerdo al intervalo especificado
     public static void setTotalAssets(Assets[] totalAssets) {
         Assets.totalAssets = totalAssets;
@@ -168,7 +179,5 @@ public class Assets {
         return totalAssets;
     }
 
-    private static float getTotalAssetsValue() {
-        return Assets.totalAssetsValue;
-    }
+
 }

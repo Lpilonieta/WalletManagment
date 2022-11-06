@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ViewModel.RegistroFormulario">
+  <scrollpane id="9de3" binding="registroScrollPane">
+    <constraints>
+      <xy x="3" y="20" width="513" height="506"/>
+    </constraints>
+    <properties>
+      <preferredSize width="500" height="600"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="27dc6" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+        <constraints/>
+        <properties>
+          <preferredSize width="500" height="600"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="9f466" binding="generalForm" layout-manager="GridBagLayout">
+            <constraints/>
+            <properties>
+              <preferredSize width="490" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="64be0" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <preferredSize width="150" height="20"/>
+                  <text value="tipo de formulario"/>
+                </properties>
+              </component>
+              <component id="23bf9" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="valor"/>
+                </properties>
+              </component>
+              <component id="88bb8" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="fuente"/>
+                </properties>
+              </component>
+              <component id="58544" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Motivo"/>
+                </properties>
+              </component>
+              <component id="ff406" class="javax.swing.JComboBox" binding="motivoComboBox">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                  <preferredSize width="150" height="30"/>
+                </properties>
+              </component>
+              <component id="9b074" class="javax.swing.JComboBox" binding="tipoFormularioComboBox">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <preferredSize width="150" height="30"/>
+                </properties>
+              </component>
+              <component id="47646" class="javax.swing.JTextField" binding="valorField">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                </properties>
+              </component>
+              <component id="bc0df" class="javax.swing.JComboBox" binding="fuenteComboBox">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <enabled value="false"/>
+                </properties>
+              </component>
+              <hspacer id="5b199">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="b0eb5">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+              </vspacer>
+              <vspacer id="53f74">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+              </vspacer>
+              <component id="f0766" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="comentarios"/>
+                </properties>
+              </component>
+              <component id="52bbe" class="javax.swing.JTextField" binding="comentariosField">
+                <constraints>
+                  <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+          <grid id="a34ca" binding="panelRegAssetPasive" layout-manager="GridBagLayout">
+            <constraints/>
+            <properties>
+              <enabled value="true"/>
+              <preferredSize width="490" height="270"/>
+              <visible value="false"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="20c16" class="javax.swing.JButton" binding="submitButton">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <label value="confirmar"/>
+              <text value="confirmar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </scrollpane>
+</form>

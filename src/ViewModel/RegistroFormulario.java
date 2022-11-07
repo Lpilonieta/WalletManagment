@@ -15,11 +15,20 @@ public class RegistroFormulario {
     private JButton submitButton;
     private JPanel generalForm;
     private JScrollPane registroScrollPane;
+    private JPanel panelTotal;
+
     private String[] motivosEgresos = {
             "ninguno",
             "gasto Regular",
             "compra activo",
             "pago pasivo"
+
+    };
+    private String[] motivosIngresos = {
+            "ninguno",
+            "Salario",
+            "Adquirir Deuda",
+            "Vender Activo"
 
     };
     private String[] tipoFormulario = {
@@ -36,53 +45,63 @@ public class RegistroFormulario {
 // DO NOT EDIT OR ADD ANY CODE HERE!
             $$$setupUI$$$();
         }
+        panelTotal.setLayout(new BoxLayout(panelTotal, BoxLayout.Y_AXIS));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add($$$getRootComponent$$$());
         frame.setVisible(true);
+
         tipoFormularioComboBox.addItem(tipoFormulario[0]);
         tipoFormularioComboBox.addItem(tipoFormulario[1]);
         tipoFormularioComboBox.addItem(tipoFormulario[2]);
-
-        motivoComboBox.addItem(motivosEgresos[0]);
-        motivoComboBox.addItem(motivosEgresos[1]);
-        motivoComboBox.addItem(motivosEgresos[2]);
-        motivoComboBox.addItem(motivosEgresos[3]);
 
 
         motivoComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                Component[] y = panelRegAssetPasive.getComponents();
-                if (e.getStateChange() == 1 && motivoComboBox.getSelectedIndex() == 2) {
-                    AssetsForm p = new AssetsForm();
-                    if (y.length == 0) {
+
+                panelRegAssetPasive.removeAll();
+                if (e.getStateChange() == ItemEvent.SELECTED && motivoComboBox.getSelectedIndex() == 3) {
+                    //TODO: mostrar lista de pasivos
+
+
+                } else if (e.getStateChange() == ItemEvent.SELECTED && motivoComboBox.getSelectedIndex() == 2) {
+                    if (tipoFormularioComboBox.getSelectedIndex() == 1) {
+                        AssetsForm p = new AssetsForm();
                         panelRegAssetPasive.add(p.$$$getRootComponent$$$());
                         panelRegAssetPasive.setVisible(true);
-                    } else {
-                        panelRegAssetPasive.remove(0);
+                    } else if (tipoFormularioComboBox.getSelectedIndex() == 2) {
+                        PasiveForm p = new PasiveForm();
                         panelRegAssetPasive.add(p.$$$getRootComponent$$$());
                         panelRegAssetPasive.setVisible(true);
                     }
 
                 } else {
-                    if (y.length == 1) {
-                        panelRegAssetPasive.remove(0);
-                        panelRegAssetPasive.setVisible(false);
-                    }
+                    panelRegAssetPasive.removeAll();
+                    panelRegAssetPasive.setVisible(false);
                 }
             }
         });
         tipoFormularioComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    int x = tipoFormularioComboBox.getSelectedIndex();
-                    if (x == 2) {
-                        valorField.setEnabled(true);
-                        motivoComboBox.setEnabled(true);
-                        fuenteComboBox.setEnabled(true);
 
-                    }
+                valorField.setEnabled(true);
+                fuenteComboBox.setEnabled(true);
+                motivoComboBox.removeAllItems();
+                if (e.getStateChange() == ItemEvent.SELECTED && tipoFormularioComboBox.getSelectedIndex() == 1) {
+
+                    motivoComboBox.addItem(motivosEgresos[0]);
+                    motivoComboBox.addItem(motivosEgresos[1]);
+                    motivoComboBox.addItem(motivosEgresos[2]);
+                    motivoComboBox.addItem(motivosEgresos[3]);
+                    motivoComboBox.setEnabled(true);
+                } else if (e.getStateChange() == ItemEvent.SELECTED && tipoFormularioComboBox.getSelectedIndex() == 2) {
+
+                    motivoComboBox.addItem(motivosIngresos[0]);
+                    motivoComboBox.addItem(motivosIngresos[1]);
+                    motivoComboBox.addItem(motivosIngresos[2]);
+                    motivoComboBox.addItem(motivosIngresos[3]);
+                    motivoComboBox.setEnabled(true);
                 }
             }
         });
@@ -100,14 +119,14 @@ public class RegistroFormulario {
         registroScrollPane = new JScrollPane();
         registroScrollPane.setPreferredSize(new Dimension(500, 600));
         registroScrollPane.setRequestFocusEnabled(true);
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-        panel1.setPreferredSize(new Dimension(500, 600));
-        registroScrollPane.setViewportView(panel1);
+        panelTotal = new JPanel();
+        panelTotal.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        panelTotal.setPreferredSize(new Dimension(500, 600));
+        registroScrollPane.setViewportView(panelTotal);
         generalForm = new JPanel();
         generalForm.setLayout(new GridBagLayout());
         generalForm.setPreferredSize(new Dimension(490, 200));
-        panel1.add(generalForm);
+        panelTotal.add(generalForm);
         final JLabel label1 = new JLabel();
         label1.setPreferredSize(new Dimension(150, 20));
         label1.setText("tipo de formulario");
@@ -208,12 +227,12 @@ public class RegistroFormulario {
         panelRegAssetPasive.setEnabled(true);
         panelRegAssetPasive.setPreferredSize(new Dimension(490, 270));
         panelRegAssetPasive.setVisible(false);
-        panel1.add(panelRegAssetPasive);
+        panelTotal.add(panelRegAssetPasive);
         submitButton = new JButton();
         submitButton.setHorizontalAlignment(0);
         submitButton.setLabel("confirmar");
         submitButton.setText("confirmar");
-        panel1.add(submitButton);
+        panelTotal.add(submitButton);
     }
 
     /**

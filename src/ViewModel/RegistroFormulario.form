@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="27dc6" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+      <grid id="27dc6" binding="panelTotal" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints/>
         <properties>
           <preferredSize width="500" height="600"/>

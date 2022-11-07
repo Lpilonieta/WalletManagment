@@ -9,6 +9,7 @@ public class Assets {
     private byte type;
     private int rentability;
     private int saleValue;
+    private String category;
 
     private static float currentAssetsValue = Assets.getPreviousValue();
     private static float noCurrentAssetsValue = Assets.getPreviousValue();
@@ -40,7 +41,7 @@ public class Assets {
 
     }
 
-    public Assets(String id, String name, String description, int value, byte type, int rentability, int saleValue) {
+    public Assets(String id, String name, String description, int value, byte type, int rentability, int saleValue, String category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -48,6 +49,7 @@ public class Assets {
         this.type = type;
         this.rentability = rentability;
         this.saleValue = saleValue;
+        this.category = category;
     }
 
     public String getId() {
@@ -169,8 +171,8 @@ public class Assets {
     }
     // modificar para que devuelva la cantidad de assets que se le pide
     private static Assets[] getTotalAssetsFromDB() {
-        Assets asset1= new Assets("1","name1","",100,Assets.CURRENT,0,0);
-        Assets asset2 = new Assets("2","name1","",200,Assets.NO_CURRENT,0,0);
+        Assets asset1= new Assets("1","name1","",100,Assets.CURRENT,0,0,"");
+        Assets asset2 = new Assets("2","name1","",200,Assets.NO_CURRENT,0,0,"");
 
         Assets[] totalAssets = {
                 asset1,

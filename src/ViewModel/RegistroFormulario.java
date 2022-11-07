@@ -1,9 +1,15 @@
 package ViewModel;
 
+import Fragment.Assets;
+import Fragment.MainForm;
+import Fragment.Pasives;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegistroFormulario {
     private JComboBox tipoFormularioComboBox;
@@ -16,6 +22,29 @@ public class RegistroFormulario {
     private JPanel generalForm;
     private JScrollPane registroScrollPane;
     private JPanel panelTotal;
+    private AssetsForm assetPanel;
+    private PasiveForm pasivePanel;
+
+    public String getFormType() {
+        return tipoFormularioComboBox.getSelectedItem().toString();
+    }
+
+    public String getValue() {
+        return valorField.getText();
+    }
+
+    public String getSource() {
+        return fuenteComboBox.getSelectedItem().toString();
+    }
+
+    public String getMotive() {
+        return motivoComboBox.getSelectedItem().toString();
+    }
+
+    public String getComments() {
+        return comentariosField.getText();
+    }
+
 
     private String[] motivosEgresos = {
             "ninguno",
@@ -66,12 +95,12 @@ public class RegistroFormulario {
 
                 } else if (e.getStateChange() == ItemEvent.SELECTED && motivoComboBox.getSelectedIndex() == 2) {
                     if (tipoFormularioComboBox.getSelectedIndex() == 1) {
-                        AssetsForm p = new AssetsForm();
-                        panelRegAssetPasive.add(p.$$$getRootComponent$$$());
+                        assetPanel = new AssetsForm();
+                        panelRegAssetPasive.add(assetPanel.$$$getRootComponent$$$());
                         panelRegAssetPasive.setVisible(true);
                     } else if (tipoFormularioComboBox.getSelectedIndex() == 2) {
-                        PasiveForm p = new PasiveForm();
-                        panelRegAssetPasive.add(p.$$$getRootComponent$$$());
+                        pasivePanel = new PasiveForm();
+                        panelRegAssetPasive.add(pasivePanel.$$$getRootComponent$$$());
                         panelRegAssetPasive.setVisible(true);
                     }
 
@@ -103,6 +132,44 @@ public class RegistroFormulario {
                     motivoComboBox.addItem(motivosIngresos[3]);
                     motivoComboBox.setEnabled(true);
                 }
+            }
+        });
+        submitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getSource() == submitButton) {
+                    MainForm newForm = new MainForm();
+                    newForm.getNewId();
+                    newForm.setType(tipoFormularioComboBox.getSelectedItem().toString());
+                    newForm.setValue(valorField.getText());
+                    newForm.setSource(fuenteComboBox.getSelectedItem().toString());
+                    newForm.setMotive(motivoComboBox.getSelectedItem().toString());
+                    newForm.setComments(comentariosField.getText());
+                    if (newForm.isNeedAssetData()) {
+                        //TODO: crear objeto asset de mainform
+                        newForm.setAsset(new Assets(
+                                newForm.getId(),
+                                assetPanel.getAssetName(),
+                                "",
+                                Integer.valueOf(newForm.getValue()),
+                                assetPanel.getAssetType(),
+                                assetPanel.getRentabilityPercentage(),
+                                assetPanel.getSaleValue(),
+                                assetPanel.getAssetCategory())
+                        );
+                        newForm.setPasive(new Pasives());
+                        System.out.println("se guardó un registro con un nuevo activo");
+                    } else if (newForm.isNeedPasiveData()) {
+                        //TODO: crear objeto pasive de mainform
+                        newForm.setAsset(new Assets());
+                        newForm.setPasive(new Pasives(
+                                
+                        ));
+                        System.out.println("se guardó un registro con un nuevo pasivo");
+                    }
+
+                }
+
             }
         });
     }

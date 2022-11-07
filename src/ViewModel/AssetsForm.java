@@ -1,19 +1,48 @@
 package ViewModel;
 
+import Fragment.Assets;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class AssetsForm {
 
-    private JCheckBox checkBox1;
-    private JCheckBox checkBox2;
-    private JTextField textField1;
-    private JComboBox comboBox1;
-    private JTextField textField3;
-    private JComboBox comboBox2;
-    private JTextField textField4;
+    private JCheckBox enableSaleValueCheckBox;
+    private JCheckBox enableRentabilityCheckBox;
+    private JTextField assetNameField;
+    private JComboBox assetTypeCemboBox;
+    private JTextField rentabilityPercentageField;
+    private JComboBox assetCategoryComboBox;
+    private JTextField saleValueField;
     private JPanel assetsPanel;
 
+    public String getAssetName() {
+        return assetNameField.getText();
+    }
+
+    public byte getAssetType() {
+        if (assetTypeCemboBox.getSelectedIndex() == 1) {
+            return Assets.CURRENT;
+        } else if (assetTypeCemboBox.getSelectedIndex() == 2) {
+            return Assets.NO_CURRENT;
+
+        } else {
+            return Assets.NONE;
+        }
+
+    }
+
+    public int getRentabilityPercentage() {
+        return Integer.valueOf(rentabilityPercentageField.getText());
+    }
+
+    public String getAssetCategory() {
+        return assetCategoryComboBox.getSelectedItem().toString();
+    }
+
+    public Integer getSaleValue() {
+        return Integer.valueOf(saleValueField.getText());
+    }
 
     public AssetsForm() {
         {
@@ -107,57 +136,59 @@ public class AssetsForm {
         gbc.gridy = 9;
         gbc.fill = GridBagConstraints.VERTICAL;
         assetsPanel.add(spacer6, gbc);
-        textField1 = new JTextField();
+        assetNameField = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(textField1, gbc);
-        comboBox1 = new JComboBox();
+        assetsPanel.add(assetNameField, gbc);
+        assetTypeCemboBox = new JComboBox();
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(comboBox1, gbc);
-        textField3 = new JTextField();
+        assetsPanel.add(assetTypeCemboBox, gbc);
+        rentabilityPercentageField = new JTextField();
+        rentabilityPercentageField.setEnabled(false);
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(textField3, gbc);
-        comboBox2 = new JComboBox();
+        assetsPanel.add(rentabilityPercentageField, gbc);
+        assetCategoryComboBox = new JComboBox();
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 6;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(comboBox2, gbc);
-        textField4 = new JTextField();
+        assetsPanel.add(assetCategoryComboBox, gbc);
+        saleValueField = new JTextField();
+        saleValueField.setEnabled(false);
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 8;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(textField4, gbc);
-        checkBox1 = new JCheckBox();
-        checkBox1.setSelected(false);
-        checkBox1.setText("");
+        assetsPanel.add(saleValueField, gbc);
+        enableSaleValueCheckBox = new JCheckBox();
+        enableSaleValueCheckBox.setSelected(false);
+        enableSaleValueCheckBox.setText("");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 8;
         gbc.anchor = GridBagConstraints.WEST;
-        assetsPanel.add(checkBox1, gbc);
-        checkBox2 = new JCheckBox();
-        checkBox2.setSelected(false);
-        checkBox2.setText("");
+        assetsPanel.add(enableSaleValueCheckBox, gbc);
+        enableRentabilityCheckBox = new JCheckBox();
+        enableRentabilityCheckBox.setSelected(false);
+        enableRentabilityCheckBox.setText("");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
-        assetsPanel.add(checkBox2, gbc);
+        assetsPanel.add(enableRentabilityCheckBox, gbc);
     }
 
     /**
@@ -166,4 +197,5 @@ public class AssetsForm {
     public JComponent $$$getRootComponent$$$() {
         return assetsPanel;
     }
+
 }

@@ -16,7 +16,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="efb34" class="javax.swing.JLabel">
+          <component id="efb34" class="javax.swing.JLabel" binding="HomeLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -31,7 +31,7 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
-          <component id="6a8f2" class="javax.swing.JLabel">
+          <component id="6a8f2" class="javax.swing.JLabel" binding="SolvencyLabel">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -46,7 +46,7 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
-          <component id="5c5bd" class="javax.swing.JLabel">
+          <component id="5c5bd" class="javax.swing.JLabel" binding="LiquidityLabel">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -55,7 +55,7 @@
               <text value="Liquidity"/>
             </properties>
           </component>
-          <component id="7d895" class="javax.swing.JLabel">
+          <component id="7d895" class="javax.swing.JLabel" binding="AssetsLabel">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -64,7 +64,7 @@
               <text value="Assets"/>
             </properties>
           </component>
-          <component id="ef995" class="javax.swing.JLabel">
+          <component id="ef995" class="javax.swing.JLabel" binding="PasivesLabel">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -91,7 +91,7 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
-          <component id="c745a" class="javax.swing.JLabel">
+          <component id="c745a" class="javax.swing.JLabel" binding="InventoryLabel">
             <constraints>
               <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -106,7 +106,7 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
-          <component id="28ae" class="javax.swing.JLabel">
+          <component id="28ae" class="javax.swing.JLabel" binding="RentabilityLabel">
             <constraints>
               <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -213,7 +213,14 @@
         <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="f5d34" class="javax.swing.JButton" binding="newRegistryButton">
+            <constraints/>
+            <properties>
+              <text value="Nuevo Registro"/>
+            </properties>
+          </component>
+        </children>
       </grid>
     </children>
   </grid>

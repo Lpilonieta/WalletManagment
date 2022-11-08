@@ -17,7 +17,7 @@ public class Liquidity {
         return pruebaAcida;
     }
     public static void calculatePruebaAcidatt(){
-        pruebaAcida=Assets.getCurrentAssetsValue(); //todo falta -Value of inventory.
+        pruebaAcida=Assets.getCurrentAssetsValue(); //TODO: falta -Value of inventory.
     }
 
     public static float getFondoDeManiobra() {

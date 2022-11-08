@@ -1,7 +1,7 @@
-import Fragment.Assets;
-import ViewModel.RegistroFormulario;
+import ViewModel.MainFrame;
+import ViewModel.RegistryFormPanel;
 public class Main {
     public static void main(String[] args) {
-        RegistroFormulario f = new RegistroFormulario();
+        MainFrame f = new MainFrame();
     }
 }

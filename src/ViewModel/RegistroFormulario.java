@@ -3,6 +3,9 @@ package ViewModel;
 import Fragment.Assets;
 import Fragment.MainForm;
 import Fragment.Pasives;
+import Model.AssetsRegistry;
+import Model.GeneralRegistry;
+import Model.PasivesRegistry;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +13,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistroFormulario {
     private JComboBox tipoFormularioComboBox;
@@ -24,6 +29,7 @@ public class RegistroFormulario {
     private JPanel panelTotal;
     private AssetsForm assetPanel;
     private PasiveForm pasivePanel;
+    private MainForm newForm;
 
     public String getFormType() {
         return tipoFormularioComboBox.getSelectedItem().toString();
@@ -173,7 +179,7 @@ public class RegistroFormulario {
             public void mouseClicked(MouseEvent e) {
 
                 if (e.getSource() == submitButton) {
-                    MainForm newForm = new MainForm();
+                    newForm = new MainForm();
                     newForm.getNewId();
                     newForm.setType(getFormType());
                     newForm.setValue(getValue());
@@ -196,7 +202,7 @@ public class RegistroFormulario {
                                 assetPanel.getAssetCategory())
                         );
                         newForm.setPasive(null);
-                        System.out.println("se guardó un registro con un nuevo activo");
+                        System.out.println(AssetsRegistry.getAssetsRegistry());
                     } else if (newForm.isNeedPasiveData()) {
                         //TODO: crear objeto pasive de mainform
                         newForm.setAsset(null);
@@ -213,15 +219,27 @@ public class RegistroFormulario {
                                 pasivePanel.getEspecificPeriodicy()
 
                         ));
-                        System.out.println("se guardó un registro con un nuevo pasivo");
+                        System.out.println(PasivesRegistry.getPasivesRegistry());
                     }
 
                 }
-                
-                System.out.println("se guardó un registro");
+                save();
+                System.out.println(GeneralRegistry.getGeneralRegistry());
 
             }
         });
+    }
+
+    private void save() {
+        String key = newForm.getId();
+        Assets assetsDataBaseValue = newForm.getAsset();
+        Pasives pasivesDataBaseValue = newForm.getPasive();
+        GeneralRegistry.addNewRegistry(key, newForm);
+        if (newForm.isNeedAssetData()) {
+            AssetsRegistry.addNewAssetRegistry(key, assetsDataBaseValue);
+        } else if (newForm.isNeedPasiveData()) {
+            PasivesRegistry.addNewPasiveRegistry(key, pasivesDataBaseValue);
+        }
     }
 
 

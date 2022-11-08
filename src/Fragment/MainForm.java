@@ -7,6 +7,14 @@ public class MainForm {
     private Assets asset;
     private Pasives pasive;
 
+    public Assets getAsset() {
+        return asset;
+    }
+
+    public Pasives getPasive() {
+        return pasive;
+    }
+
     public String getId() {
         return id;
     }

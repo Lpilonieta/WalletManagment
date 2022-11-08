@@ -4,13 +4,14 @@ import Fragment.Assets;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class AssetsForm {
 
     private JCheckBox enableSaleValueCheckBox;
     private JCheckBox enableRentabilityCheckBox;
     private JTextField assetNameField;
-    private JComboBox assetTypeCemboBox;
+    private JComboBox assetTypeComboBox;
     private JTextField rentabilityPercentageField;
     private JComboBox assetCategoryComboBox;
     private JTextField saleValueField;
@@ -21,9 +22,9 @@ public class AssetsForm {
     }
 
     public byte getAssetType() {
-        if (assetTypeCemboBox.getSelectedIndex() == 1) {
+        if (assetTypeComboBox.getSelectedIndex() == 1) {
             return Assets.CURRENT;
-        } else if (assetTypeCemboBox.getSelectedIndex() == 2) {
+        } else if (assetTypeComboBox.getSelectedIndex() == 2) {
             return Assets.NO_CURRENT;
 
         } else {
@@ -33,15 +34,28 @@ public class AssetsForm {
     }
 
     public int getRentabilityPercentage() {
-        return Integer.valueOf(rentabilityPercentageField.getText());
+        if (rentabilityPercentageField.isEnabled()) {
+            return Integer.valueOf(rentabilityPercentageField.getText());
+        } else {
+            return 0;
+        }
+
     }
 
     public String getAssetCategory() {
-        return assetCategoryComboBox.getSelectedItem().toString();
+        if (assetCategoryComboBox.getSelectedIndex() == 0) {
+            return "No aplica";
+        } else {
+            return assetCategoryComboBox.getSelectedItem().toString();
+        }
     }
 
-    public Integer getSaleValue() {
-        return Integer.valueOf(saleValueField.getText());
+    public int getSaleValue() {
+        if (saleValueField.isEnabled()) {
+            return Integer.valueOf(saleValueField.getText());
+        } else {
+            return 0;
+        }
     }
 
     public AssetsForm() {
@@ -51,6 +65,36 @@ public class AssetsForm {
 // DO NOT EDIT OR ADD ANY CODE HERE!
             $$$setupUI$$$();
         }
+        assetTypeComboBox.addItem("Seleccione");
+        assetTypeComboBox.addItem("Corriente");
+        assetTypeComboBox.addItem("No Corriente");
+        assetCategoryComboBox.addItem("Seleccione");
+        assetCategoryComboBox.addItem("Con Iva");
+        assetCategoryComboBox.addItem("Sin Iva");
+
+
+        enableRentabilityCheckBox.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (enableRentabilityCheckBox.isSelected()) {
+                    rentabilityPercentageField.setEnabled(true);
+                } else {
+                    rentabilityPercentageField.setText("");
+                    rentabilityPercentageField.setEnabled(false);
+                }
+            }
+        });
+        enableSaleValueCheckBox.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (enableSaleValueCheckBox.isSelected()) {
+                    saleValueField.setEnabled(true);
+                } else {
+                    saleValueField.setText("");
+                    saleValueField.setEnabled(false);
+                }
+            }
+        });
     }
 
 
@@ -143,13 +187,13 @@ public class AssetsForm {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         assetsPanel.add(assetNameField, gbc);
-        assetTypeCemboBox = new JComboBox();
+        assetTypeComboBox = new JComboBox();
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        assetsPanel.add(assetTypeCemboBox, gbc);
+        assetsPanel.add(assetTypeComboBox, gbc);
         rentabilityPercentageField = new JTextField();
         rentabilityPercentageField.setEnabled(false);
         gbc = new GridBagConstraints();

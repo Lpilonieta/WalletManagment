@@ -36,7 +36,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Deudor"/>
+          <text value="Descripción"/>
         </properties>
       </component>
       <vspacer id="249f1">
@@ -129,7 +129,7 @@
           <text value="Primer fecha de pago"/>
         </properties>
       </component>
-      <component id="17621" class="javax.swing.JCheckBox" binding="checkBox1" default-binding="true">
+      <component id="17621" class="javax.swing.JCheckBox" binding="enableDeadLineCheckBox">
         <constraints>
           <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -139,7 +139,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="85223" class="javax.swing.JCheckBox" binding="checkBox2" default-binding="true">
+      <component id="85223" class="javax.swing.JCheckBox" binding="enablePeriodicyCheckBox">
         <constraints>
           <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -149,7 +149,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="2e592" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="2e592" class="javax.swing.JTextField" binding="nameField">
         <constraints>
           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -158,7 +158,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="f8885" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="f8885" class="javax.swing.JTextField" binding="descriptionField">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -167,14 +167,14 @@
         </constraints>
         <properties/>
       </component>
-      <component id="824e4" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="824e4" class="javax.swing.JComboBox" binding="typeComboBox">
         <constraints>
           <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
       </component>
-      <component id="989fa" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="989fa" class="javax.swing.JTextField" binding="interestPercentageField">
         <constraints>
           <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -183,14 +183,14 @@
         </constraints>
         <properties/>
       </component>
-      <component id="79998" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+      <component id="79998" class="javax.swing.JComboBox" binding="interestTypeComboBox">
         <constraints>
           <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties/>
       </component>
-      <component id="85bb1" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="85bb1" class="javax.swing.JTextField" binding="numberOfInstallmentsField">
         <constraints>
           <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -199,7 +199,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="477f2" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+      <component id="477f2" class="javax.swing.JComboBox" binding="periodicyComboBox">
         <constraints>
           <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -208,7 +208,7 @@
           <enabled value="false"/>
         </properties>
       </component>
-      <component id="bb3e0" class="javax.swing.JComboBox" binding="comboBox4" default-binding="true">
+      <component id="bb3e0" class="javax.swing.JComboBox" binding="firstDeadLineComboBox">
         <constraints>
           <grid row="14" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>

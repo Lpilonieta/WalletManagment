@@ -14,7 +14,7 @@ public class Assets {
     private static float currentAssetsValue = Assets.getPreviousValue();
     private static float noCurrentAssetsValue = Assets.getPreviousValue();
     //todo error de recursividad
-    private static float totalAssetsValue = Assets.getTotalAssetsValue();
+    //private static float totalAssetsValue = Assets.getTotalAssetsValue();
 
     public static final byte NONE = -1;
     public static final byte NO_CURRENT = 0;
@@ -138,14 +138,14 @@ public class Assets {
     public static void setTotalAssets(Assets[] totalAssets) {
         Assets.totalAssets = totalAssets;
     }
-    public static void setTotalAssetsValue(Assets[] totalAssets) {
-
-        Assets.totalAssetsValue =0;
-        for (Assets asset:totalAssets
-        ) {
-            Assets.totalAssetsValue = Assets.totalAssetsValue + asset.value;
-        }
-    }
+//    public static void setTotalAssetsValue(Assets[] totalAssets) {
+//
+//        Assets.totalAssetsValue =0;
+//        for (Assets asset:totalAssets
+//        ) {
+//            Assets.totalAssetsValue = Assets.totalAssetsValue + asset.value;
+//        }
+//    }
     //todo posible method para una interfaz
     public static void updateTypeValues(Assets[] totalAssets){
         Assets.setNoCurrentAssetsValue(0);

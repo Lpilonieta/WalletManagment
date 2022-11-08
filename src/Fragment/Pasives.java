@@ -51,7 +51,8 @@ public class Pasives {
                    int numberOfInstallments,
                    byte type,
                    byte periodicy,
-                   int especificPeriodicy)
+                   int especificPeriodicy
+    )
     {
         this.id = id;
         this.name = name;

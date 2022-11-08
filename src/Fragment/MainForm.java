@@ -12,7 +12,11 @@ public class MainForm {
     }
 
     public String getValue() {
+        if (value == ""){
+            return "0";
+        }else {
         return value;
+        }
     }
 
     public void getNewId() {

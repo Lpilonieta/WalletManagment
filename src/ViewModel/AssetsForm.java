@@ -1,6 +1,6 @@
 package ViewModel;
 
-import Fragment.Assets;
+import Fragment.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,12 +23,12 @@ public class AssetsForm {
 
     public byte getAssetType() {
         if (assetTypeComboBox.getSelectedIndex() == 1) {
-            return Assets.CURRENT;
+            return Constants.CURRENT;
         } else if (assetTypeComboBox.getSelectedIndex() == 2) {
-            return Assets.NO_CURRENT;
+            return Constants.NO_CURRENT;
 
         } else {
-            return Assets.NONE;
+            return Constants.NONE;
         }
 
     }
@@ -42,11 +42,11 @@ public class AssetsForm {
 
     }
 
-    public String getAssetCategory() {
+    public byte getAssetCategory() {
         if (assetCategoryComboBox.getSelectedIndex() == 0) {
-            return "No aplica";
+            return Constants.NONE;
         } else {
-            return assetCategoryComboBox.getSelectedItem().toString();
+            return (byte) assetCategoryComboBox.getSelectedIndex();
         }
     }
 

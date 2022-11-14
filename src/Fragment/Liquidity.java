@@ -1,31 +1,25 @@
 package Fragment;
 
-public class Liquidity {
-    private static float fondoDeManiobra;
-    private static float razonCorriente;
-    private static float pruebaAcida;
+public interface Liquidity {
 
-    public float getRazonCorriente() {
+
+     static float calculateRazonCorriente(){
+        float razonCorriente = Assets.getCurrentAssetsValue() / Pasives.getCurrentPasiveValue();
         return razonCorriente;
     }
 
-    public static void calculateRazonCorriente(){
-        razonCorriente= Assets.getCurrentAssetsValue()/Pasives.getCurrentPasiveValue();
-    }
 
-    public static float getPruebaAcida() {
+     static float calculatePruebaAcida(){
+        float pruebaAcida = Assets.getCurrentAssetsValue(); //TODO: falta -Value of inventory.
         return pruebaAcida;
     }
-    public static void calculatePruebaAcidatt(){
-        pruebaAcida=Assets.getCurrentAssetsValue(); //TODO: falta -Value of inventory.
-    }
 
-    public static float getFondoDeManiobra() {
+
+
+     static float calculateFondoDeManiobra() {
+        float fondoDeManiobra = Assets.getCurrentAssetsValue() - Pasives.getCurrentPasiveValue();
+
         return fondoDeManiobra;
-    }
-
-    public static void calculateFondoDeManiobra() {
-        fondoDeManiobra = Assets.getCurrentAssetsValue()-Pasives.getCurrentPasiveValue();
     }
 
 

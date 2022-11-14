@@ -1,10 +1,13 @@
 package Fragment;
 
-public class Inventory {
-    private String id,name,description;
-    private int category, stockNumber, saleNumbers;
-    private float purchaseValue, saleValue;
-    private static float totalPurchaseValue;
+public interface Inventory {
+     boolean isInventory = true;
+     int stockNumber = 0;
+     int saleNumbers = 0;
+     int unitValue =0;
+
+
+
 
 
 

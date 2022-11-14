@@ -1,37 +1,28 @@
 package Fragment;
 
-public class Solvency {
-    private static float endeudamientoTotal = -1;
-    private static float endeudamientoCP = -1;
-    private static float endeudamientoLP = -1;
-    private static float apalancamientoTotal = -1;
+public interface Solvency {
 
-    public static float getEndeudamientoTotal() {
+
+     static float calcEndeudamientoTotal(){
+        float endeudamientoTotal = Pasives.getTotalPasiveValue() / Assets.getTotalAssetsValue();
         return endeudamientoTotal;
     }
-    public static void calcEndeudamientoTotal(){
-        endeudamientoTotal=Pasives.getTotalPasiveValue()/Assets.getTotalAssetsValue();
-    }
 
 
-    public static float getEndeudamientoCP() {
+
+     static float calcEndeudamientoCP(){
+        float endeudamientoCP=Pasives.getCurrentPasiveValue()/User.getNetWorth();
         return endeudamientoCP;
     }
-    public static void calcEndeudamientoCP(){
-        endeudamientoCP=Pasives.getCurrentPasiveValue()/User.getNetWorth();
-    }
-    public static float getEndeudamientoLP() {
+
+     static float calcEndeudamientoLP() {
+        float endeudamientoLP = Pasives.getNoCurrentPasiveValue() / User.getNetWorth();
         return endeudamientoLP;
     }
 
-    public static void calcEndeudamientoLP() {
-        endeudamientoLP = Pasives.getNoCurrentPasiveValue() / User.getNetWorth();
-    }
-    public static float getApalancamientoTotal() {
+     static float calcApalancamientoTotal(){
+        float apalancamientoTotal = Pasives.getNoCurrentPasiveValue() / User.getNetWorth();
         return apalancamientoTotal;
-        }
-    public static void calcApalancamientoTotal(){
-        apalancamientoTotal=Pasives.getNoCurrentPasiveValue()/User.getNetWorth();
     }
 
 }

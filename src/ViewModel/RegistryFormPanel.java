@@ -1,7 +1,8 @@
 package ViewModel;
 
 import Fragment.Assets;
-import Fragment.MainForm;
+import Fragment.Constants;
+import Fragment.Form;
 import Fragment.Pasives;
 import Model.AssetsRegistry;
 import Model.GeneralRegistry;
@@ -15,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RegistryFormPanel {
+    private static final int INDEX_OF_REVEUE_TYPE = 1;
+    private static final int INDEX_OF_EXPENSE_TYPE = 2;
     private JComboBox tipoFormularioComboBox;
     private JTextField valorField;
     private JComboBox fuenteComboBox;
@@ -27,17 +30,23 @@ public class RegistryFormPanel {
     private JPanel panelTotal;
     private AssetsForm assetPanel;
     private PasiveForm pasivePanel;
-    private MainForm newForm;
+    private Form newForm;
 
-    public String getFormType() {
-        return tipoFormularioComboBox.getSelectedItem().toString();
+    public byte getFormType() {
+        if (tipoFormularioComboBox.getSelectedIndex() == INDEX_OF_REVEUE_TYPE) {
+            return Constants.RENEUE_FORM_TYPE;
+        } else if (tipoFormularioComboBox.getSelectedIndex() == INDEX_OF_EXPENSE_TYPE) {
+            return Constants.EXPENSE_FORM_TYPE;
+        } else {
+            return Constants.NONE;
+        }
     }
 
-    public String getValue() {
+    public int getValue() {
         if (valorField.getText().getBytes().length == 0) {
-            return "0";
+            return 0;
         }
-        return valorField.getText();
+        return Integer.valueOf(valorField.getText());
     }
 
     public String getSource() {
@@ -173,8 +182,7 @@ public class RegistryFormPanel {
             public void mouseClicked(MouseEvent e) {
 
                 if (e.getSource() == submitButton) {
-                    newForm = new MainForm();
-                    newForm.getNewId();
+                    newForm = new Form();
                     newForm.setType(getFormType());
                     newForm.setValue(getValue());
                     newForm.setSource(getSource());
@@ -184,7 +192,7 @@ public class RegistryFormPanel {
                     newForm.setNeedPasiveData(1, tipoFormularioComboBox.getSelectedIndex());
 
                     if (newForm.isNeedAssetData()) {
-                        //TODO: crear objeto asset de mainform
+
                         newForm.setAsset(new Assets(
                                 newForm.getId(),
                                 assetPanel.getAssetName(),
@@ -198,11 +206,12 @@ public class RegistryFormPanel {
                         newForm.setPasive(null);
                         System.out.println(AssetsRegistry.getAssetsRegistry());
                     } else if (newForm.isNeedPasiveData()) {
-                        //TODO: crear objeto pasive de mainform
+
                         newForm.setAsset(null);
                         newForm.setPasive(new Pasives(
                                 newForm.getId(),
                                 pasivePanel.getName(),
+                                "su madre", //deudor xd
                                 pasivePanel.getDescription(),
                                 Integer.valueOf(getValue()),
                                 pasivePanel.getInterestType(),
@@ -224,7 +233,8 @@ public class RegistryFormPanel {
             }
         });
     }
-//TODO: no sirveeeee
+
+    //TODO: no sirveeeee
     private void safeClose() {
         MainFrame.setGoToHome(true);
         registroScrollPane.getParent().removeAll();

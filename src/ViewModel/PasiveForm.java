@@ -1,5 +1,6 @@
 package ViewModel;
 
+import Fragment.Constants;
 import Fragment.Pasives;
 
 import javax.swing.*;
@@ -272,12 +273,12 @@ public class PasiveForm {
 
     public int getInterestType() {
         if (interestTypeComboBox.getSelectedIndex() == 1) {
-            return Pasives.LINEAL_INTEREST;
+            return Constants.LINEAL_INTEREST;
 
         } else if (interestTypeComboBox.getSelectedIndex() == 2) {
-            return Pasives.COMPOUND_INTEREST;
+            return Constants.COMPOUND_INTEREST;
         } else {
-            return Pasives.NONE;
+            return Constants.NONE;
         }
     }
 
@@ -299,30 +300,30 @@ public class PasiveForm {
 
     public byte getType() {
         if (typeComboBox.getSelectedIndex() == 1) {
-            return Pasives.CURRENT;
+            return Constants.CURRENT;
 
         } else if (typeComboBox.getSelectedIndex() == 2) {
-            return Pasives.NO_CURRENT;
+            return Constants.NO_CURRENT;
         } else {
-            return Pasives.NONE;
+            return Constants.NONE;
         }
     }
 
     public byte getPeriodicy() {
         if (enableDeadLineCheckBox.isSelected()) {
             if (periodicyComboBox.getSelectedIndex() == 1) {
-                return Pasives.DAILY;
+                return Constants.DAILY;
             } else if (periodicyComboBox.getSelectedIndex() == 2) {
-                return Pasives.WEEKLY;
+                return Constants.WEEKLY;
             } else if (periodicyComboBox.getSelectedIndex() == 3) {
-                return Pasives.MONTHLY;
+                return Constants.MONTHLY;
             } else if (periodicyComboBox.getSelectedIndex() == 4) {
-                return Pasives.YEARLY;
+                return Constants.YEARLY;
             } else {
-                return Pasives.NONE;
+                return Constants.NONE;
             }
         } else {
-            return Pasives.NONE;
+            return Constants.NONE;
         }
     }
 

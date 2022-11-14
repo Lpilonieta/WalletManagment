@@ -1,49 +1,51 @@
 package Fragment;
 
+import Model.PasivesRegistry;
+
+import java.util.ArrayList;
+
 public class Pasives {
 
+
+    // Pasive Attributes.
     private String id;
     private String name;
     private String deudor;
     private String description;
-    private int value;
-    private int interestType;
-    private int interestPercentage;
-    private int numberOfInstallments;
-    private float installmentPrice;
+    private int purchaseValue;
     private byte type;
+    private float interestPercentage;
+    private int interestType;
+    private int numberOfInstallments;   //numero de cuotas;
+    private float installmentValue;     //valor de pago por cuota.
     private byte periodicy;
     private int especificPeriodicy;
-    private  static Pasives[] totalPasives = Pasives.getTotalPasivesFromDB();
 
-    private static float currentPasiveValue = Pasives.getPreviousValue();
-    private static float noCurrentPasiveValue = Pasives.getPreviousValue();
+    //variables de interés para los calculas de las estadísticas
 
-    public static final byte NONE = -1;
-    public static final byte NO_CURRENT = 0;
-    public static final byte CURRENT = 1;
-    public static final byte DAILY = 2;
-    public static final byte WEEKLY = 3;
-    public static final byte MONTHLY = 4;
-    public static final byte YEARLY = 5;
-    public static final byte LINEAL_INTEREST = 6;
-    public static final byte COMPOUND_INTEREST = 7;
+    private static ArrayList<Pasives> totalPasives = new ArrayList<>(1);
+    private static float currentPasiveValue = 0;
+    private static float noCurrentPasiveValue = 0;
+
 
     public Pasives() {
         this.id = "";
+        this.deudor = "";
         this.name = "";
         this.description = "";
-        this.value = 0;
-        this.interestType = Pasives.NONE;
-        this.interestPercentage = Pasives.NONE;
-        this.numberOfInstallments = Pasives.NONE;
-        this.type = Pasives.NONE;
-        this.periodicy = Pasives.NONE;
-        this.especificPeriodicy = Pasives.NONE;
+        this.purchaseValue = Constants.NONE;
+        this.interestType = Constants.NONE;
+        this.interestPercentage = Constants.NONE;
+        this.numberOfInstallments = Constants.NONE;
+        this.type = Constants.NONE;
+        this.periodicy = Constants.NONE;
+        this.especificPeriodicy = Constants.NONE;
+
     }
 
     public Pasives(String id,
                    String name,
+                   String deudor,
                    String description,
                    int value,
                    int interestType,
@@ -56,8 +58,9 @@ public class Pasives {
     {
         this.id = id;
         this.name = name;
+        this.deudor = deudor;
         this.description = description;
-        this.value = value;
+        this.purchaseValue = value;
         this.interestType = interestType;
         this.interestPercentage = interestPercentage;
         this.numberOfInstallments = numberOfInstallments;
@@ -94,12 +97,12 @@ public class Pasives {
         this.deudor = deudor;
     }
 
-    public int getValue() {
-        return value;
+    public int getPurchaseValue() {
+        return purchaseValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPurchaseValue(int purchaseValue) {
+        this.purchaseValue = purchaseValue;
     }
 
     public int getInterestType() {
@@ -110,7 +113,7 @@ public class Pasives {
         this.interestType = interestType;
     }
 
-    public int getInterestPercentage() {
+    public float getInterestPercentage() {
         return interestPercentage;
     }
 
@@ -126,12 +129,12 @@ public class Pasives {
         this.numberOfInstallments = numberOfInstallments;
     }
 
-    public float getInstallmentPrice() {
-        return installmentPrice;
+    public float getInstallmentValue() {
+        return installmentValue;
     }
 
-    public void setInstallmentPrice(float installmentPrice) {
-        this.installmentPrice = installmentPrice;
+    public void setInstallmentValue(float installmentValue) {
+        this.installmentValue = installmentValue;
     }
 
     public byte getType() {
@@ -158,45 +161,59 @@ public class Pasives {
         this.especificPeriodicy = especificPeriodicy;
     }
 
-    public static Pasives[] getTotalPasives() {
+    public static ArrayList<Pasives> getTotalPasives() {
         return totalPasives;
     }
 
-    public static void setTotalPasives(Pasives[] totalPasives) {
+    public static void setTotalPasives(ArrayList<Pasives> totalPasives) {
         Pasives.totalPasives = totalPasives;
     }
 
 
 
-    private static int getPreviousValue() {
-        // todo hacer method que traiga el valor de la base de datos
-        return 0;
-    }
+
     public static float getTotalPasiveValue(){
+        updateTotalPasivesFromDB();
         //todo ajustar que en el valor de los pasivos se tenga en cuenta el interés
         float value;
         value=0;
 
         for (Pasives asset:totalPasives
         ) {
-            value+= asset.getValue();
+            value+= asset.getPurchaseValue();
         }
 
         return value;
     }
 
+    private static void updateTotalPasivesFromDB() {
+        totalPasives.clear();
+        if (! PasivesRegistry.getPasivesRegistry().isEmpty()){
+            for (Pasives pasive:PasivesRegistry.getPasivesRegistry().values()
+                 ) {
+                totalPasives.add(pasive);
+            }
+        }
+    }
 
 
     private boolean isCurrentType() {
-        if (this.getType()==CURRENT){
+        if (this.getType()==Constants.CURRENT){
             return true;
         }else{
             return false;
         }
     }
-
-
+    //todo: posible method para una interfaz
+    private static void updateCurrentValueFromDB() {
+        currentPasiveValue = 0;
+        for (Pasives pasive: PasivesRegistry.getPasivesRegistry().values()
+        ) {
+            if (pasive.isCurrentType()) currentPasiveValue += pasive.getPurchaseValue();
+        }
+    }
     public static float getCurrentPasiveValue() {
+        updateCurrentValueFromDB();
         return currentPasiveValue;
     }
 
@@ -205,60 +222,39 @@ public class Pasives {
     }
 
     public static float getNoCurrentPasiveValue() {
+        updateNoCurrentValueFromDB();
         return noCurrentPasiveValue;
+    }
+    //todo: posible method para una interfaz
+    private static void updateNoCurrentValueFromDB() {
+        noCurrentPasiveValue = 0;
+        for (Pasives pasive: PasivesRegistry.getPasivesRegistry().values()
+        ) {
+            if (! pasive.isCurrentType()) noCurrentPasiveValue += pasive.getPurchaseValue();
+        }
     }
 
     public static void setNoCurrentPasiveValue(float noCurrentPasiveValue) {
         Pasives.noCurrentPasiveValue = noCurrentPasiveValue;
     }
 
-    //todo posible method para una interfaz
+    //todo: posible method para una interfaz
     public static void updateTypeValues(Pasives[] totalPasives){
         Pasives.setNoCurrentPasiveValue(0);
         Pasives.setCurrentPasiveValue(0);
         for (Pasives pasive:totalPasives
         ) {
             if (pasive.isCurrentType()){
-                Pasives.setCurrentPasiveValue(Pasives.currentPasiveValue+pasive.value);
+                Pasives.setCurrentPasiveValue(Pasives.currentPasiveValue+pasive.purchaseValue);
                 System.out.println(getNoCurrentPasiveValue());
             }else{
-                Pasives.setNoCurrentPasiveValue(Pasives.noCurrentPasiveValue+pasive.value);
+                Pasives.setNoCurrentPasiveValue(Pasives.noCurrentPasiveValue+pasive.purchaseValue);
                 System.out.println(Pasives.getCurrentPasiveValue());
             }
         }
     }
 
-    // modificar para que devuelva la cantidad de assets que se le pide
-    private static Pasives[] getTotalPasivesFromDB() {
-        Pasives pasive1= new Pasives("1",
-                "name1",
-                "",
-                100,
-                Pasives.LINEAL_INTEREST,
-                0,
-                1,
-                Pasives.CURRENT,
-                Pasives.MONTHLY,
-                1
-        );
-        Pasives pasive2 = new Pasives("2",
-                "name1",
-                "",
-                200,
-                Pasives.COMPOUND_INTEREST,
-                0,
-                2,
-                Pasives.NO_CURRENT,
-                Pasives.MONTHLY,
-                1
-        );
-
-        Pasives[] totalPasives = {
-                pasive1,
-                pasive2
-        };
-        return totalPasives;
+    public void setId(String id) {
+        this.id = id;
     }
-
-
 }

@@ -1,55 +1,62 @@
 package Fragment;
 
-public class Assets {
+import Model.AssetsRegistry;
+import Model.PasivesRegistry;
 
+import java.util.ArrayList;
+
+public class Assets implements Inventory {
+
+
+
+
+
+    // Assets Attributes
     private String id;
     private String name;
     private String description;
-    private int value;
+    private String comments;
+    private int purchaseValue;
     private byte type;
+    private byte category;
     private int rentability;
     private int saleValue;
-    private String category;
 
-    private static float currentAssetsValue = Assets.getPreviousValue();
-    private static float noCurrentAssetsValue = Assets.getPreviousValue();
-    //todo error de recursividad
-    //private static float totalAssetsValue = Assets.getTotalAssetsValue();
+    private static float currentAssetsValue = 0;//Assets.getPreviousValue();
+    private static float noCurrentAssetsValue = 0;//Assets.getPreviousValue();
+    private static ArrayList<Assets> totalAssets = new ArrayList<>(1);
 
-    public static final byte NONE = -1;
-    public static final byte NO_CURRENT = 0;
-    public static final byte CURRENT = 1;
+    private static float totalAssetsValue =0;
+
 
     private static int getPreviousValue() {
         // todo hacer method que traiga el valor de la base de datos
         return 0;
     }
 
-    private static Assets[] totalAssets = getTotalAssetsFromDB();
-
-
-
-
     public Assets() {
         this.id = "";
         this.name = "";
         this.description = "";
-        this.value = -1;
-        this.type = NONE;
+        this.comments = "";
+        this.purchaseValue = 0;
+        this.type = Constants.NONE;
         this.rentability = 0;
         this.saleValue = 0;
+        this.category = Constants.NONE;
 
     }
 
-    public Assets(String id, String name, String description, int value, byte type, int rentability, int saleValue, String category) {
+    public Assets(String id, String name, String description, int purchaseValue, byte type, int rentability, int saleValue, byte category) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.value = value;
+        this.purchaseValue = purchaseValue;
         this.type = type;
         this.rentability = rentability;
         this.saleValue = saleValue;
         this.category = category;
+        this.comments = "";
     }
 
     public String getId() {
@@ -72,12 +79,12 @@ public class Assets {
         this.description = description;
     }
 
-    public int getValue() {
-        return value;
+    public int getPurchaseValue() {
+        return purchaseValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPurchaseValue(int purchaseValue) {
+        this.purchaseValue = purchaseValue;
     }
 
     public byte getType() {
@@ -105,7 +112,16 @@ public class Assets {
     }
 
     public static float getCurrentAssetsValue() {
+        updateCurrentValueFromDB();
         return currentAssetsValue;
+    }
+
+    private static void updateCurrentValueFromDB() {
+        currentAssetsValue = 0;
+        for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
+             ) {
+            if (asset.isCurrentType()) currentAssetsValue += asset.getPurchaseValue();
+        }
     }
 
     private static void setCurrentAssetsValue(float currentAssetsValue) {
@@ -113,39 +129,51 @@ public class Assets {
     }
 
     public static float getNoCurrentAssetsValue() {
+        updateNoCurrentValueFromDB();
         return noCurrentAssetsValue;
     }
 
     private static void setNoCurrentAssetsValue(float noCurrentAssetsValue) {
         Assets.noCurrentAssetsValue = noCurrentAssetsValue;
     }
+    private static void updateNoCurrentValueFromDB() {
+        noCurrentAssetsValue = 0;
+        for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
+        ) {
+            if (! asset.isCurrentType()) noCurrentAssetsValue += asset.getPurchaseValue();
+        }
+    }
 
-    public static Assets[] getTotalAssets() {
+    public static ArrayList<Assets> getTotalAssets() {
+        updateTotalAssetsFromDB();
         return totalAssets;
     }
     public static float getTotalAssetsValue(){
-        float value;
-        value=0;
-
+        updateTotalAssetsFromDB();
+        totalAssetsValue =0;
         for (Assets asset:totalAssets
              ) {
-            value+= asset.getValue();
+            totalAssetsValue+= asset.getPurchaseValue();
         }
 
-        return value;
+        return totalAssetsValue;
     }
+
+    private static void updateTotalAssetsFromDB()  {
+        totalAssets.clear();
+        if (! AssetsRegistry.getAssetsRegistry().isEmpty()){
+            for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
+                 ) {
+                totalAssets.add(asset);
+            }
+        }
+    }
+
     //todo implementar que se recuperen assets de acuerdo al intervalo especificado
-    public static void setTotalAssets(Assets[] totalAssets) {
+    public static void setTotalAssets(ArrayList<Assets> totalAssets) {
         Assets.totalAssets = totalAssets;
     }
-//    public static void setTotalAssetsValue(Assets[] totalAssets) {
-//
-//        Assets.totalAssetsValue =0;
-//        for (Assets asset:totalAssets
-//        ) {
-//            Assets.totalAssetsValue = Assets.totalAssetsValue + asset.value;
-//        }
-//    }
+
     //todo posible method para una interfaz
     public static void updateTypeValues(Assets[] totalAssets){
         Assets.setNoCurrentAssetsValue(0);
@@ -153,33 +181,25 @@ public class Assets {
         for (Assets asset:totalAssets
              ) {
             if (asset.isCurrentType()){
-                Assets.setCurrentAssetsValue(Assets.currentAssetsValue+asset.value);
+                Assets.setCurrentAssetsValue(Assets.currentAssetsValue+asset.purchaseValue);
                 System.out.println(getCurrentAssetsValue());
             }else{
-                Assets.setNoCurrentAssetsValue(Assets.noCurrentAssetsValue+asset.value);
+                Assets.setNoCurrentAssetsValue(Assets.noCurrentAssetsValue+asset.purchaseValue);
                 System.out.println(Assets.getNoCurrentAssetsValue());
             }
         }
     }
 
     private boolean isCurrentType() {
-        if (this.getType()==CURRENT){
+        if (this.getType()==Constants.CURRENT){
             return true;
         }else{
             return false;
         }
     }
-    // modificar para que devuelva la cantidad de assets que se le pide
-    private static Assets[] getTotalAssetsFromDB() {
-        Assets asset1= new Assets("1","name1","",100,Assets.CURRENT,0,0,"");
-        Assets asset2 = new Assets("2","name1","",200,Assets.NO_CURRENT,0,0,"");
 
-        Assets[] totalAssets = {
-                asset1,
-                asset2
-        };
-        return totalAssets;
+
+    public void setId(String id) {
+        this.id = id;
     }
-
-
 }

@@ -4,10 +4,17 @@ import Fragment.Assets;
 import Fragment.Constants;
 import Fragment.Form;
 import Fragment.Pasives;
+import Fragment.Spaces.FinancialSpace;
 
 import java.util.HashMap;
+import java.util.HexFormat;
 
 public class GeneralRegistry {
+    //espacios financieros de ejemplo
+    private FinancialSpace espacio1 = new FinancialSpace("espacio 1","grupo 1", 0x1);
+    private FinancialSpace espacio2 = new FinancialSpace("espacio 1","grupo 1", 0x2);
+    private FinancialSpace espacio3 = new FinancialSpace("espacio 1","grupo 2", 0x3);
+    private FinancialSpace espacio4 = new FinancialSpace("espacio 1","sin grupo", 0x4);
     // assets de ejemplo
     private Assets assetTest_1 = new Assets("","name asset test 1","description AssetTest1",0, Constants.CURRENT,0,80, Constants.NONE);
     private Assets assetTest_2 = new Assets("","name asset test 2","description AssetTest2",0,Constants.CURRENT,0,180, Constants.NONE);
@@ -34,6 +41,9 @@ public class GeneralRegistry {
     private Form formTest_9 = new Form();
 
     public void setExampleGeneralRegistry(){
+
+
+        setUpFinancialSpaces();
         setUpForms();
         saveForm(formTest_0);
         saveForm(formTest_1);
@@ -45,6 +55,19 @@ public class GeneralRegistry {
         saveForm(formTest_7);
         saveForm(formTest_8);
         saveForm(formTest_9);
+    }
+
+    private void setUpFinancialSpaces() {
+        addFinancialSpacesToDB(espacio1);
+        addFinancialSpacesToDB(espacio2);
+        addFinancialSpacesToDB(espacio3);
+        addFinancialSpacesToDB(espacio4);
+    }
+    public void addFinancialSpacesToDB(FinancialSpace espacio) {
+        financialSpaceHashMap.put(espacio.getId(),espacio);
+    }
+    public static void addFinancialSpaceToDB(FinancialSpace espacio) {
+        financialSpaceHashMap.put(espacio.getId(),espacio);
     }
 
     private void saveForm(Form form) {
@@ -163,6 +186,7 @@ public class GeneralRegistry {
         setExampleGeneralRegistry();
     }
 
+    private static HashMap<Integer, FinancialSpace> financialSpaceHashMap = new HashMap<>();
     private static HashMap<String, Form> GENERAL_REGISTRY = new HashMap<>();
     private static HashMap<String, Form> EXAMPLE_GENERAL_REGISTRY = new HashMap<>();
     public static void addNewRegistry(String key, Form value){
@@ -173,4 +197,7 @@ public class GeneralRegistry {
         return GENERAL_REGISTRY;
     }
     public static HashMap<String, Form> getExampleGeneralRegistry(){ return EXAMPLE_GENERAL_REGISTRY; }
+    public static HashMap<Integer,FinancialSpace> getFinancialSpaceHashMap(){
+        return financialSpaceHashMap;
+    }
 }

@@ -19,6 +19,12 @@ public class Stats implements Liquidity, Solvency, Rentability{
     private float rotacionDeInventario;
     private float rotacionDeCartera;
     private float inventarioDeExistrncias;
+    private float utilidadBruta;
+    private float utilidadNeta;
+    private float ventasBrutas;
+    private float ventasNetas;
+
+
 
     public Stats() {
         this.fondoDeManiobra = Liquidity.calculateFondoDeManiobra();

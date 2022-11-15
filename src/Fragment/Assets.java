@@ -1,15 +1,10 @@
 package Fragment;
 
 import Model.AssetsRegistry;
-import Model.PasivesRegistry;
 
 import java.util.ArrayList;
 
 public class Assets implements Inventory {
-
-
-
-
 
     // Assets Attributes
     private String id;
@@ -28,11 +23,13 @@ public class Assets implements Inventory {
 
     private static float totalAssetsValue =0;
 
+    //inventory attributes
+    private float stockNumber;
+    private float saleNumbers;
+    private float totalItemValue;
+    private boolean isInventory;
+    private float unitValue;
 
-    private static int getPreviousValue() {
-        // todo hacer method que traiga el valor de la base de datos
-        return 0;
-    }
 
     public Assets() {
         this.id = "";
@@ -44,7 +41,30 @@ public class Assets implements Inventory {
         this.rentability = 0;
         this.saleValue = 0;
         this.category = Constants.NONE;
+        // inventory por default
+        this.stockNumber=0;
+        this.saleNumbers = 0;
+        this.totalItemValue = 0;
+        this.isInventory = false;
+        this.unitValue=0;
 
+    }
+    //constructor para inventario
+    public Assets(String id, String name, String description, String comments, int purchaseValue, byte type, byte category, int rentability, int saleValue, boolean isInventory, float stockNumber, float totalItemValue,  float unitValue) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.comments = comments;
+        this.purchaseValue = purchaseValue;
+        this.type = type;
+        this.category = category;
+        this.rentability = rentability;
+        this.saleValue = saleValue;
+        this.stockNumber = stockNumber;
+        this.saleNumbers = 0;
+        this.totalItemValue = totalItemValue;
+        this.isInventory = isInventory;
+        this.unitValue = unitValue;
     }
 
     public Assets(String id, String name, String description, int purchaseValue, byte type, int rentability, int saleValue, byte category) {
@@ -57,6 +77,12 @@ public class Assets implements Inventory {
         this.saleValue = saleValue;
         this.category = category;
         this.comments = "";
+        //this.isInventory = isInventory;
+        this.stockNumber = 0;
+        this.saleNumbers = 0;
+        this.totalItemValue = 0;
+        this.isInventory = false;
+        this.unitValue = 0;
     }
 
     public String getId() {
@@ -201,5 +227,56 @@ public class Assets implements Inventory {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    @Override
+    public void setStockNumber(float newStockNumber) {
+        this.stockNumber=newStockNumber;
+    }
+
+    @Override
+    public void setSaleNumbers(float newSaleNumber) {
+        this.saleNumbers = newSaleNumber;
+    }
+
+    @Override
+    public void setTotalItemValue(float newTotalItemValue) {
+        this.totalItemValue = newTotalItemValue;
+    }
+
+    @Override
+    public void setIsInventory(boolean isInventory) {
+        this.isInventory = isInventory;
+    }
+
+    @Override
+    public void setUnitValue(float unitValue) {
+        this.unitValue=unitValue;
+    }
+
+    @Override
+    public float getStockNumber() {
+        return stockNumber;
+    }
+
+    @Override
+    public float getSaleNumbers() {
+        return saleNumbers;
+    }
+
+    @Override
+    public float getTotalItemValue() {
+        return totalItemValue;
+    }
+
+    @Override
+    public boolean isinventoryItem() {
+        return isInventory;
+    }
+
+    @Override
+    public float getUintValue() {
+        return unitValue;
     }
 }

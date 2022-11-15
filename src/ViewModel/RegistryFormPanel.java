@@ -201,7 +201,8 @@ public class RegistryFormPanel {
                                 assetPanel.getAssetType(),
                                 assetPanel.getRentabilityPercentage(),
                                 assetPanel.getSaleValue(),
-                                assetPanel.getAssetCategory())
+                                assetPanel.getAssetCategory()
+                                )
                         );
                         newForm.setPasive(null);
                         System.out.println(AssetsRegistry.getAssetsRegistry());

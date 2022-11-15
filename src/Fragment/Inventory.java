@@ -1,10 +1,19 @@
 package Fragment;
 
 public interface Inventory {
-     boolean isInventory = true;
-     int stockNumber = 0;
-     int saleNumbers = 0;
-     int unitValue =0;
+
+     void setStockNumber(float newStockNumber);
+     void setSaleNumbers(float newSaleNumber);
+     void setTotalItemValue(float newTotalItemValue);
+     void setIsInventory(boolean isInventory);
+     void setUnitValue(float unitValue);
+
+     float getStockNumber();
+     float getSaleNumbers();
+     float getTotalItemValue();
+     boolean isinventoryItem();
+     float getUintValue();
+
 
 
 

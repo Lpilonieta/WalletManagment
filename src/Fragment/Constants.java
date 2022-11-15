@@ -1,7 +1,11 @@
 package Fragment;
 
+import Fragment.Spaces.FinancialSpace;
+
 public class Constants {
     public static final byte NONE = -125;
+    public static final FinancialSpace AREA_PERSONAL= new FinancialSpace("Area personal","",0x0);
+    public static final int AREA_PERSONAL_ID = 0x0;
     // asset-pasive types
     public static final byte NO_CURRENT = 0;
     public static final byte CURRENT = 1;

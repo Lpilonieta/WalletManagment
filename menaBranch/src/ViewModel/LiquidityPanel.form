@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ViewModel.LiquidityPanel">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="c67d9" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <text value="LiquidityPanel"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

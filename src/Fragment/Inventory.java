@@ -1,18 +1,25 @@
 package Fragment;
 
-public interface Inventory {
+public class Inventory extends Assets {
 
-     void setStockNumber(float newStockNumber);
-     void setSaleNumbers(float newSaleNumber);
-     void setTotalItemValue(float newTotalItemValue);
-     void setIsInventory(boolean isInventory);
-     void setUnitValue(float unitValue);
+    private float stockNumber;
+    private float saleNumbers;
+    private float totalItemValue;
+    private float unitValue;
+    private float bruteUtilityOfItem;
 
-     float getStockNumber();
-     float getSaleNumbers();
-     float getTotalItemValue();
-     boolean isinventoryItem();
-     float getUintValue();
+
+//     void setStockNumber(float newStockNumber);
+//     void setSaleNumbers(float newSaleNumber);
+//     void setTotalItemValue(float newTotalItemValue);
+//     void setIsInventory(boolean isInventory);
+//     void setUnitValue(float unitValue);
+//
+//     float getStockNumber();
+//     float getSaleNumbers();
+//     float getTotalItemValue();
+//     boolean isinventoryItem();
+//     float getUintValue();
 
 
 

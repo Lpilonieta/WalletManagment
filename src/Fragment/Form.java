@@ -4,7 +4,7 @@ import Fragment.Spaces.Manager;
 
 import java.util.Calendar;
 
-public class Form {
+public class Form  {
     //forms de ejemplo para db
 
     private static int lastID=0;
@@ -12,32 +12,39 @@ public class Form {
     //Atributos del form
     private Calendar registryDate;
     private String id;
-    private int value;
+    private int purchaseValue;
     private String source;  // TODO: [ CREAR TABLA EN CONSTANTS ]
     private String motive;  // TODO: cambiar por objeto motivos para gestionar los motivos. [ CREAR TABLA EN CONSTANTS ]
     private String comments;
-    private byte type;
+    private byte formType;
     private boolean needAssetData, needPasiveData;
     private Assets asset;
     private Pasives pasive;
+    private int financialSpaceIdRegistered;
     // fin atributos del form
+
+
+    public int getFinancialSpaceIdRegistered() {
+        return financialSpaceIdRegistered;
+    }
 
     // Constructor (s)
     public Form() {
         this.registryDate = Calendar.getInstance();
-        this.id = "";
-        this.value = 0;
+        this.purchaseValue = 0;
         this.source = "";   //TODO: cambiar por byte [ CREAR TABLA EN CONSTANTS ]
         this.comments = "";
-        this.type = Constants.NONE;
+        this.formType = Constants.NONE;
         this.asset = null;
         this.pasive = null;
+        this.financialSpaceIdRegistered = Manager.getFinEspId();
+        getNewId();
     }
     //-------------------------------------------------------------------
 
     public void getNewId() {
 
-        int formType = this.getType();
+        int formType = this.getFormType();
         // numero de registro (hex)
         int numId = lastID;
         lastID+=1;
@@ -50,8 +57,8 @@ public class Form {
 
     }
 
-    public byte getType() {
-        return type;
+    public byte getFormType() {
+        return formType;
     }
 
     public Assets getAsset() {
@@ -66,16 +73,16 @@ public class Form {
         return id;
     }
 
-    public int getValue() {
-        return value;
+    public int getPurchaseValue() {
+        return purchaseValue;
     }
 
-    public void setType(byte type) {
-        this.type = type;
+    public void setFormType(byte formType) {
+        this.formType = formType;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPurchaseValue(int purchaseValue) {
+        this.purchaseValue = purchaseValue;
     }
 
     public void setSource(String source) {
@@ -103,21 +110,12 @@ public class Form {
     }
 
     public void setNeedAssetData(int indexThatTriggerAssetForm, int indexSelected) {
-        if (indexThatTriggerAssetForm==indexSelected){
-            needAssetData = true;
-        }else {
-            needAssetData=false;
-        }
+        needAssetData = indexThatTriggerAssetForm == indexSelected;
 
     }
 
     public void setNeedPasiveData(int indexThatTriggerPasiveForm, int indexSelected) {
-        if (indexThatTriggerPasiveForm == indexSelected) {
-            needPasiveData = true;
-
-        }else {
-            needPasiveData= false;
-        }
+        needPasiveData = indexThatTriggerPasiveForm == indexSelected;
     }
 
     public boolean isNeedAssetData() {

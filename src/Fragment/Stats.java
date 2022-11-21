@@ -1,6 +1,10 @@
 package Fragment;
 
-public class Stats implements Liquidity, Solvency, Rentability{
+public class Stats extends User implements Liquidity, Solvency, Rentability{
+    //stats generales
+
+
+
     //liquidez
     private float fondoDeManiobra;
     private float razonCorriente;

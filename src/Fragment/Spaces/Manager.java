@@ -1,9 +1,15 @@
 package Fragment.Spaces;
 
+import Fragment.Assets;
 import Fragment.Constants;
+import Fragment.Form;
+import Fragment.Pasives;
+import Model.FinacialSpaceRegistry;
 import Model.GeneralRegistry;
 
-public class Manager {
+import java.util.ArrayList;
+
+public class Manager  {
     //private int
     private static int currentID = Constants.AREA_PERSONAL_ID;
     private static FinancialSpace currentFinancialSpace = Constants.AREA_PERSONAL;
@@ -13,20 +19,6 @@ public class Manager {
         }
         return currentID;
     }
-    public static void newFinancialSpace(String name, String group, int id){
-        updateCurrentID();
-        save(new FinancialSpace(name, group, id));
-    }
-    public static void selectFinancialSpaceByID(int id){
-        if (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
-            currentID = id;
-            currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(id);
-        }else {
-            System.out.println("\nKEY incorrecta\n");
-        }
-    }
-
-
     private static void updateCurrentID() {
         if (! GeneralRegistry.getFinancialSpaceHashMap().isEmpty()){
         while (GeneralRegistry.getFinancialSpaceHashMap().containsKey(currentID+1)){
@@ -35,12 +27,51 @@ public class Manager {
         }
     }
 
-    private static void save(FinancialSpace financialSpace) {
+    private static int getIdFromDb() {
+        return 0;
+    }
+
+
+
+
+
+
+
+
+
+
+    public static void deleteFinancialSpace(FinancialSpace financialSpace){
+        deleteFinancialSpaceByID(financialSpace.getId());
+    }
+    public static void deleteFinancialSpaceByID(int id){
+        /*
+        * revisa que exista la key
+        * si existe la borra
+        * shiftea todos los id superiores
+        * */
+        if (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
+            GeneralRegistry.getFinancialSpaceHashMap().remove(id);
+            GeneralRegistry.updateFinancialSpacesID();
+        }
+    }
+
+    public static void save(FinancialSpace financialSpace) {
         GeneralRegistry.addFinancialSpaceToDB(financialSpace);
 
     }
 
-    private static int getIdFromDb() {
-        return 0;
+    public static void switchFinancialSpaceByID(int id){
+        if (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
+            currentID = id;
+            currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(id);
+        }else {
+            System.out.println("\nKEY incorrecta\n");
+        }
     }
+
+    public static void switchFinancialSpace(FinancialSpace financialSpace) {
+        currentFinancialSpace = financialSpace;
+        currentID = financialSpace.getId();
+    }
+
 }

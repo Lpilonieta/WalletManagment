@@ -1,18 +1,16 @@
 package Fragment;
 
+import Fragment.Spaces.Manager;
 import Model.PasivesRegistry;
 
 import java.util.ArrayList;
 
-public class Pasives {
+public class Pasives extends Form {
 
 
-    // Pasive Attributes.
-    private String id;
     private String name;
     private String deudor;
     private String description;
-    private int purchaseValue;
     private byte type;
     private float interestPercentage;
     private int interestType;
@@ -29,11 +27,9 @@ public class Pasives {
 
 
     public Pasives() {
-        this.id = "";
         this.deudor = "";
         this.name = "";
         this.description = "";
-        this.purchaseValue = Constants.NONE;
         this.interestType = Constants.NONE;
         this.interestPercentage = Constants.NONE;
         this.numberOfInstallments = Constants.NONE;
@@ -43,11 +39,9 @@ public class Pasives {
 
     }
 
-    public Pasives(String id,
-                   String name,
+    public Pasives(String name,
                    String deudor,
                    String description,
-                   int value,
                    int interestType,
                    int interestPercentage,
                    int numberOfInstallments,
@@ -56,21 +50,16 @@ public class Pasives {
                    int especificPeriodicy
     )
     {
-        this.id = id;
         this.name = name;
         this.deudor = deudor;
         this.description = description;
-        this.purchaseValue = value;
         this.interestType = interestType;
         this.interestPercentage = interestPercentage;
         this.numberOfInstallments = numberOfInstallments;
         this.type = type;
         this.periodicy = periodicy;
         this.especificPeriodicy = especificPeriodicy;
-    }
 
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -97,13 +86,9 @@ public class Pasives {
         this.deudor = deudor;
     }
 
-    public int getPurchaseValue() {
-        return purchaseValue;
-    }
-
-    public void setPurchaseValue(int purchaseValue) {
-        this.purchaseValue = purchaseValue;
-    }
+//    public int getPurchaseValue() {
+//        return purchaseValue;
+//    }
 
     public int getInterestType() {
         return interestType;
@@ -169,29 +154,27 @@ public class Pasives {
         Pasives.totalPasives = totalPasives;
     }
 
-
-
-
     public static float getTotalPasiveValue(){
-        updateTotalPasivesFromDB();
-        //todo ajustar que en el valor de los pasivos se tenga en cuenta el interés
+        updateTotalPasives();
         float value;
         value=0;
 
-        for (Pasives asset:totalPasives
+        for (Pasives pasives:totalPasives
         ) {
-            value+= asset.getPurchaseValue();
+            value+= pasives.getPurchaseValue();
         }
 
         return value;
     }
 
-    private static void updateTotalPasivesFromDB() {
+    public static void updateTotalPasives() {
         totalPasives.clear();
         if (! PasivesRegistry.getPasivesRegistry().isEmpty()){
             for (Pasives pasive:PasivesRegistry.getPasivesRegistry().values()
                  ) {
-                totalPasives.add(pasive);
+                if (pasive.getFinancialSpaceIdRegistered()== Manager.getFinEspId()){
+                    totalPasives.add(pasive);
+                }
             }
         }
     }
@@ -222,11 +205,11 @@ public class Pasives {
     }
 
     public static float getNoCurrentPasiveValue() {
-        updateNoCurrentValueFromDB();
+        updateNoCurrentValue();
         return noCurrentPasiveValue;
     }
     //todo: posible method para una interfaz
-    private static void updateNoCurrentValueFromDB() {
+    private static void updateNoCurrentValue() {
         noCurrentPasiveValue = 0;
         for (Pasives pasive: PasivesRegistry.getPasivesRegistry().values()
         ) {
@@ -239,22 +222,19 @@ public class Pasives {
     }
 
     //todo: posible method para una interfaz
-    public static void updateTypeValues(Pasives[] totalPasives){
-        Pasives.setNoCurrentPasiveValue(0);
-        Pasives.setCurrentPasiveValue(0);
+    public static void updateTypeValues(){
+        noCurrentPasiveValue=0;
+        currentPasiveValue=0;
         for (Pasives pasive:totalPasives
         ) {
             if (pasive.isCurrentType()){
-                Pasives.setCurrentPasiveValue(Pasives.currentPasiveValue+pasive.purchaseValue);
+                Pasives.setCurrentPasiveValue(Pasives.currentPasiveValue+pasive.getPurchaseValue());
                 System.out.println(getNoCurrentPasiveValue());
-            }else{
-                Pasives.setNoCurrentPasiveValue(Pasives.noCurrentPasiveValue+pasive.purchaseValue);
+            }else if (! pasive.isCurrentType()){
+                Pasives.setNoCurrentPasiveValue(Pasives.noCurrentPasiveValue+pasive.getPurchaseValue());
                 System.out.println(Pasives.getCurrentPasiveValue());
             }
         }
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }

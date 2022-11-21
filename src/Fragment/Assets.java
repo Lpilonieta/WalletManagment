@@ -1,21 +1,26 @@
 package Fragment;
 
+import Fragment.Spaces.Manager;
 import Model.AssetsRegistry;
 
 import java.util.ArrayList;
 
-public class Assets implements Inventory {
+public class Assets extends Form {
 
     // Assets Attributes
-    private String id;
+
     private String name;
     private String description;
     private String comments;
-    private int purchaseValue;
     private byte type;
     private byte category;
     private int rentability;
     private int saleValue;
+    private boolean isInventory=false;
+    private Inventory inventory = null;
+
+
+
 
     private static float currentAssetsValue = 0;//Assets.getPreviousValue();
     private static float noCurrentAssetsValue = 0;//Assets.getPreviousValue();
@@ -24,70 +29,35 @@ public class Assets implements Inventory {
     private static float totalAssetsValue =0;
 
     //inventory attributes
-    private float stockNumber;
-    private float saleNumbers;
-    private float totalItemValue;
-    private boolean isInventory;
-    private float unitValue;
+
 
 
     public Assets() {
-        this.id = "";
         this.name = "";
         this.description = "";
         this.comments = "";
-        this.purchaseValue = 0;
         this.type = Constants.NONE;
         this.rentability = 0;
         this.saleValue = 0;
         this.category = Constants.NONE;
         // inventory por default
-        this.stockNumber=0;
-        this.saleNumbers = 0;
-        this.totalItemValue = 0;
-        this.isInventory = false;
-        this.unitValue=0;
+
 
     }
-    //constructor para inventario
-    public Assets(String id, String name, String description, String comments, int purchaseValue, byte type, byte category, int rentability, int saleValue, boolean isInventory, float stockNumber, float totalItemValue,  float unitValue) {
-        this.id = id;
+    public Assets(String name, String description, String comments, byte type, byte category, int rentability, int saleValue) {
+
         this.name = name;
         this.description = description;
         this.comments = comments;
-        this.purchaseValue = purchaseValue;
         this.type = type;
         this.category = category;
         this.rentability = rentability;
         this.saleValue = saleValue;
-        this.stockNumber = stockNumber;
-        this.saleNumbers = 0;
-        this.totalItemValue = totalItemValue;
-        this.isInventory = isInventory;
-        this.unitValue = unitValue;
+
+
+
     }
 
-    public Assets(String id, String name, String description, int purchaseValue, byte type, int rentability, int saleValue, byte category) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.purchaseValue = purchaseValue;
-        this.type = type;
-        this.rentability = rentability;
-        this.saleValue = saleValue;
-        this.category = category;
-        this.comments = "";
-        //this.isInventory = isInventory;
-        this.stockNumber = 0;
-        this.saleNumbers = 0;
-        this.totalItemValue = 0;
-        this.isInventory = false;
-        this.unitValue = 0;
-    }
-
-    public String getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -105,20 +75,12 @@ public class Assets implements Inventory {
         this.description = description;
     }
 
-    public int getPurchaseValue() {
-        return purchaseValue;
-    }
-
-    public void setPurchaseValue(int purchaseValue) {
-        this.purchaseValue = purchaseValue;
-    }
-
-    public byte getType() {
+    public byte getFormType() {
         return type;
     }
 
-    public void setType(byte type) {
-        this.type = type;
+    public void setFormType(byte formType) {
+        this.type = formType;
     }
 
     public int getRentability() {
@@ -138,15 +100,15 @@ public class Assets implements Inventory {
     }
 
     public static float getCurrentAssetsValue() {
-        updateCurrentValueFromDB();
+        updateCurrentValue();
         return currentAssetsValue;
     }
 
-    private static void updateCurrentValueFromDB() {
+    public static void updateCurrentValue() {
         currentAssetsValue = 0;
-        for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
+        for (Assets asset:totalAssets
              ) {
-            if (asset.isCurrentType()) currentAssetsValue += asset.getPurchaseValue();
+            //TODO: desarrollar este método
         }
     }
 
@@ -155,18 +117,18 @@ public class Assets implements Inventory {
     }
 
     public static float getNoCurrentAssetsValue() {
-        updateNoCurrentValueFromDB();
+        updateNoCurrentValue();
         return noCurrentAssetsValue;
     }
 
     private static void setNoCurrentAssetsValue(float noCurrentAssetsValue) {
         Assets.noCurrentAssetsValue = noCurrentAssetsValue;
     }
-    private static void updateNoCurrentValueFromDB() {
+    public static void updateNoCurrentValue() {
         noCurrentAssetsValue = 0;
-        for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
+        for (Assets asset:totalAssets
         ) {
-            if (! asset.isCurrentType()) noCurrentAssetsValue += asset.getPurchaseValue();
+                //TODO: desarrollar este método
         }
     }
 
@@ -179,45 +141,45 @@ public class Assets implements Inventory {
         totalAssetsValue =0;
         for (Assets asset:totalAssets
              ) {
-            totalAssetsValue+= asset.getPurchaseValue();
+            //TODO: desarrollar este método
         }
 
         return totalAssetsValue;
     }
 
-    private static void updateTotalAssetsFromDB()  {
+    public static void updateTotalAssetsFromDB()  {
         totalAssets.clear();
         if (! AssetsRegistry.getAssetsRegistry().isEmpty()){
             for (Assets asset:AssetsRegistry.getAssetsRegistry().values()
                  ) {
-                totalAssets.add(asset);
+                if (asset.getFinancialSpaceIdRegistered() == Manager.getFinEspId()){
+                    totalAssets.add(asset);
+                }
             }
         }
     }
-
-    //todo implementar que se recuperen assets de acuerdo al intervalo especificado
     public static void setTotalAssets(ArrayList<Assets> totalAssets) {
         Assets.totalAssets = totalAssets;
     }
 
     //todo posible method para una interfaz
-    public static void updateTypeValues(Assets[] totalAssets){
+    public static void updateTypeValues(){
         Assets.setNoCurrentAssetsValue(0);
         Assets.setCurrentAssetsValue(0);
         for (Assets asset:totalAssets
              ) {
             if (asset.isCurrentType()){
-                Assets.setCurrentAssetsValue(Assets.currentAssetsValue+asset.purchaseValue);
+                //Assets.setCurrentAssetsValue(Assets.currentAssetsValue+asset.purchaseValue);
                 System.out.println(getCurrentAssetsValue());
             }else{
-                Assets.setNoCurrentAssetsValue(Assets.noCurrentAssetsValue+asset.purchaseValue);
+                //Assets.setNoCurrentAssetsValue(Assets.noCurrentAssetsValue+asset.purchaseValue);
                 System.out.println(Assets.getNoCurrentAssetsValue());
             }
         }
     }
 
     private boolean isCurrentType() {
-        if (this.getType()==Constants.CURRENT){
+        if (this.getFormType()==Constants.CURRENT){
             return true;
         }else{
             return false;
@@ -225,58 +187,11 @@ public class Assets implements Inventory {
     }
 
 
-    public void setId(String id) {
-        this.id = id;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-
-    @Override
-    public void setStockNumber(float newStockNumber) {
-        this.stockNumber=newStockNumber;
-    }
-
-    @Override
-    public void setSaleNumbers(float newSaleNumber) {
-        this.saleNumbers = newSaleNumber;
-    }
-
-    @Override
-    public void setTotalItemValue(float newTotalItemValue) {
-        this.totalItemValue = newTotalItemValue;
-    }
-
-    @Override
-    public void setIsInventory(boolean isInventory) {
-        this.isInventory = isInventory;
-    }
-
-    @Override
-    public void setUnitValue(float unitValue) {
-        this.unitValue=unitValue;
-    }
-
-    @Override
-    public float getStockNumber() {
-        return stockNumber;
-    }
-
-    @Override
-    public float getSaleNumbers() {
-        return saleNumbers;
-    }
-
-    @Override
-    public float getTotalItemValue() {
-        return totalItemValue;
-    }
-
-    @Override
-    public boolean isinventoryItem() {
+    public boolean isInventoryItem() {
         return isInventory;
-    }
-
-    @Override
-    public float getUintValue() {
-        return unitValue;
     }
 }

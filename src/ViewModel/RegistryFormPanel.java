@@ -183,8 +183,8 @@ public class RegistryFormPanel {
 
                 if (e.getSource() == submitButton) {
                     newForm = new Form();
-                    newForm.setType(getFormType());
-                    newForm.setValue(getValue());
+                    newForm.setFormType(getFormType());
+                    newForm.setPurchaseValue(getValue());
                     newForm.setSource(getSource());
                     newForm.setMotive(getMotive());
                     newForm.setComments(getComments());
@@ -194,14 +194,14 @@ public class RegistryFormPanel {
                     if (newForm.isNeedAssetData()) {
 
                         newForm.setAsset(new Assets(
-                                newForm.getId(),
                                 assetPanel.getAssetName(),
                                 "",
-                                Integer.valueOf(getValue()),
+                                "",
                                 assetPanel.getAssetType(),
+                                assetPanel.getAssetCategory(),
                                 assetPanel.getRentabilityPercentage(),
-                                assetPanel.getSaleValue(),
-                                assetPanel.getAssetCategory()
+                                assetPanel.getSaleValue()
+
                                 )
                         );
                         newForm.setPasive(null);
@@ -210,11 +210,9 @@ public class RegistryFormPanel {
 
                         newForm.setAsset(null);
                         newForm.setPasive(new Pasives(
-                                newForm.getId(),
                                 pasivePanel.getName(),
                                 "su madre", //deudor xd
                                 pasivePanel.getDescription(),
-                                Integer.valueOf(getValue()),
                                 pasivePanel.getInterestType(),
                                 pasivePanel.getInterestPercentage(),
                                 pasivePanel.getNumberOfInstallments(),
@@ -247,7 +245,7 @@ public class RegistryFormPanel {
         Pasives pasivesDataBaseValue = newForm.getPasive();
         GeneralRegistry.addNewRegistry(key, newForm);
         if (newForm.isNeedAssetData()) {
-            AssetsRegistry.addNewAssetRegistry(key, assetsDataBaseValue);
+            AssetsRegistry.save(assetsDataBaseValue);
         } else if (newForm.isNeedPasiveData()) {
             PasivesRegistry.addNewPasiveRegistry(key, pasivesDataBaseValue);
         }

@@ -218,14 +218,14 @@ public class LoginUITemplate extends JFrame {
     public void JButtons () {
 
         //JButton
-/*
+
         bExit = sObjGraficos.construirBoton("", 500, 0, 32,32,
                 cursoMano, null,
                 mainColor, null,
                 iconExit, null,
                 false, "");
         panelLogin.add(bExit);
-*/
+
 
         bloginI = new JButton("Iniciar sesión");
         bloginI.setSize(200,40);

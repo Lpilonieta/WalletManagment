@@ -13,12 +13,17 @@ public class RecursosService {
     private ImageIcon iconLogin, iConUser, iConPassword, iconExit;
 
     private Border bInferiorVerde;
-    private Font mainFont, specialTitle, cursivafont;
+    private Font mainFont, specialTitle, cursivafont, lightFont;
 
     static private RecursosService servicio;
 
     private RecursosService (){
 
+        this.crearColores();
+        this.crearFuentes();
+        this.crearBordes();
+        this.crearImagenes();
+        this.crearCursores();
 
     }
 
@@ -30,9 +35,18 @@ public class RecursosService {
         return servicio;
     }
 
+    public void crearCursores (){
+        cursoMano = new Cursor(Cursor.HAND_CURSOR);
+
+    }
+
     private void crearColores (){
         mainColor = new Color(76,175,80);
-        colorSecundario = new Color(31, 78, 138);
+        colorSecundario = new Color(66, 235, 209);
+    }
+
+    public Font getLightFont() {
+        return lightFont;
     }
 
     private void crearFuentes (){
@@ -40,7 +54,7 @@ public class RecursosService {
         mainFont = new Font("Calibri (Cuerpo)", Font.BOLD, 17);
         specialTitle = new Font("Rockwell Extra Bold", Font.PLAIN, 18);
         cursivafont = new Font("Calibri (Cuerpo)", Font.ITALIC, 17);
-
+        lightFont = new Font("LuzSans-Book", Font.PLAIN,12);
     }
 
     private void crearBordes (){
@@ -69,6 +83,7 @@ public class RecursosService {
     public ImageIcon getIconLogin() {
         return iconLogin;
     }
+
 
     public ImageIcon getiConUser() {
         return iConUser;

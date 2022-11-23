@@ -1,6 +1,6 @@
-package ViewModel.Login;
+package ViewModel.Components;
 
-import ViewModel.MainPanel.MainPanelComponent;
+import ViewModel.Login.LoginUITemplate;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

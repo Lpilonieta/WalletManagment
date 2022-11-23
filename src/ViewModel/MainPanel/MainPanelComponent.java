@@ -1,6 +1,11 @@
-package ViewModel.MainPanel;
+package ViewModel.Components;
 
-public class MainPanelComponent {
+import ViewModel.MainPanel.MainPanelTemplate;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MainPanelComponent implements ActionListener {
 
     private MainPanelComponent mainPanelComponent;
 
@@ -20,5 +25,10 @@ public class MainPanelComponent {
 
     public MainPanelTemplate getMainPanelTemplate() {
         return mainPanelTemplate;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

@@ -1,8 +1,12 @@
 package ViewModel;
 
+import Model.GeneralRegistry;
+
 public class Stats implements Liquidity, Solvency, Rentability{
     //stats generales
     private float netWorth;
+    private float totalRevenue;
+    private float totalExpenses;
 
 
     //liquidez
@@ -30,22 +34,50 @@ public class Stats implements Liquidity, Solvency, Rentability{
 
 
 
-//    public Stats() {
-//        this.fondoDeManiobra = Liquidity.calculateFondoDeManiobra();
-//        this.razonCorriente = Liquidity.calculateRazonCorriente();
-//        this.pruebaAcida = Liquidity.calculatePruebaAcida();
-//        this.endeudamientoTotal = Solvency.calcEndeudamientoTotal();
-//        this.endeudamientoCortoPlazo = Solvency.calcEndeudamientoCP();
-//        this.endeudamientoLargoPlazo = Solvency.calcEndeudamientoLP();
-//        this.apalancamientoTotal = Solvency.calcApalancamientoTotal();
-//        this.margenDeUtilidadBruta = Rentability.calcMargenDeUtilidadBruta();
-//        this.rentabilidadSobrePatrimonio = Rentability.calcRentabilidadSobrePatrimonio();
-//        this.rentabilidadSobreActivos = Rentability.calcRentabilidadSobreActivos();
-//        this.rentabilidadSobreVentas = Rentability.calcRentabilidadSobreVentas();
-//        this.rotacionDeInventario = rotacionDeInventario;
-//        this.rotacionDeCartera = rotacionDeCartera;
-//        this.inventarioDeExistrncias = inventarioDeExistrncias;
-//    }
+    public Stats() {
+        calculateTotalRevenue();
+        calculateTotalExpenses();
+        calculateNethWorth();
+        this.fondoDeManiobra = Liquidity.calculateFondoDeManiobra();
+        this.razonCorriente = Liquidity.calculateRazonCorriente();
+        this.pruebaAcida = Liquidity.calculatePruebaAcida();
+        this.endeudamientoTotal = Solvency.calcEndeudamientoTotal();
+        this.endeudamientoCortoPlazo = Solvency.calcEndeudamientoCP();
+        this.endeudamientoLargoPlazo = Solvency.calcEndeudamientoLP();
+        this.apalancamientoTotal = Solvency.calcApalancamientoTotal();
+        this.margenDeUtilidadBruta = Rentability.calcMargenDeUtilidadBruta();
+        this.rentabilidadSobrePatrimonio = Rentability.calcRentabilidadSobrePatrimonio();
+        this.rentabilidadSobreActivos = Rentability.calcRentabilidadSobreActivos();
+        this.rentabilidadSobreVentas = Rentability.calcRentabilidadSobreVentas();
+        this.rotacionDeInventario = rotacionDeInventario;
+        this.rotacionDeCartera = rotacionDeCartera;
+        this.inventarioDeExistrncias = inventarioDeExistrncias;
+    }
+
+    private void calculateNethWorth() {
+        netWorth = totalRevenue-totalExpenses;
+        if (netWorth<1){
+            netWorth=1;
+        }
+    }
+
+    private void calculateTotalRevenue() {
+        for (Form form:new GeneralRegistry().getAllForms()
+             ) {
+            if (form.getFormType() == Constants.RENEUE_FORM_TYPE){
+                totalRevenue+=form.getPurchaseValue();
+            }
+        }
+    }
+    private void calculateTotalExpenses() {
+        for (Form form:new GeneralRegistry().getAllForms()
+             ) {
+            if (form.getFormType() == Constants.EXPENSE_FORM_TYPE){
+                totalExpenses+=form.getPurchaseValue();
+            }
+        }
+    }
+
     public void printAll(){
         System.out.println("fondo de maniobra: "+ this.fondoDeManiobra);
         System.out.println("razon corriente: "+ this.razonCorriente);

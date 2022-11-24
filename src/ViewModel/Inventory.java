@@ -6,7 +6,7 @@ public class Inventory extends Assets {
 
     private float stockNumber;
     private float saleNumbers;
-    private float totalItemValue;
+    private float totalItemValue;//
     private float unitValue;
 
     public Inventory(byte formtype, String name, String description, String comments, byte type, byte category, int rentability, int saleValue, float stockNumber, float saleNumbers, float totalItemValue, float unitValue) {

@@ -30,9 +30,9 @@ public class Form  {
 
     // Constructor (s)
     public Form() {
-        this.registryDate = Calendar.getInstance();
-        this.purchaseValue = 0;
-        this.source = "";   //TODO: cambiar por byte [ CREAR TABLA EN CONSTANTS ]
+        this.registryDate = Calendar.getInstance(); // automatico
+        this.purchaseValue = 0;         // valor
+        this.source = "";   // combo box []
         this.comments = "";
         this.formType = Constants.NONE;
         this.asset = null;
@@ -41,9 +41,9 @@ public class Form  {
 //        getNewId();
     }
     public Form(byte type) {
-        this.registryDate = Calendar.getInstance();
-        this.purchaseValue = 0;
-        this.source = "";   //TODO: cambiar por byte [ CREAR TABLA EN CONSTANTS ]
+        this.registryDate = Calendar.getInstance(); //automatico
+        this.purchaseValue = 0;                     // valor
+        this.source = "";                           //
         this.comments = "";
         this.formType = type;
         this.asset = null;

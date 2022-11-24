@@ -42,7 +42,8 @@ public class Assets extends Form {
         this.saleValue = 0;
         this.category = Constants.NONE;
         setAsset(this);
-//        GeneralRegistry.save(this);
+        GeneralRegistry.save(this);
+        getNewId();
 
 
     }
@@ -57,6 +58,7 @@ public class Assets extends Form {
         this.saleValue = saleValue;
         setAsset(this);
         GeneralRegistry.save(this);
+        getNewId();
 
 
 

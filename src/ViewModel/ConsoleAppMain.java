@@ -1,4 +1,4 @@
-package View;
+package ViewModel;
 import Model.EJEMPLO;
 import Model.GeneralRegistry;
 import ViewModel.Assets;

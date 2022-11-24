@@ -66,6 +66,7 @@ public class Pasives extends Form {
         this.especificPeriodicy = especificPeriodicy;
         setPasive(this);
         GeneralRegistry.save(this);
+        getNewId();
 
     }
 

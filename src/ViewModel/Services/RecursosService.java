@@ -13,7 +13,7 @@ public class RecursosService {
     private ImageIcon iconLogin, iConUser, iConPassword, iconExit;
 
     private Border bInferiorVerde;
-    private Font mainFont, specialTitle, cursivafont, lightFont;
+    private Font mainFont, specialTitle, cursivafont, lightFont, fontMediana, fontSubtitulo;
 
     static private RecursosService servicio;
 
@@ -55,6 +55,8 @@ public class RecursosService {
         specialTitle = new Font("Rockwell Extra Bold", Font.PLAIN, 18);
         cursivafont = new Font("Calibri (Cuerpo)", Font.ITALIC, 17);
         lightFont = new Font("LuzSans-Book", Font.PLAIN,12);
+        fontMediana = new Font("LuzSans-Book",Font.PLAIN,15);
+        fontSubtitulo = new Font("Forte", Font.PLAIN,13);
     }
 
     private void crearBordes (){
@@ -84,6 +86,13 @@ public class RecursosService {
         return iconLogin;
     }
 
+    public Font getFontMediana() {
+        return fontMediana;
+    }
+
+    public Font getFontSubtitulo() {
+        return fontSubtitulo;
+    }
 
     public ImageIcon getiConUser() {
         return iConUser;

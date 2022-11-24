@@ -31,15 +31,6 @@ public class Manager  {
         return 0;
     }
 
-
-
-
-
-
-
-
-
-
     public static void deleteFinancialSpace(FinancialSpace financialSpace){
         deleteFinancialSpaceByID(financialSpace.getId());
     }

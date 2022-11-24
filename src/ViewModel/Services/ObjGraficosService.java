@@ -30,7 +30,7 @@ public class ObjGraficosService extends JFrame {
     }
 
 
-    public JPanel contruirPanelGenerico (int ancho, int alto, int x, int y, Color colorFondo, Border borde){
+    public JPanel contruirPanelGenerico (int x, int y, int ancho, int alto, Color colorFondo, Border borde){
 
         panelGenerico = new JPanel();
         panelGenerico.setSize(ancho,alto);
@@ -41,9 +41,9 @@ public class ObjGraficosService extends JFrame {
         return panelGenerico;
    }
 
-    public JButton construirBoton (String texto, int x, int y, int ancho, int alto, Cursor cursor,
-                                   Font fuente, Color colorFondo, Color colorFuente, ImageIcon image,
-                                   Border border, boolean esSolido, String direccion){
+    public JButton builtButton(String texto, int x, int y, int ancho, int alto, Cursor cursor,
+                               Font fuente, Color colorFondo, Color colorFuente, ImageIcon image,
+                               Border border, boolean isSolido, String direccion){
 
         button = new JButton(texto);
         button.setLocation(x,y);
@@ -55,7 +55,7 @@ public class ObjGraficosService extends JFrame {
         button.setForeground(colorFuente);
         button.setIcon(image);
         button.setBorder(border);
-        button.setContentAreaFilled(esSolido);
+        button.setContentAreaFilled(isSolido);
 
         switch (direccion){
 
@@ -121,7 +121,7 @@ public class ObjGraficosService extends JFrame {
     }
 
     public JLabel construirJLabel (String texto, int x, int y, int ancho, int alto, Color colorFuente,
-                                   Color colorFondo, Font font, Cursor cursor, ImageIcon imagen, Border borde, String direccion){
+                                   Color colorFondo, Font font, Cursor cursor, ImageIcon imagen, Border borde, String direction){
 
         label = new JLabel(texto);
         label.setLocation(x, y);
@@ -135,7 +135,7 @@ public class ObjGraficosService extends JFrame {
             label.setOpaque(true);
             label.setBackground(colorFondo);
         }
-        switch (direccion) {
+        switch (direction) {
             case "CENTER":
                 label.setHorizontalAlignment(SwingConstants.CENTER);
                 break;
@@ -227,7 +227,6 @@ public class ObjGraficosService extends JFrame {
 
         return comboBox;
     }
-
 
 }
 

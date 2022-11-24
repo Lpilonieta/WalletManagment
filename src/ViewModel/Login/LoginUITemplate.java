@@ -1,6 +1,7 @@
 package ViewModel.Login;
 
 import ViewModel.Services.ObjGraficosService;
+import ViewModel.Services.RecursosService;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -17,9 +18,9 @@ public class LoginUITemplate extends JFrame {
 
     private JPasswordField tClaveUser;
 
-    private JComboBox userType;
 
-    private JButton bloginI, bRegistry, bExit;
+
+    private JButton bloginI, bRegistry;
 
     private JCheckBox checkSi, checkNo;
 
@@ -31,12 +32,13 @@ public class LoginUITemplate extends JFrame {
 
     private LoginComponent loginComponent;
 
+    private RecursosService recursosService;
+
 
     //Decoradores
 
     private Color mainColor;
 
-    private Cursor cursoMano;
     private Cursor cursoTexto;
     private ImageIcon iconLogin, iConUser, iConPassword, iconExit;
     private JLabel lIconLogin, lIconUser, lIconPassword;
@@ -50,12 +52,14 @@ public class LoginUITemplate extends JFrame {
         super("Login usuario");
 
         this.loginComponent = loginComponent;
+        recursosService = RecursosService.getService();
         sObjGraficos = ObjGraficosService.getService();
+
 
         this.Jdecoradores();
         this.JLabels();
         this.JTextField();
-        this.JComboBox();
+        //this.JComboBox();
         this.PasswordFields();
         this.JButtons();
         this.JCheckBoxs();
@@ -70,7 +74,6 @@ public class LoginUITemplate extends JFrame {
         setLayout(null);
 
     }
-
 
 
     public void Jdecoradores(){
@@ -88,7 +91,6 @@ public class LoginUITemplate extends JFrame {
 
         //Cursor
 
-        cursoMano = new Cursor(Cursor.HAND_CURSOR);
         cursoTexto = new Cursor(Cursor.TEXT_CURSOR);
 
         //Border
@@ -116,7 +118,7 @@ public class LoginUITemplate extends JFrame {
         iconLogin = new ImageIcon("Graphics/Login/8801574.png");
         iConUser = new ImageIcon("Graphics/Login/user.png");
         iConPassword = new ImageIcon("Graphics/Login/cerrar-con-llave.png");
-        iconExit = new ImageIcon("/Graphics/Login/sign-out.png");
+        iconExit = new ImageIcon("Graphics/Login/sign-out.png");
 
         lIconLogin = new JLabel();
         lIconLogin.setBounds(0,0,212,212);
@@ -181,6 +183,7 @@ public class LoginUITemplate extends JFrame {
 
     }
 
+    /*
     public void JComboBox(){
 
         //JComboBox
@@ -197,7 +200,7 @@ public class LoginUITemplate extends JFrame {
 
 
     }
-
+*/
     public void PasswordFields (){
 
         //JPasswordField
@@ -219,14 +222,13 @@ public class LoginUITemplate extends JFrame {
 
         //JButton
 
-        bExit = sObjGraficos.construirBoton("", 500, 0, 32,32,
-                cursoMano, null,
-                mainColor, null,
-                iconExit, null,
-                false, "");
-        panelLogin.add(bExit);
 
+        bloginI = sObjGraficos.builtButton("Iniciar sesión", 30, 350, 200, 40, recursosService.getCursoMano(),
+                null, recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
+        bloginI.addActionListener(loginComponent);
+        panelLogin.add(bloginI);
 
+/*
         bloginI = new JButton("Iniciar sesión");
         bloginI.setSize(200,40);
         bloginI.setLocation(30,350);
@@ -235,7 +237,7 @@ public class LoginUITemplate extends JFrame {
         bloginI.setFocusable(false);
         bloginI.setCursor(cursoMano);
         panelLogin.add(bloginI);
-
+*/
 
         bRegistry = new JButton("Registrarse");
         bRegistry.setSize(200,40);
@@ -243,9 +245,9 @@ public class LoginUITemplate extends JFrame {
         bRegistry.setBackground(mainColor);
         bRegistry.setForeground(Color.WHITE);
         bRegistry.setFocusable(false);
-        bRegistry.setCursor(cursoMano);
+        bRegistry.setCursor(recursosService.getCursoMano());
+        bRegistry.addActionListener(loginComponent);
         panelLogin.add(bRegistry);
-
 
     }
 
@@ -260,14 +262,14 @@ public class LoginUITemplate extends JFrame {
         checkSi.setFocusable(false);
         checkSi.setBackground(Color.WHITE);
         checkSi.setLocation((panelLogin.getWidth() - checkSi.getWidth()) / 2 - 15, 430);
-        checkSi.setCursor(cursoMano);
+        checkSi.setCursor(recursosService.getCursoMano());
 
 
         checkNo.setSize(45,25);
         checkNo.setFocusable(false);
         checkNo.setBackground(Color.WHITE);
         checkNo.setLocation((panelLogin.getWidth() + checkNo.getWidth()) / 2 + 6, 430);
-        checkNo.setCursor(cursoMano);
+        checkNo.setCursor(recursosService.getCursoMano());
 
         panelLogin.add(checkSi);
         panelLogin.add(checkNo);
@@ -288,9 +290,6 @@ public class LoginUITemplate extends JFrame {
         return tClaveUser;
     }
 
-    public JComboBox getUserType() {
-        return userType;
-    }
 
     public JButton getBloginI() {
         return bloginI;
@@ -300,9 +299,6 @@ public class LoginUITemplate extends JFrame {
         return bRegistry;
     }
 
-    public JButton getbExit() {
-        return bExit;
-    }
 
     public JCheckBox getCheckSi() {
         return checkSi;

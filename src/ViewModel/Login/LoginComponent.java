@@ -1,6 +1,6 @@
-package ViewModel.Components;
+package ViewModel.Login;
 
-import ViewModel.Login.LoginUITemplate;
+import ViewModel.MainPanel.MainPanelComponent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,27 +8,15 @@ import java.awt.event.ActionListener;
 public class LoginComponent implements ActionListener {
 
     //Inyección de dependencia
-    private LoginComponent loginComponent;
 
     private LoginUITemplate loginUITemplate;
 
     private MainPanelComponent mainPanel;
 
-    public LoginComponent (LoginComponent loginComponent){
-
-     this.loginComponent = loginComponent;
-
-    }
-
-
     public LoginComponent (){
         this.loginUITemplate = new LoginUITemplate(this);
     }
 
-
-    public LoginUITemplate getLoginUITemplate() {
-        return this.loginUITemplate;
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -41,12 +29,7 @@ public class LoginComponent implements ActionListener {
             this.showDataUser();
             this.login ();
 
-            this.mainPanel = new MainPanelComponent();
-            loginUITemplate.setVisible(false);
-
         } else if (op == loginUITemplate.getbRegistry()){
-
-
             System.out.println("Registrandose");
         }
 
@@ -68,5 +51,14 @@ public class LoginComponent implements ActionListener {
 
     public void login (){
 
+        if(mainPanel == null){
+            this.mainPanel = new MainPanelComponent(this);
+            loginUITemplate.setVisible(false);
+        } else {
+            this.mainPanel.getMainPanelTemplate().setVisible(false);
+            loginUITemplate.setVisible(true);
+        }
+
     }
+
 }

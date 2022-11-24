@@ -1,9 +1,7 @@
 package Model;
 
-import Fragment.Assets;
-import Fragment.Constants;
-import Fragment.Form;
-import Fragment.Pasives;
+import ViewModel.Form;
+import ViewModel.Pasives;
 
 import java.util.HashMap;
 

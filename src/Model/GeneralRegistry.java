@@ -1,13 +1,30 @@
 package Model;
 
-import Fragment.*;
-import Fragment.Spaces.FinancialSpace;
-import Fragment.Spaces.Manager;
+import ViewModel.Assets;
+import ViewModel.Form;
+import ViewModel.Inventory;
+import ViewModel.Pasives;
+import ViewModel.Spaces.FinancialSpace;
+import ViewModel.Spaces.Manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GeneralRegistry implements FinacialSpaceRegistry{
+    public static HashMap<String, Inventory> getInventoryHashmap() {
+        return INVENTORY_REGISTRY;
+    }
+
+    public static void save(Form form) {
+        if(form.isNeedAssetData()) {
+            GENERAL_REGISTRY.put(form.getId(), form.getAsset());
+        } else if (form.isNeedPasiveData()) {
+            GENERAL_REGISTRY.put(form.getId(), form.getPasive());
+        }else {
+            GENERAL_REGISTRY.put(form.getId(), form);
+        }
+    }
     /*
     *
     *       @Overwrite Interface
@@ -18,13 +35,17 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     public ArrayList<Form> getAllForms() {
         int id = Manager.getFinEspId();
         ArrayList<Form> allForms = new ArrayList<>(1);
-        for (Form form:GeneralRegistry.getExampleGeneralRegistry().values()
-             ) {
-            String[] idForm = form.getId().split("-");
-            if (idForm[2] == String.valueOf(id)){
-                allForms.add(form);
-            }
+        if (!EXAMPLE_GENERAL_REGISTRY.isEmpty()){
+            for (Form form : GeneralRegistry.getExampleGeneralRegistry().values()
+            ) {
+                String[] idForm = form.getId().split("-");
+                if (Integer.valueOf(idForm[2]) == id) {
+                    allForms.add(form);
+                }
 
+            }
+        }else {
+            allForms.add(new Form());
         }
         return allForms;
     }
@@ -34,7 +55,9 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
         ArrayList<Assets> allAssets = new ArrayList<>(1);
         for (Form form:getAllForms()
              ) {
-            allAssets.add(form.getAsset());
+            if (form.getAsset() != null){
+                if (!form.getAsset().isInventoryItem()) {allAssets.add(form.getAsset());}
+            }
         }
         return allAssets;
     }
@@ -44,7 +67,10 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
         ArrayList<Pasives> allPasives = new ArrayList<>(1);
         for (Form form:getAllForms()
         ) {
-            allPasives.add(form.getPasive());
+            if (form.getPasive() != null) {
+
+                allPasives.add(form.getPasive());
+            }
         }
         return allPasives;
     }
@@ -52,27 +78,17 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     @Override
     public ArrayList<Inventory> getAllInventory() {
         ArrayList<Inventory> allInventoryAssets = new ArrayList<>(1);
-        for (Assets assets : getAllAssets()
+        for (Form form : getAllForms()
                 ) {
-            if (assets.isInventoryItem()){
-                allInventoryAssets.add(assets.getInventory());
+            if (form.getAsset() != null) {
+                if (form.getAsset().isInventoryItem()){
+                    allInventoryAssets.add(form.getAsset().getInventory());
+                }
             }
         }
         return allInventoryAssets;
     }
     //----------------------------------------------------------------------------------------------------------------//
-
-    public static void updateFinancialSpacesID() {
-        int hashmapSize = financialSpaceHashMap.size();
-        for (int i=1;i+1<hashmapSize;i++) {
-            if (!financialSpaceHashMap.containsKey(i)) {
-                financialSpaceHashMap.put(i,financialSpaceHashMap.get(i+1));
-                financialSpaceHashMap.remove(i+1);
-            }
-        }
-
-    }
-
 
     public void addFinancialSpacesToDB(FinancialSpace espacio) {
         financialSpaceHashMap.put(espacio.getId(),espacio);
@@ -84,12 +100,15 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     private void saveForm(Form form) {
         EXAMPLE_GENERAL_REGISTRY.put(form.getId(),form);        //TODO: para dejarlo definitivo solo quitar la parte de "EXAMPLE_"
         if (form.isNeedAssetData()){
-            AssetsRegistry.saveAsset(form);
+            saveAsset(form);
         } else if (form.isNeedPasiveData()) {
             PasivesRegistry.savePasive(form);
         }
     }
 
+    private void saveAsset(Form form) {
+        ASSETS_REGISTRY.put(form.getId(), form.getAsset());
+    }
 
 
     public GeneralRegistry() {
@@ -102,6 +121,15 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     public static void addNewRegistry(String key, Form value){
         GENERAL_REGISTRY.put(key, value);
     }
+    public static void addNewAssetRegistry(String key, Assets value){
+        ASSETS_REGISTRY.put(key, value);
+    }
+    public static void addNewItemToInventory(String key, Inventory value){
+        INVENTORY_REGISTRY.put(key, value);
+    }
+    public static void addUnitsToItems(Assets inventoryItem, int numberToAdd){//TODO: implementar?
+        }
+
 
     public static HashMap<String, Form> getGeneralRegistry() {
         return GENERAL_REGISTRY;
@@ -110,4 +138,6 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     public static HashMap<Integer,FinancialSpace> getFinancialSpaceHashMap(){
         return financialSpaceHashMap;
     }
+    private static HashMap <String, Assets> ASSETS_REGISTRY = new HashMap<>();
+    private static HashMap <String, Inventory> INVENTORY_REGISTRY = new HashMap<>();
 }

@@ -1,9 +1,9 @@
 package Model;
 
-import Fragment.Assets;
-import Fragment.Form;
-import Fragment.Inventory;
-import Fragment.Pasives;
+import ViewModel.Assets;
+import ViewModel.Form;
+import ViewModel.Inventory;
+import ViewModel.Pasives;
 
 import java.util.ArrayList;
 

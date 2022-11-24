@@ -172,7 +172,9 @@
           <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <model/>
+        </properties>
       </component>
       <component id="989fa" class="javax.swing.JTextField" binding="interestPercentageField">
         <constraints>
@@ -188,7 +190,9 @@
           <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <model/>
+        </properties>
       </component>
       <component id="85bb1" class="javax.swing.JTextField" binding="numberOfInstallmentsField">
         <constraints>

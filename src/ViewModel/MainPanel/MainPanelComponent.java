@@ -1,6 +1,6 @@
 package ViewModel.MainPanel;
 
-import ViewModel.Components.DailyRecord.DailyRecordComponent;
+import ViewModel.Components.DailyRecord.*;
 import ViewModel.Components.FinancialSpaces.FinalcialSpacesComponent;
 import ViewModel.Components.FinancialSpaces.FinalcialSpacesTemplate;
 import ViewModel.Components.PersonalArea.PersonalAreaComponent;
@@ -29,7 +29,13 @@ public class MainPanelComponent {
     private LoginComponent loginComponent;
     private UserBrowsingComponent userBrowsingComponent;
 
-    private DailyRecordComponent dailyRecordComponent;
+    private ActivosComponent activosComponent;
+
+    private EgresosComponent egresosComponent;
+
+    private IngresosComponent ingresosComponent;
+
+    private PasivosComponent pasivosComponent;
 
     private FinalcialSpacesComponent finalcialSpacesComponent;
 
@@ -55,7 +61,6 @@ public class MainPanelComponent {
     }
 
     public void showComponents (String comand){
-
 
     switch (comand){
 
@@ -94,24 +99,43 @@ public class MainPanelComponent {
 
         case "Ingresos":
 
-
+            if (this.ingresosComponent == null){
+                mainPanelTemplate.getpShowData().add(new IngresosComponent().getIngresosTemplate());
+                System.out.println("Viendo espacio financiero");
+            }
 
             System.out.println("Añadiendo ingresos");
-
-
 
             break;
 
         case "Egresos":
+
+            if (this.egresosComponent== null){
+                mainPanelTemplate.getpShowData().add(new EgresosComponent().getEgresosTemplate());
+                System.out.println("Viendo espacio financiero");
+            }
+
             System.out.println("Añadiendo egresos");
             break;
 
         case "Pasivos":
 
+            if (this.pasivosComponent == null){
+                mainPanelTemplate.getpShowData().add(new PasivosComponent().getPasivosTemplate());
+                System.out.println("Viendo espacio financiero");
+            }
+
+
             System.out.println("Añadiendo pasivos");
             break;
 
         case "Activos":
+
+            if (this.activosComponent == null){
+                mainPanelTemplate.getpShowData().add(new ActivosComponent().getActivosTemplate());
+                System.out.println("Viendo espacio financiero");
+            }
+
             System.out.println("Añadiendo activos");
 
             break;

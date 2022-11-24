@@ -161,7 +161,7 @@ public class ObjGraficosService extends JFrame {
     }
 
     public JTextField construirJTextFiel (int x, int y, int ancho, int alto, String texto, Color colorFuente,
-                                          Color colorFondo, Color colorCarte, Color colorCaret, Font font, Border borde, String direccion){
+                                          Color colorFondo, Color colorCarte, Color colorCaret, Font font, String direccion){
 
         textField = new JTextField();
         textField.setLocation(x, y);
@@ -171,7 +171,7 @@ public class ObjGraficosService extends JFrame {
         textField.setBackground(colorFondo);
         textField.setCaretColor(colorCaret);
         textField.setFont(font);
-        textField.setBorder(borde);
+        textField.setHorizontalAlignment(SwingConstants.CENTER);
         switch (direccion) {
             case "CENTER":
                 textField.setHorizontalAlignment(SwingConstants.CENTER);

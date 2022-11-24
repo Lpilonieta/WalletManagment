@@ -210,6 +210,8 @@ public class PasiveForm {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         pasivesPanel.add(descriptionField, gbc);
         typeComboBox = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        typeComboBox.setModel(defaultComboBoxModel1);
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 4;
@@ -224,6 +226,8 @@ public class PasiveForm {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         pasivesPanel.add(interestPercentageField, gbc);
         interestTypeComboBox = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel2 = new DefaultComboBoxModel();
+        interestTypeComboBox.setModel(defaultComboBoxModel2);
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 8;

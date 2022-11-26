@@ -78,7 +78,7 @@ public class Stats implements Liquidity, Solvency, Rentability{
         }
     }
 
-    public void printAll(){
+    public void printAllStats(){
         System.out.println("fondo de maniobra: "+ this.fondoDeManiobra);
         System.out.println("razon corriente: "+ this.razonCorriente);
         System.out.println("prueba acida: "+ this.pruebaAcida);
@@ -86,9 +86,9 @@ public class Stats implements Liquidity, Solvency, Rentability{
         System.out.println("endeudamiento corto plazo: "+ this.endeudamientoCortoPlazo);
         System.out.println("endeudamiento largo plazo: "+ this.endeudamientoLargoPlazo);
         System.out.println("apalncamiento total: "+ this.apalancamientoTotal);
-        System.out.println("margen de utilidad bruta: "+ this.margenDeUtilidadBruta);
-        System.out.println("rentabilidad sobre el patrimonio: "+ this.rentabilidadSobrePatrimonio);
-        System.out.println("rentabilidad sobre activos: "+ this.rentabilidadSobreActivos);
-        System.out.println("rentabilidad sobre ventas: "+ this.rentabilidadSobreVentas);
+//        System.out.println("margen de utilidad bruta: "+ this.margenDeUtilidadBruta);
+//        System.out.println("rentabilidad sobre el patrimonio: "+ this.rentabilidadSobrePatrimonio);
+//        System.out.println("rentabilidad sobre activos: "+ this.rentabilidadSobreActivos);
+//        System.out.println("rentabilidad sobre ventas: "+ this.rentabilidadSobreVentas);
     }
 }

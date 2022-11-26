@@ -15,9 +15,7 @@ Assets extends Form {
     private String description;
     private String comments;
     private byte type;
-    private byte category;
     private int rentability;
-    private int saleValue;
     private boolean isInventory=false;
     private Inventory inventory = null;
 
@@ -40,23 +38,19 @@ Assets extends Form {
         this.comments = "";
         this.type = Constants.NONE;
         this.rentability = 0;
-        this.saleValue = 0;
-        this.category = Constants.NONE;
         setAsset(this);
         GeneralRegistry.save(this);
         getNewId();
 
 
     }
-    public Assets(byte formtype,String name, String description, String comments, byte type, byte category, int rentability, int saleValue) {
+    public Assets(byte formtype,String name, String description, String comments, byte type, byte category, int rentability) {
         super(formtype);
         this.name = name;
         this.description = description;
         this.comments = comments;
         this.type = type;
-        this.category = category;
         this.rentability = rentability;
-        this.saleValue = saleValue;
         setAsset(this);
         GeneralRegistry.save(this);
         getNewId();
@@ -78,9 +72,6 @@ Assets extends Form {
         return description;
     }
 
-    public byte getCategory() {
-        return category;
-    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -102,25 +93,17 @@ Assets extends Form {
         this.rentability = rentability;
     }
 
-    public int getSaleValue() {
-        return saleValue;
-    }
-
-    public void setSaleValue(int saleValue) {
-        this.saleValue = saleValue;
-    }
-
     public static float getCurrentAssetsValue() {
         updateCurrentValue();
         return currentAssetsValue;
     }
 
     public static void updateCurrentValue() {
-        currentAssetsValue = 0;
+        updateTotalAssetsFromDB();
+        currentAssetsValue = Constants.NONE;
         for (Assets asset:totalAssets
-             ) {
-            //TODO: desarrollar este método
-        }
+             )
+            if (asset.isCurrentType()) currentAssetsValue += asset.getPurchaseValue();
     }
 
     private static void setCurrentAssetsValue(float currentAssetsValue) {
@@ -152,10 +135,10 @@ Assets extends Form {
         totalAssetsValue =0;
         for (Assets asset:totalAssets
              ) {
-            //TODO: desarrollar este método
+            totalAssetsValue+= asset.getPurchaseValue();
         }
 
-        return totalAssetsValue;
+        return totalAssetsValue == 0 ? Constants.NONE : totalAssetsValue;
     }
 
     public static void updateTotalAssetsFromDB()  {
@@ -182,11 +165,7 @@ Assets extends Form {
     }
 
     private boolean isCurrentType() {
-        if (this.getFormType()==Constants.CURRENT){
-            return true;
-        }else{
-            return false;
-        }
+        return this.getFormType() == Constants.CURRENT;
     }
 
 

@@ -9,8 +9,11 @@ public class Inventory extends Assets {
     private float totalItemValue;//
     private float unitValue;
 
+    private static float inventoryValue;
+    private byte category;
+
     public Inventory(byte formtype, String name, String description, String comments, byte type, byte category, int rentability, int saleValue, float stockNumber, float saleNumbers, float totalItemValue, float unitValue) {
-        super(formtype, name, description, comments, type, category, rentability, saleValue);
+        super(formtype, name, description, comments, type, category, rentability);
         this.stockNumber = stockNumber;
         this.saleNumbers = saleNumbers;
         this.totalItemValue = totalItemValue;
@@ -49,5 +52,15 @@ public class Inventory extends Assets {
 
     public void setUnitValue(float unitValue) {
         this.unitValue = unitValue;
+    }
+
+    public static float getInventoryValue() {
+        inventoryValue = Constants.NONE;
+        for (Inventory inventoryItem:new GeneralRegistry().getAllInventory()
+             ) {
+            inventoryValue+= inventoryItem.getUnitValue()* inventoryItem.getStockNumber();
+        }
+
+        return inventoryValue;
     }
 }

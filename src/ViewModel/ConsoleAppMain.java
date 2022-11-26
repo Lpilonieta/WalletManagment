@@ -1,12 +1,8 @@
 package ViewModel;
 import Model.EJEMPLO;
 import Model.GeneralRegistry;
-import ViewModel.Assets;
-import ViewModel.Inventory;
-import ViewModel.Pasives;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
-import ViewModel.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +33,7 @@ public class ConsoleAppMain {
                 case 3 -> mostrarActivos();
 
                 case 4 -> mostrarPasivos();
-                case 5 -> mostrarEstadisticas();
+                case 5 -> mostrarEstadisticas(usuarioLogeado);
                 case 6 -> mostrarInventario();
                 default -> {
                 }
@@ -60,7 +56,6 @@ public class ConsoleAppMain {
                             "nombre: " +" "+ inv.getName()+" "+
                             "descripcion: " +" "+ inv.getDescription()+" "+
                             "tipo: " +" "+ inv.getType() +" "+
-                            "categoría: " +" "+ inv.getCategory() +" "+
                             "valor por unidad: " +" "+ inv.getUnitValue() +" "+
                             "unidades en stock" +" " + inv.getStockNumber()+ " " +
                             "numero de venta" + " " + inv.getSaleNumbers()
@@ -69,7 +64,9 @@ public class ConsoleAppMain {
         }
     }
 
-    private static void mostrarEstadisticas() {
+    private static void mostrarEstadisticas(User usuarioLogeado) {
+        usuarioLogeado.printAllStats();
+
         // mostrar todas las estadisticas con su significado
     }
 
@@ -101,9 +98,7 @@ public class ConsoleAppMain {
                             "nombre: " +" "+ asset.getName()+" "+
                             "descripcion: " +" "+ asset.getDescription()+" "+
                             "tipo: " +" "+ asset.getType() +" "+
-                            "categoría: " +" "+ asset.getCategory() +" "+
-                            "% rentabilidad: " +" "+ asset.getRentability() +" "+
-                            "valor de venta (aprox): " +" "+ asset.getSaleValue()
+                            "% rentabilidad: " +" "+ asset.getRentability()
             );
         }
     }

@@ -38,7 +38,7 @@ public class Form  {
         this.asset = null;
         this.pasive = null;
         this.financialSpaceIdRegistered = Manager.getFinEspId();
-//        getNewId();
+        getNewId();
     }
     public Form(byte type) {
         this.registryDate = Calendar.getInstance(); //automatico

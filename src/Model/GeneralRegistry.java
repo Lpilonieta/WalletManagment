@@ -1,15 +1,11 @@
 package Model;
 
-import ViewModel.Assets;
-import ViewModel.Form;
-import ViewModel.Inventory;
-import ViewModel.Pasives;
+import ViewModel.*;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class GeneralRegistry implements FinacialSpaceRegistry{
     public static HashMap<String, Inventory> getInventoryHashmap() {
@@ -88,6 +84,33 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
         }
         return allInventoryAssets;
     }
+
+    @Override
+    public ArrayList<Form> getAllExpensesForms() {
+        ArrayList<Form> Expenses = new ArrayList<>(1);
+            for (Form form : getAllForms()
+            ) {
+                String[] idForm = form.getId().split("-");
+                if (Integer.valueOf(idForm[0]) == Constants.EXPENSE_FORM_TYPE) {
+                    Expenses.add(form);
+                }
+            }
+            return Expenses;
+    }
+
+    @Override
+    public ArrayList<Form> getAllRevenuesForms() {
+        ArrayList<Form> Revenues = new ArrayList<>(1);
+        for (Form form : getAllForms()
+        ) {
+            String[] idForm = form.getId().split("-");
+            if (Integer.valueOf(idForm[0]) == Constants.RENEUE_FORM_TYPE) {
+                Revenues.add(form);
+            }
+        }
+        return Revenues;
+    }
+
     //----------------------------------------------------------------------------------------------------------------//
 
     public void addFinancialSpacesToDB(FinancialSpace espacio) {

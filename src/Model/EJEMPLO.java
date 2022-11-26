@@ -52,7 +52,7 @@ public class EJEMPLO {
     }
     private void setUpForms() {
 
-        assetTest_1 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 1", "description AssetTest1", "", Constants.CURRENT, (byte) 0, 80, Constants.NONE);
+        assetTest_1 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 1", "description AssetTest1", "", Constants.CURRENT, (byte) 0, 80);
         assetTest_1.setPurchaseValue(10);
         assetTest_1.setSource("fuente testForm_0");
         assetTest_1.setMotive("venta Activo");
@@ -61,14 +61,14 @@ public class EJEMPLO {
 
         Manager.switchFinancialSpaceByID(0x1);
 
-        assetTest_2 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 2", "description AssetTest2", "", Constants.CURRENT, (byte) 0, 180, Constants.NONE);
+        assetTest_2 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 2", "description AssetTest2", "", Constants.CURRENT, (byte) 0, 180);
         assetTest_2.setPurchaseValue(100);
         assetTest_2.setSource("fuente testForm_1");
         assetTest_2.setMotive("venta Activo");
         assetTest_2.setComments("comments formTest1");
 
 
-        assetTest_3 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 3", "description AssetTest3", "", Constants.NO_CURRENT, (byte) 5, 500, Constants.NONE);
+        assetTest_3 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 3", "description AssetTest3", "", Constants.NO_CURRENT, (byte) 5, 500);
         assetTest_3.setPurchaseValue(200);
         assetTest_3.setSource("fuente testForm_2");
         assetTest_3.setMotive("Compra Activo");
@@ -76,14 +76,14 @@ public class EJEMPLO {
 
         Manager.switchFinancialSpaceByID(0x2);
 
-        assetTest_4 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 4", "description AssetTest4", "", Constants.CURRENT, (byte) 0, 380, Constants.NONE);
+        assetTest_4 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 4", "description AssetTest4", "", Constants.CURRENT, (byte) 0, 380);
         assetTest_4.setPurchaseValue(300);
         assetTest_4.setSource("fuente testForm_3");
         assetTest_4.setMotive("compra Activo");
         assetTest_4.setComments("comments formTest3");
 
 
-        assetTest_5 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 5", "description AssetTest5", "", Constants.NO_CURRENT, (byte) 10, 550, Constants.NONE);
+        assetTest_5 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 5", "description AssetTest5", "", Constants.NO_CURRENT, (byte) 10, 550);
         assetTest_5.setPurchaseValue(400);
         assetTest_5.setSource("fuente testForm_4");
         assetTest_5.setMotive("venta Activo");

@@ -31,10 +31,10 @@ public class Pasives extends Form {
         this.deudor = "";
         this.name = "";
         this.description = "";
+        this.type = Constants.NONE;
         this.interestType = Constants.NONE;
         this.interestPercentage = Constants.NONE;
         this.numberOfInstallments = Constants.NONE;
-        this.type = Constants.NONE;
         this.periodicy = Constants.NONE;
         this.especificPeriodicy = Constants.NONE;
         setPasive(this);
@@ -164,15 +164,13 @@ public class Pasives extends Form {
 
     public static float getTotalPasiveValue(){
         updateTotalPasives();
-        float value;
-        value=0;
-
+        float value = 0;
         for (Pasives pasives:totalPasives
         ) {
             value+= pasives.getPurchaseValue();
         }
 
-        return value;
+        return value == 0 ? Constants.NONE : value;
     }
 
     public static void updateTotalPasives() {
@@ -189,11 +187,11 @@ public class Pasives extends Form {
     }
     //todo: posible method para una interfaz
     private static void updateCurrentValueFromDB() {
-        currentPasiveValue = 0;
-        for (Pasives pasive: PasivesRegistry.getPasivesRegistry().values()
-        ) {
+        updateTotalPasives();
+        currentPasiveValue = Constants.NONE;
+        for (Pasives pasive: totalPasives
+        )
             if (pasive.isCurrentType()) currentPasiveValue += pasive.getPurchaseValue();
-        }
     }
     public static float getCurrentPasiveValue() {
         updateCurrentValueFromDB();
@@ -211,9 +209,9 @@ public class Pasives extends Form {
     //todo: posible method para una interfaz
     private static void updateNoCurrentValue() {
         noCurrentPasiveValue = 0;
-        for (Pasives pasive: PasivesRegistry.getPasivesRegistry().values()
+        for (Pasives pasive: new GeneralRegistry().getAllPasives()
         ) {
-            if (! pasive.isCurrentType()) noCurrentPasiveValue += pasive.getPurchaseValue();
+            if (!pasive.isCurrentType()) noCurrentPasiveValue += pasive.getPurchaseValue();
         }
     }
 
@@ -223,18 +221,8 @@ public class Pasives extends Form {
 
     //todo: posible method para una interfaz
     public static void updateTypeValues(){
-        noCurrentPasiveValue=0;
-        currentPasiveValue=0;
-        for (Pasives pasive:totalPasives
-        ) {
-            if (pasive.isCurrentType()){
-                Pasives.setCurrentPasiveValue(Pasives.currentPasiveValue+pasive.getPurchaseValue());
-                System.out.println(getNoCurrentPasiveValue());
-            }else if (! pasive.isCurrentType()){
-                Pasives.setNoCurrentPasiveValue(Pasives.noCurrentPasiveValue+pasive.getPurchaseValue());
-                System.out.println(Pasives.getCurrentPasiveValue());
-            }
-        }
+        updateCurrentValueFromDB();
+        updateNoCurrentValue();
     }
 
     public String getPaymentdDate() {

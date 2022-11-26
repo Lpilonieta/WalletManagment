@@ -54,7 +54,6 @@ public class Form  {
     //-------------------------------------------------------------------
 
     public void getNewId() {
-
         int formType = this.getFormType();
         // numero de registro (hex)
         int numId = lastID;

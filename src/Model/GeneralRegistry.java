@@ -4,6 +4,7 @@ import ViewModel.*;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -163,4 +164,24 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     }
     private static HashMap <String, Assets> ASSETS_REGISTRY = new HashMap<>();
     private static HashMap <String, Inventory> INVENTORY_REGISTRY = new HashMap<>();
+
+    public void SaveSqlAssets(Assets assets){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Nombre, Descripcion, Tipo, PorcentajeRentabilidad) VALUES(?,?,?,?)");
+
+            consulta.setDouble(1, Double.parseDouble(Id.getText()));
+            consulta.setString(2, Nombre.getText());
+            consulta.setString(3, Apellido.getText());
+            consulta.setString(4, Deporte.getText());
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Atleta agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

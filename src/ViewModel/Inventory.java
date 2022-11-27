@@ -2,6 +2,8 @@ package ViewModel;
 
 import Model.GeneralRegistry;
 
+import java.sql.SQLException;
+
 public class Inventory extends Assets {
 
     private float stockNumber;
@@ -54,7 +56,11 @@ public class Inventory extends Assets {
         this.unitValue = unitValue;
     }
 
-    public static float getInventoryValue() {
+    public void setCategory(byte category) {
+        this.category = category;
+    }
+
+    public static float getInventoryValue() throws SQLException {
         inventoryValue = Constants.NONE;
         for (Inventory inventoryItem:new GeneralRegistry().getAllInventory()
              ) {
@@ -97,6 +103,7 @@ public class Inventory extends Assets {
         }
         return netUtility == 0 ? Constants.NONE : netUtility;
     }
+
     private static float calcIvaTax() {
         float ivaTax = 0;
         for (Inventory inventoryItem:new GeneralRegistry().getAllInventory() // TODO: tomar sólo los item del inventario que se les cobra iva

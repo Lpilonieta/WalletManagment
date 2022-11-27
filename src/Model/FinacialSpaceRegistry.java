@@ -5,10 +5,11 @@ import ViewModel.Form;
 import ViewModel.Inventory;
 import ViewModel.Pasives;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface FinacialSpaceRegistry {
-    default ArrayList<Form> getAllForms(){
+    default ArrayList<Form> getAllForms() throws SQLException {
         return new ArrayList<>(1);
     }
     default ArrayList<Assets> getAllAssets(){

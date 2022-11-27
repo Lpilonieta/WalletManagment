@@ -82,7 +82,7 @@ public class ConsoleAppMain {
                             "tipo: " +" "+ pasive.getType() +" "+
                             "descripción: "+" "+pasive.getDescription()+" "+
                             "porcentaje de interés: "+" "+pasive.getInterestPercentage()+" "+
-                            "tipo de interés: "+" "+ pasive.getInterestType()+" "+
+                            "tipo de interés: "+" "+ pasive.getSaldoDeuda()+" "+
                             "numero de cuotas"+" "+pasive.getNumberOfInstallments()+" "+
                             "valor de cada cuota"+" "+pasive.getInstallmentValue()+" "+
                             "siguiente fecha de pago"+" "+pasive.getPaymentdDate()

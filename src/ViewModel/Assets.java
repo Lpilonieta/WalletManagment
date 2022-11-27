@@ -32,18 +32,8 @@ Assets extends Form {
 
 
 
-    public Assets() {
-        this.name = "";
-        this.description = "";
-        this.comments = "";
-        this.type = Constants.NONE;
-        this.rentability = 0;
-        setAsset(this);
-        GeneralRegistry.save(this);
-        getNewId();
+    public Assets() {}
 
-
-    }
     public Assets(byte formtype,String name, String description, String comments, byte type, byte category, int rentability) {
         super(formtype);
         this.name = name;

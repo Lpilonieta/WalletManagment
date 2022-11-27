@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static Model.SQLconection.SaldoInicial;
 import static Model.SQLconection.con;
 
 
@@ -38,24 +39,7 @@ public class DailyCashFlow extends ArrayList {
         ExpensesForms = expensesForms;
     }
 
-    public static String SaldoInicial(String fechaDiaAnterior) throws SQLException {
-        SQLconection.SqlConection();
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE Fecha ='"+fechaDiaAnterior+"' ");
 
-        ResultSet result = statement.executeQuery();
-
-        ArrayList<String> Saldos = new ArrayList<>();
-
-        while (result.next()) {
-            Saldos.clear();
-            Saldos.add(result.getString("Saldo"));
-        }
-        //String SaldoInicial = Saldos.get(Saldos.size()-1);
-        System.out.println(Saldos);
-        //System.out.println(SaldoInicial);
-        //String SaldoInicial = "a";
-        return Saldos.get(0);
-    }
 
     public String DiaAnteriorFecha(){
         String[] FechaSplit = Fecha.split("-");

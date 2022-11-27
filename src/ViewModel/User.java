@@ -6,7 +6,6 @@ import ViewModel.Spaces.Manager;
 import javax.swing.*;
 
 public class User extends Stats {
-    Stats stats = new Stats();
     /*TODO: El usuario puede
     crear nuevos espacios financieros---check---
     eliminar espacios financieros ---check---
@@ -82,63 +81,6 @@ public class User extends Stats {
                 //registrar egreso con clase form
             }
         }
-    }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private static float netWorth = 0;
-
-    public static void setNetWorth(float netWorth) {
-        User.netWorth = netWorth;
-    }
-    public static float getNetWorth() {
-        return netWorth;
     }
     public static void ChangeFinancialSpace(int idFinancialSpace){
         Manager.switchFinancialSpaceByID(idFinancialSpace);

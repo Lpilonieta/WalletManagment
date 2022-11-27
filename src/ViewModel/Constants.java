@@ -21,4 +21,9 @@ public class Constants {
     public static final byte RENEUE_FORM_TYPE = 8;
     public static final byte EXPENSE_FORM_TYPE = 9;
     public static final String DEFAULT_GROUP = "";
+
+    String[] ProductosSinIVA={
+            "Arroz", "Pan", "OtrosProductosPanaderia", "Papa", "Yuca",
+    };
+
 }

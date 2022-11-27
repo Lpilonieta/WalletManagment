@@ -1,18 +1,21 @@
-package ViewModel.Spaces;
+package ViewModel;
 
 import ViewModel.DailyCashFlow;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class WeeklyCashFlow {
-    public WeeklyCashFlow(String fecha){
+    public WeeklyCashFlow(String fecha) throws SQLException {
 
         HashMap <String, ArrayList> WeeklyCashFlow=new HashMap<String, ArrayList>();
 
-        DailyCashFlow dailyCashFlow = new DailyCashFlow(fecha, 0);// verificar saldo inicial
+        DailyCashFlow dailyCashFlow = new DailyCashFlow(fecha, DailyCashFlow.SaldoInicial(fecha));// verificar saldo inicial
         WeeklyCashFlow.put(fecha, dailyCashFlow);
+
+
 
     }
 }

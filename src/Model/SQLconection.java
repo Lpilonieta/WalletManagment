@@ -12,7 +12,7 @@ public class SQLconection {
     public static String url = "jdbc:mysql://localhost:3306/registros";
 
 
-    public static void main(String[] args) throws SQLException {
+    public static void SqlConection() throws SQLException {
         GeneralRegistry saveSqlPasives = new GeneralRegistry();
         con = null;
         //Aca se puede probrar si la conexion fue exitosa
@@ -27,10 +27,12 @@ public class SQLconection {
         } catch (SQLException e) {
             System.out.println("Conexión no exitosa");
         }
+
+        /**
         EJEMPLO ejemplo = new EJEMPLO();
         ejemplo.setUpForms();
 
-        GeneralRegistry.SaveSqlAssets(ejemplo.assetTest_1);
-
+        GeneralRegistry.SaveSqlAssets(ejemplo.assetTest_1);//Probando base de datos
+        **/
     }
 }

@@ -23,7 +23,29 @@ public class Constants {
     public static final String DEFAULT_GROUP = "";
 
     String[] ProductosSinIVA={
-            "Arroz", "Pan", "OtrosProductosPanaderia", "Papa", "Yuca",
-    };
+            "Arroz", "Pan", "OtrosProductosPanaderia", "Papa", "Yuca", "OtrosTuberculos", "Platano", "Cebolla", "Tomate", "Zanahoria", "RevueltoVerde", "OtrasOrtalizasyLegumbresFrescas",
+            "Frijol", "Arveja", "OtrasHortalizasYLegumbresSecas", "Naranjas","Bananos", "TomateArbol", "Moras", "OtrosFrutosSecos", "Res", "Cerdo", "Pollo", "Huevos", "Leche", "Queso", "Panela",
+            "Sal", "Agua", "Almuerzo", "Hamburguesa", "ComidasRapidasCalientes", "GastosDeCafeteria", "ComidasRapidasFrias", "ArrendamientoEfectivo", "ArrendamientoImputado", "OtrosGastosOcupacion",
+            "Gas", "EnergiaELectrica", "Acueducto", "Alcantarillado", "Aseo", "Insecticidas", "ConsultaMedicoGeneral", "MedicinaEspecializada", "ExamenesDeLaboratorio", "ImagenesDiagnosticas",
+            "ServiciosDeHospitalizacionYAmbulancias", "Medicinas", "OtrasMedicinasYAnticonceptivos","AparatosOrtopedicos", "Matriculas", "Pensiones", "OtrosCostosEducativos", "Textos", "Cuadernos",
+            "Revistas", "Libros", "Periodicos", "ServiciosRelacionadosConDiversion", "ServiciosCulturales", "Bus", "Buseta", "Taxi", "OtrosMediosParaTransporteUrbano", "BusIntermunicipal",
+            "OtrosTransporteIntermunicipal", "PorteDeCartas", "Aguardiente", "OtrasBebidasAlcoholicas", "HigieneOral", "ServiciosBancarios", "SegurosDeVehiculo"
+
+        };
+    String[] ProductosConIVA={
+            "HarinaDeMaiz", "PastasAlimenticias", "CerealesPreparados", "OtrosCereales", "HortalizasYLegumbresEnlatadas", "FrutasEnConserva", "FrutasSecas", "CarnesFrias", "OtrosProductosDeMar",
+            "OtrosDerivadosLacteos", "Aceites", "Grasas", "Azucar", "Cafe", "Chocolate", "OtrosCondimentos", "SopasYCremas", "Salsas", "Aderezos", "Dulces", "Confites", "Gelatina", "OtrosAbarrotes",
+            "Sala", "Comedor", "Alcoba", "EquiposDeIluminacion", "Nevera", "Estufa", "Lavadora", "OtrosAparatosHogar", "ReparacionDeArtefactosParaElHogar", "Ollas", "Sartenes", "Refractarias",
+            "OtrosUtensilios", "Vajilla", "Cubiertos", "OtrosUtensiliosDomesticos", "JuegoDeSabanasYFundas", "CobijasYCubrelechos", "ColchonesYAlmohadas", "Cortinas", "Toallas", "Manteles", "ForrosParaMuebles",
+            "Jabones", "Detergentes", "Blanqueadores", "Suavizantes", "Limpiadores", "Desinfectantes", "Ceras", "PapelesDeCocina", "OtrosUtensiliosDeAseo", "CamisasHombre", "PantalonesHombre", "RopaInteriorHombre",
+            "OtrasPrendaVestirHombre", "Blusa", "PantalonesMujer", "RopaInteriorMujer", "OtrasPrendasVestirMujer", "CamisasNiño", "BlusasNiña", "PantalonesNiño", "OtrasPrendasVestirNiño", "RopaInteriorNiños",
+            "CamisetasBebes", "VestidosBebe", "Pañales", "CalzadoHombre", "CalzadoMujer", "CalzadoDeportivo", "CalzafoNiños", "ConfeccionYAlquiler", "Lavanderia", "ReparacionYLimpieza", "AseguramientoPrivadp",
+            "ServiciosDeProteccion", "PagosComplementarios", "OtrosArticulosEscolares", "OtrosGastosEscolares", "Juegos", "Aficiones", "Articulos", "Adornos", "PrendasVestirFiesta", "JardinesYProductosAnimalesDomesticos",
+            "Discos", "ArticulosDeportivos","Televisor","OtrosAparatosDeVideoeImagen", "EquipoDeSonido", "Computadoras", "Impresoras", "OtrosAparatos", "ServiciosDeTv", "Turismo", "JuegosAzar", "ServicioParaMascotas",
+            "Vehiculos", "OtrosParaTransporte", "Combustible", "CompraYCambioAceite", "ServicioParqueadero", "ServiciosMecanica", "Bateria", "Llantas", "PasajeAereo", "ServicioDeTelefonia", "OtrosServiciosDeTelefonia",
+            "EquiposTelefoniaMovilYSimilares", "Cerveza", "Cigarrilos", "HigieneCorporal", "HigieneYCuidadoFacial", "CuidadoDelCabello", "OtrosProductosRelacionadosConHigienePersonal", "CorteCabello", "OtrosServiciosRelacionadosParaElCuidadoPersonal",
+            "JoyeriaEnOro", "JoyeriaEnPlata", "Relojes", "OtrosArticulosPersonales", "OtrosServiciosFinancieros"
+
+    }
 
 }

@@ -14,87 +14,110 @@ import static Model.SQLconection.con;
 
 public class DailyCashFlow extends ArrayList {
 
-    ArrayList DailyCashFlow, ExpensesForms, RevenuesForms;
+    ArrayList <Form> ExpensesForms;
+    ArrayList <Form> RevenuesForms;
     String Fecha, FechaDiaAnterior;
     String SaldoInicial, SaldoFinal;
 
-    public ArrayList<Form> DailyRevenuesForms(){
+
+    public void DailyRevenuesForms(){
+
         ArrayList<Form> revenuesForms = new ArrayList<>();
-        for (Form form : new GeneralRegistry().getAllRevenuesForms()
-        ) {
-            String[] idForm = form.getId().split("-");
-            if ((Fecha == form.getRegistryDate())) {
-                revenuesForms.add(form);
-            }
+        for (Form form:new GeneralRegistry().getAllRevenuesForms()
+             ) {
+            if (form.getRegistryDate() == Fecha)revenuesForms.add(form);
         }
-        this.RevenuesForms=revenuesForms;
-        return RevenuesForms;
+        RevenuesForms=revenuesForms;
     }
-    public ArrayList<Form> DailyExpensesForms(){
+    public void DailyExpensesForms(){
         ArrayList<Form> expensesForms = new ArrayList<>();
-        for (Form form : new GeneralRegistry().getAllExpensesForms())
-        {
-            String[] idForm = form.getId().split("-");
-            if ((Fecha == form.getRegistryDate())){
-                expensesForms.add(form);
-            }
+        for (Form form: new GeneralRegistry().getAllExpensesForms()
+             ) {
+            if (form.getRegistryDate() == Fecha)expensesForms.add(form);
         }
-        this.ExpensesForms=expensesForms;
-        return ExpensesForms;
+        ExpensesForms = expensesForms;
     }
 
     public static String SaldoInicial(String fechaDiaAnterior) throws SQLException {
-
         SQLconection.SqlConection();
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE Fecha ='"+fecha+"' ");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE Fecha ='"+fechaDiaAnterior+"' ");
 
         ResultSet result = statement.executeQuery();
 
         ArrayList<String> Saldos = new ArrayList<>();
 
         while (result.next()) {
+            Saldos.clear();
             Saldos.add(result.getString("Saldo"));
         }
         //String SaldoInicial = Saldos.get(Saldos.size()-1);
         System.out.println(Saldos);
         //System.out.println(SaldoInicial);
-        String SaldoInicial = "a";
-        return SaldoInicial = "a";
+        //String SaldoInicial = "a";
+        return Saldos.get(0);
     }
-    public ArrayList<String> CreateDailyCashFlow(String SaldoInicial){
-        DailyCashFlow.add(SaldoInicial);
 
-        for (Object form : RevenuesForms
-        ) {
-            String value = String.valueOf(form.getPurchaseValue());
-            DailyCashFlow.add(value);
-        }
-        for (Object form : ExpensesForms
-        ) {
-            String value = "-" + String.valueOf(form.getPurchaseValue());
-            DailyCashFlow.add(value);
-        }
-        return DailyCashFlow;
-    }
     public String DiaAnteriorFecha(){
         String[] FechaSplit = Fecha.split("-");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");
+        int SS = Integer.valueOf(FechaSplit[0]);
+        int DD = Integer.valueOf(FechaSplit[1]);
+        int MM = Integer.valueOf(FechaSplit[2]);
+        int AA = Integer.valueOf(FechaSplit[3]);
+        String FechaAnterior;
+        if(DD !=1){
+            DD -=1;
+        }else {
+            if (MM == 1){
+                DD = 31;
+                MM = 12;
+            } else if (MM == 3) {
+                MM-=1;
+                DD = (AA%4 ==0) ? 29 : 28;
 
-        int DiaAnteriorSemana = (Integer.valueOf(FechaSplit[0]) + 6) % 7;
-        String fechaAnterior = FechaSplit[1] + "-" + FechaSplit[2] + "-" + FechaSplit[3];
+            } else if (MM == 8) {
+                MM-=1;
+                DD = 31;
 
-        String FechaAnterior = dateFormat.format(fechaAnterior);
+            } else if (MM == 5 || MM == 7 || MM == 10 || MM == 12) {
+                MM -=1;
+                DD = 30;
+            }else {
+                MM-=1;
+                DD = 31;
+            }
+        }
+        SS = (SS+6)%7;
+        return FechaAnterior = String.valueOf(SS+"-"+DD+"-"+MM+"-"+AA);
 
     }
 
-    public DailyCashFlow(String fecha){
+    private String calcSaldoFinal(){
+        float totalDailyRevenue = 0;
+        float totalDailyExpenses = 0;
+        for (Form form:ExpensesForms
+             ) {
+            totalDailyExpenses+=form.getPurchaseValue();
+        }
+        for (Form form:RevenuesForms
+             ) {
+            totalDailyRevenue+= form.getPurchaseValue();
+        }return String.valueOf(totalDailyRevenue-totalDailyExpenses);
+    }
+
+
+    public DailyCashFlow(String fecha) throws SQLException {
 
         this.Fecha=fecha;
-        this.FechaDiaAnterior = DiaAnteriorFecha();
-        this.SaldoInicial = SaldoInicial(FechaDiaAnterior);
-        this.DailyCashFlow = CreateCashFlowArray(String SaldoInicial);
+        FechaDiaAnterior = DiaAnteriorFecha();
+        SaldoInicial = SaldoInicial(FechaDiaAnterior);
+        DailyRevenuesForms();
+        DailyExpensesForms();
+        SaldoFinal = calcSaldoFinal();
+        System.out.println(FechaDiaAnterior);
+        System.out.println(Fecha);
+        System.out.println("");
 
         }
 
-    }
+}
 

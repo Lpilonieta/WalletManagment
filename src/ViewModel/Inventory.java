@@ -63,4 +63,8 @@ public class Inventory extends Assets {
 
         return inventoryValue;
     }
+
+    public byte getCategory() {
+        return category;
+    }
 }

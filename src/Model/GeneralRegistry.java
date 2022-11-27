@@ -4,9 +4,13 @@ import ViewModel.*;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GeneralRegistry implements FinacialSpaceRegistry{
     public static HashMap<String, Inventory> getInventoryHashmap() {
@@ -165,23 +169,114 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     private static HashMap <String, Assets> ASSETS_REGISTRY = new HashMap<>();
     private static HashMap <String, Inventory> INVENTORY_REGISTRY = new HashMap<>();
 
-    public void SaveSqlAssets(Assets assets){
+    public static void SaveSqlForms(Assets assets){
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
-                    "(Fecha,Id, Nombre, Descripcion, Tipo, PorcentajeRentabilidad) VALUES(?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo) VALUES(?,?,?,?,?,?,?,?)");
 
-            consulta.setDouble(1, Double.parseDouble(Id.getText()));
-            consulta.setString(2, Nombre.getText());
-            consulta.setString(3, Apellido.getText());
-            consulta.setString(4, Deporte.getText());
+            consulta.setString(1, assets.getRegistryDate());
+            consulta.setString(2, assets.getId());
+            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setString(4, assets.getSource());
+            consulta.setString(5, assets.getMotive());
+            consulta.setString(6, assets.getName());
+            consulta.setString(7, assets.getDescription());
+            consulta.setByte(8, assets.getType());
+
+
 
 
             consulta.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Atleta agregado exitosamente");
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
         } catch (SQLException ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+
+    }
+
+    public static void SaveSqlAssets(Assets assets){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad) VALUES(?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, assets.getRegistryDate());
+            consulta.setString(2, assets.getId());
+            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setString(4, assets.getSource());
+            consulta.setString(5, assets.getMotive());
+            consulta.setString(6, assets.getName());
+            consulta.setString(7, assets.getDescription());
+            consulta.setByte(8, assets.getType());
+            consulta.setInt(9, assets.getRentability());
+
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+    public static void SaveSqlPasives(Pasives pasives){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, TipoInteres, PorcentajeInteres, NumeroCuotas, ValorSiguienteCuota, Periodicidad, periodicidadEspecifica) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, pasives.getRegistryDate());
+            consulta.setString(2, pasives.getId());
+            consulta.setInt(3, pasives.getPurchaseValue());
+            consulta.setString(4, pasives.getSource());
+            consulta.setString(5, pasives.getMotive());
+            consulta.setString(6, pasives.getName());
+            consulta.setString(7, pasives.getDescription());
+            consulta.setInt(8, pasives.getType());
+            consulta.setInt(9, pasives.getInterestType());
+            consulta.setFloat(10, pasives.getInterestPercentage());
+            consulta.setInt(11, pasives.getNumberOfInstallments());
+            consulta.setFloat(12, pasives.getInstallmentValue());
+            consulta.setInt(13, pasives.getPeriodicy());
+            consulta.setInt(14, pasives.getEspecificPeriodicy());
+
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public static void SaveSqlInventory(Inventory inventory) {
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO " + "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, inventory.parseDatetoString());
+            consulta.setString(2, inventory.getId());
+            consulta.setInt(3, inventory.getPurchaseValue());
+            consulta.setString(4, inventory.getSource());
+            consulta.setString(5, inventory.getMotive());
+            consulta.setString(6, inventory.getName());
+            consulta.setString(7, inventory.getDescription());
+            consulta.setByte(8, inventory.getType());
+            consulta.setInt(9, inventory.getRentability());
+            consulta.setFloat(10, inventory.getStockNumber());
+            consulta.setFloat(11, inventory.getSaleNumbers());
+            consulta.setFloat(12, inventory.getUnitValue());
+            consulta.setInt(13, inventory.getCategory());
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

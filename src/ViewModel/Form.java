@@ -2,7 +2,9 @@ package ViewModel;
 
 import ViewModel.Spaces.Manager;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Form  {
     //forms de ejemplo para db
@@ -10,7 +12,7 @@ public class Form  {
     private static int lastID=0;
 
     //Atributos del form
-    private Calendar registryDate;
+    private String registryDate;
     private String id;
     private int purchaseValue;
     private String source;  // TODO: [ CREAR TABLA EN CONSTANTS ]
@@ -30,7 +32,7 @@ public class Form  {
 
     // Constructor (s)
     public Form() {
-        this.registryDate = Calendar.getInstance(); // automatico
+        this.registryDate = parseDatetoString(); // automatico
         this.purchaseValue = 0;         // valor
         this.source = "";   // combo box []
         this.comments = "";
@@ -41,7 +43,7 @@ public class Form  {
         getNewId();
     }
     public Form(byte type) {
-        this.registryDate = Calendar.getInstance(); //automatico
+        this.registryDate = parseDatetoString(); //automatico
         this.purchaseValue = 0;                     // valor
         this.source = "";                           //
         this.comments = "";
@@ -69,6 +71,29 @@ public class Form  {
 
     public byte getFormType() {
         return formType;
+    }
+
+    public String getRegistryDate() {
+        return registryDate;
+    }
+
+    public String parseDatetoString(){
+        Date fecha=new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");
+
+        String Fecha = dateFormat.format(fecha);
+
+        String date = ((Calendar.getInstance().get(Calendar.DAY_OF_WEEK)+6)%7) +"-"+ Fecha;
+
+        return date;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getMotive() {
+        return motive;
     }
 
     public Assets getAsset() {

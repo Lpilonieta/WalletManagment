@@ -6,7 +6,8 @@ import Model.GeneralRegistry;
 
 import java.util.ArrayList;
 
-public class Assets extends Form {
+public class
+Assets extends Form {
 
     // Assets Attributes
 

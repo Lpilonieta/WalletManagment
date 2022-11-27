@@ -63,6 +63,12 @@ public class Inventory extends Assets {
 
         return inventoryValue;
     }
+<<<<<<< HEAD
+
+    public byte getCategory() {
+        return category;
+    }
+=======
     public static float calcBruteUtility(){
         float bruteUtility = 0;
         for (Inventory inventoryItem: new GeneralRegistry().getAllInventory()
@@ -100,4 +106,5 @@ public class Inventory extends Assets {
         return ivaTax == 0 ? Constants.NONE : ivaTax;
     }
 
+>>>>>>> 766647f1dfc1db9bfbcb72790170b00127a539f1
 }

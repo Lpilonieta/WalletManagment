@@ -17,7 +17,8 @@ public interface FinacialSpaceRegistry {
     default ArrayList<Pasives> getAllPasives(){
         return new ArrayList<>(1);
     }
-    default ArrayList<Inventory> getAllInventory(){
-        return new ArrayList<>(1);
-    }
+    default ArrayList<Inventory> getAllInventory(){ return new ArrayList<>(1);}
+    default ArrayList<Form> getAllExpensesForms(){return new ArrayList<>(1);}
+    default ArrayList<Form> getAllRevenuesForms(){return new ArrayList<>(1);}
 }
+

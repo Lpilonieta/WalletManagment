@@ -15,14 +15,14 @@ public class EJEMPLO {
         private FinancialSpace espacio4 = new FinancialSpace("espacio 4", "sin grupo", 0x4);
 
         // assets de ejemplo
-        private Assets assetTest_1;
+        public Assets assetTest_1;
         private Assets assetTest_2;
         private Assets assetTest_3;
         private Assets assetTest_4;
         private Assets assetTest_5;
 
         // pasivos de ejemplo
-        private Pasives pasiveTest_1;
+        public Pasives pasiveTest_1;
         private Pasives pasiveTest_2;
         private Pasives pasiveTest_3;
         private Pasives pasiveTest_4;
@@ -50,7 +50,15 @@ public class EJEMPLO {
             PasivesRegistry.savePasive(form);
         }
     }
-    private void setUpForms() {
+    private void saveFormInDB(Form form) {
+        GeneralRegistry.getExampleGeneralRegistry().put(form.getId(),form);        //TODO: para dejarlo definitivo solo quitar la parte de "EXAMPLE_"
+        if (form.isNeedAssetData()){
+            GeneralRegistry.addNewAssetRegistry(form.getAsset().getId(),form.getAsset());
+        } else if (form.isNeedPasiveData()) {
+            PasivesRegistry.savePasive(form);
+        }
+    }
+    public void setUpForms() {
 
         assetTest_1 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 1", "description AssetTest1", "", Constants.CURRENT, (byte) 0, 80);
         assetTest_1.setPurchaseValue(10);

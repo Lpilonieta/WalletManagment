@@ -12,7 +12,7 @@ public class WeeklyCashFlow {
 
         HashMap <String, ArrayList> WeeklyCashFlow=new HashMap<String, ArrayList>();
 
-        //DailyCashFlow dailyCashFlow = new DailyCashFlow(fecha, DailyCashFlow.SaldoInicial(fecha));// verificar saldo inicial
+        DailyCashFlow dailyCashFlow = new DailyCashFlow(fecha);// verificar saldo inicial
         //WeeklyCashFlow.put(fecha, dailyCashFlow);
 
 

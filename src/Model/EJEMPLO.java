@@ -67,7 +67,7 @@ public class EJEMPLO {
         assetTest_1.setComments("comments formTest0");
 
 
-        Manager.switchFinancialSpaceByID(0x1);
+        //Manager.switchFinancialSpaceByID(0x1);
 
         assetTest_2 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 2", "description AssetTest2", "", Constants.CURRENT, (byte) 0, 180);
         assetTest_2.setPurchaseValue(100);
@@ -82,7 +82,7 @@ public class EJEMPLO {
         assetTest_3.setMotive("Compra Activo");
         assetTest_3.setComments("comments formTest2");
 
-        Manager.switchFinancialSpaceByID(0x2);
+        //Manager.switchFinancialSpaceByID(0x2);
 
         assetTest_4 = new Assets(Constants.RENEUE_FORM_TYPE, "name asset test 4", "description AssetTest4", "", Constants.CURRENT, (byte) 0, 380);
         assetTest_4.setPurchaseValue(300);
@@ -104,7 +104,7 @@ public class EJEMPLO {
         pasiveTest_1.setComments("comments formTest5");
 
 
-        Manager.switchFinancialSpaceByID(0x3);
+        //Manager.switchFinancialSpaceByID(0x3);
 
         pasiveTest_2 = new Pasives(Constants.RENEUE_FORM_TYPE, "name pasiveTest 2", "deudor 2", "description pasiveTest 2", Constants.COMPOUND_INTEREST, 2, 2, Constants.CURRENT, Constants.WEEKLY, 2);  // TODO: incluir fecha de pago mas cercana al contructor
         pasiveTest_2.setPurchaseValue(600);
@@ -125,7 +125,7 @@ public class EJEMPLO {
         pasiveTest_4.setSource("fuente testForm_8");
         pasiveTest_4.setMotive("nuevo pasivo");
         pasiveTest_4.setComments("comments formTest8");
-        Manager.switchFinancialSpaceByID(0x4);
+        //Manager.switchFinancialSpaceByID(0x4);
 
         pasiveTest_5 = new Pasives(Constants.RENEUE_FORM_TYPE, "name pasiveTest 5", "deudor 5", "description pasiveTest 5", Constants.LINEAL_INTEREST, 5, 5, Constants.CURRENT, Constants.WEEKLY, 2);  // TODO: incluir fecha de pago mas cercana al contructor
         pasiveTest_5.setPurchaseValue(900);

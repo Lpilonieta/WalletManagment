@@ -3,28 +3,28 @@ package ViewModel;
 public interface Liquidity {
 
 
-     static float calculateRazonCorriente(){
-        float razonCorriente = Constants.NONE;
-        if (Pasives.getCurrentPasiveValue()!=0) razonCorriente = Assets.getCurrentAssetsValue() / Pasives.getCurrentPasiveValue();
-        return razonCorriente;
+     default float calculateRazonCorriente(){
+        float razonCorriente = 0;
+        if (Pasives.getCurrentPasiveValue()!= Constants.NONE && Assets.getCurrentAssetsValue() != Constants.NONE) razonCorriente = Assets.getCurrentAssetsValue() / Pasives.getCurrentPasiveValue();
+        return razonCorriente == 0 ? Constants.NONE :razonCorriente;
     }
 
 
-     static float calculatePruebaAcida(){
-         float acidTets = Constants.NONE;
+     default float calculatePruebaAcida(){
+         float acidTets = 0;
          if (Assets.getCurrentAssetsValue() != Constants.NONE && Inventory.getInventoryValue() != Constants.NONE)
              acidTets = Assets.getCurrentAssetsValue() - Inventory.getInventoryValue();
-         return acidTets;
+         return acidTets == 0 ? Constants.NONE : acidTets;
      }
 
 
 
-     static float calculateFondoDeManiobra() {
-        float fondoDeManiobra = Constants.NONE;
+     default float calculateFondoDeManiobra() {
+        float fondoDeManiobra = 0;
         if (Assets.getCurrentAssetsValue()!=Constants.NONE && Pasives.getCurrentPasiveValue() != Constants.NONE) {
             fondoDeManiobra = Assets.getCurrentAssetsValue() - Pasives.getCurrentPasiveValue();
         }
-         return fondoDeManiobra;
+         return fondoDeManiobra == 0 ? Constants.NONE : fondoDeManiobra;
      }
 
 

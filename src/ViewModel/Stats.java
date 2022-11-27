@@ -3,8 +3,16 @@ package ViewModel;
 import Model.GeneralRegistry;
 
 public class Stats implements Liquidity, Solvency, Rentability{
+    public static float getNetWorth() {
+        return netWorth;
+    }
+
+    public static void setNetWorth(float networth) {
+        netWorth=networth;
+    }
+
     //stats generales
-    private float netWorth;
+    public  static float netWorth;
     private float totalRevenue;
     private float totalExpenses;
 
@@ -23,35 +31,23 @@ public class Stats implements Liquidity, Solvency, Rentability{
     private float rentabilidadSobreActivos;
     private float rentabilidadSobrePatrimonio;
     private float rentabilidadSobreVentas;
-    //inventario
-    private float rotacionDeInventario;
-    private float rotacionDeCartera;
-    private float inventarioDeExistrncias;
-    private float utilidadBruta;
-    private float utilidadNeta;
-    private float ventasBrutas;
-    private float ventasNetas;
-
 
 
     public Stats() {
         calculateTotalRevenue();
         calculateTotalExpenses();
         calculateNethWorth();
-        this.fondoDeManiobra = Liquidity.calculateFondoDeManiobra();
-        this.razonCorriente = Liquidity.calculateRazonCorriente();
-        this.pruebaAcida = Liquidity.calculatePruebaAcida();
-        this.endeudamientoTotal = Solvency.calcEndeudamientoTotal();
-        this.endeudamientoCortoPlazo = Solvency.calcEndeudamientoCP();
-        this.endeudamientoLargoPlazo = Solvency.calcEndeudamientoLP();
-        this.apalancamientoTotal = Solvency.calcApalancamientoTotal();
-        this.margenDeUtilidadBruta = Rentability.calcMargenDeUtilidadBruta();
-        this.rentabilidadSobrePatrimonio = Rentability.calcRentabilidadSobrePatrimonio();
-        this.rentabilidadSobreActivos = Rentability.calcRentabilidadSobreActivos();
-        this.rentabilidadSobreVentas = Rentability.calcRentabilidadSobreVentas();
-        this.rotacionDeInventario = rotacionDeInventario;
-        this.rotacionDeCartera = rotacionDeCartera;
-        this.inventarioDeExistrncias = inventarioDeExistrncias;
+        this.fondoDeManiobra = calculateFondoDeManiobra();
+        this.razonCorriente = calculateRazonCorriente();
+        this.pruebaAcida = calculatePruebaAcida();
+        this.endeudamientoTotal = calcEndeudamientoTotal();
+        this.endeudamientoCortoPlazo = calcEndeudamientoCP();
+        this.endeudamientoLargoPlazo = calcEndeudamientoLP();
+        this.apalancamientoTotal = calcApalancamientoTotal();
+        this.margenDeUtilidadBruta = calcMargenDeUtilidadBruta();
+        this.rentabilidadSobrePatrimonio = calcRentabilidadSobrePatrimonio();
+        this.rentabilidadSobreActivos = calcRentabilidadSobreActivos();
+        this.rentabilidadSobreVentas = calcRentabilidadSobreVentas();   //check 'til here
     }
 
     private void calculateNethWorth() {

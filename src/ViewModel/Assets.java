@@ -100,10 +100,12 @@ Assets extends Form {
 
     public static void updateCurrentValue() {
         updateTotalAssetsFromDB();
-        currentAssetsValue = Constants.NONE;
+        currentAssetsValue = 0;
         for (Assets asset:totalAssets
              )
-            if (asset.isCurrentType()) currentAssetsValue += asset.getPurchaseValue();
+            if (asset.isCurrentType())
+                currentAssetsValue += asset.getPurchaseValue();
+        currentAssetsValue = currentAssetsValue == 0 ? Constants.NONE : currentAssetsValue;
     }
 
     private static void setCurrentAssetsValue(float currentAssetsValue) {
@@ -165,7 +167,7 @@ Assets extends Form {
     }
 
     private boolean isCurrentType() {
-        return this.getFormType() == Constants.CURRENT;
+        return this.getType() == Constants.CURRENT;
     }
 
 

@@ -3,34 +3,34 @@ package ViewModel;
 public interface Solvency {
 
 
-     static float calcEndeudamientoTotal(){
-        float endeudamientoTotal = Constants.NONE;
+     default float calcEndeudamientoTotal(){
+        float endeudamientoTotal = 0;
         if (Pasives.getTotalPasiveValue() != Constants.NONE && Assets.getTotalAssetsValue()!= Constants.NONE)
             endeudamientoTotal = Pasives.getTotalPasiveValue() / Assets.getTotalAssetsValue();
-        return endeudamientoTotal;
+        return endeudamientoTotal == 0 ? Constants.NONE : endeudamientoTotal;
     }
 
 
 
-     static float calcEndeudamientoCP(){
-        float endeudamientoCP = Constants.NONE;
-        if (Pasives.getCurrentPasiveValue() != Constants.NONE && User.getNetWorth() != Constants.NONE);
-        endeudamientoCP =Pasives.getCurrentPasiveValue()/User.getNetWorth();
-        return endeudamientoCP;
+     default float calcEndeudamientoCP(){
+        float endeudamientoCP = 0;
+        if (Pasives.getCurrentPasiveValue() != Constants.NONE && User.getNetWorth() != Constants.NONE)
+            endeudamientoCP =Pasives.getCurrentPasiveValue()/User.getNetWorth();
+        return endeudamientoCP == 0 ? Constants.NONE : endeudamientoCP;
     }
 
-     static float calcEndeudamientoLP() {
-        float endeudamientoLP = Constants.NONE;
+     default float calcEndeudamientoLP() {
+        float endeudamientoLP = 0;
         if (Pasives.getNoCurrentPasiveValue()!= Constants.NONE && User.getNetWorth() != Constants.NONE)
             endeudamientoLP = Pasives.getNoCurrentPasiveValue() / User.getNetWorth();
-        return endeudamientoLP;
+        return endeudamientoLP == 0 ? Constants.NONE : endeudamientoLP ;
     }
 
-     static float calcApalancamientoTotal(){
-        float apalancamientoTotal = Constants.NONE;
+     default float calcApalancamientoTotal(){
+        float apalancamientoTotal = 0;
         if (Pasives.getNoCurrentPasiveValue() != Constants.NONE && User.getNetWorth()!= Constants.NONE)
             apalancamientoTotal = Pasives.getNoCurrentPasiveValue() / User.getNetWorth();
-        return apalancamientoTotal;
+        return apalancamientoTotal == 0 ? Constants.NONE : apalancamientoTotal;
     }
 
 }

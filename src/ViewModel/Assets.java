@@ -98,6 +98,10 @@ Assets extends Form {
         return currentAssetsValue;
     }
 
+    public void setType(byte type) {
+        this.type = type;
+    }
+
     public static void updateCurrentValue() {
         updateTotalAssetsFromDB();
         currentAssetsValue = 0;

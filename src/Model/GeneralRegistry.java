@@ -6,11 +6,14 @@ import ViewModel.Spaces.Manager;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Model.SQLconection.con;
 
 public class GeneralRegistry implements FinacialSpaceRegistry{
     public static HashMap<String, Inventory> getInventoryHashmap() {
@@ -36,75 +39,165 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
     *
     */
 
-    @Override
-    public ArrayList<Form> getAllForms() {
-        int id = Manager.getFinEspId();
-        ArrayList<Form> allForms = new ArrayList<>(1);
-        if (!EXAMPLE_GENERAL_REGISTRY.isEmpty()){
-            for (Form form : GeneralRegistry.getExampleGeneralRegistry().values()
-            ) {
-                String[] idForm = form.getId().split("-");
-                if (Integer.valueOf(idForm[2]) == id) {
-                    allForms.add(form);
-                }
 
-            }
-        }else {
-            allForms.add(new Form());
+    public ArrayList<Form> getallFormsDB() throws SQLException {
+        SQLconection.SqlConection();
+        ArrayList<Form> allForms = new ArrayList<>(1);
+
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaregistros");
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+
+            String Fecha = result.getString("Fecha");
+            String Id = result.getString("Id");
+            String Valor = result.getString("Valor");
+            String Fuente = result.getString("Fuente");
+            String Motivo = result.getString("Motivo");
+
+
+            Form form = new Form();
+            form.setRegistryDate(Fecha);
+            form.setId(Id);
+            form.setPurchaseValue(Integer.parseInt(Valor));
+            form.setSource(Fuente);
+            form.setMotive(Motivo);
+
+            allForms.add(form);
         }
         return allForms;
     }
 
-    @Override
-    public ArrayList<Assets> getAllAssets() {
-        ArrayList<Assets> allAssets = new ArrayList<>(1);
-        for (Form form:getAllForms()
-             ) {
-            if (form.getAsset() != null){
-                if (!form.getAsset().isInventoryItem()) {allAssets.add(form.getAsset());}
-            }
+    public ArrayList<Form> getallAssetsDB() throws SQLException {
+
+        SQLconection.SqlConection();
+        ArrayList<Form> assetForms = new ArrayList<>(1);
+
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE isAsset ='"+true+"' ");
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+
+            String Fecha = result.getString("Fecha");
+            String Id = result.getString("Id");
+            String Valor = result.getString("Valor");
+            String Fuente = result.getString("Fuente");
+            String Motivo = result.getString("Motivo");
+            String Nombre = result.getString("Nombre");
+            String Descripcion = result.getString("Descripcion");
+            String Tipo = result.getString("Tipo");
+            String PorcentajeRentabilidad = result.getString("PorcentajeRentabilidad");
+
+
+            Assets assets=new Assets();
+            assets.setRegistryDate(Fecha);
+            assets.setId(Id);
+            assets.setPurchaseValue(Integer.parseInt(Valor));
+            assets.setSource(Fuente);
+            assets.setMotive(Motivo);
+            assets.setName(Nombre);
+            assets.setDescription(Descripcion);
+            assets.setType(Byte.parseByte(Tipo));
+            assets.setRentability(Integer.parseInt(PorcentajeRentabilidad));
+
+            assetForms.add(assets);
         }
-        return allAssets;
+        return assetForms;
     }
 
-    @Override
-    public ArrayList<Pasives> getAllPasives() {
-        ArrayList<Pasives> allPasives = new ArrayList<>(1);
-        for (Form form:getAllForms()
-        ) {
-            if (form.getPasive() != null) {
 
-                allPasives.add(form.getPasive());
-            }
+
+    public ArrayList<Form> getallPasivesDB() throws SQLException {
+        SQLconection.SqlConection();
+        ArrayList<Form> PasiveForms = new ArrayList<>(1);
+
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE isPasive ='"+true+"' ");
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+
+            String Fecha = result.getString("Fecha");
+            String Id = result.getString("Id");
+            String Valor = result.getString("Valor");
+            String Fuente = result.getString("Fuente");
+            String Motivo = result.getString("Motivo");
+            String Nombre = result.getString("Nombre");
+            String Descripcion = result.getString("Descripcion");
+            String Tipo = result.getString("Tipo");
+            String TipoInteres = result.getString("TipoInteres");
+            String PorcentajeInteres = result.getString("PorcentajeInteres");
+            String NumeroCuotas = result.getString("NumeroCuotas");
+            String ValorSiguienteCuota = result.getString("ValorSiguienteCuota");
+            String Periodicidad = result.getString("Periodicidad");
+            String PeriodicidadEspecifica = result.getString("PeriodicidadEspecifica");
+
+
+            Pasives pasives=new Pasives();
+            pasives.setRegistryDate(Fecha);
+            pasives.setId(Id);
+            pasives.setPurchaseValue(Integer.parseInt(Valor));
+            pasives.setSource(Fuente);
+            pasives.setMotive(Motivo);
+            pasives.setName(Nombre);
+            pasives.setDescription(Descripcion);
+            pasives.setType(Byte.parseByte(Tipo));
+            pasives.setInterestType(Integer.parseInt(TipoInteres));
+            pasives.setInterestPercentage(Integer.parseInt(PorcentajeInteres));
+            pasives.setNumberOfInstallments(Integer.parseInt(NumeroCuotas));
+            pasives.setInstallmentValue(Float.parseFloat(ValorSiguienteCuota));
+            pasives.setPeriodicy(Byte.parseByte(Periodicidad));
+            pasives.setEspecificPeriodicy(Integer.parseInt(PeriodicidadEspecifica));
+
+
+            PasiveForms.add(pasives);
+
         }
-        return allPasives;
+        return PasiveForms;
     }
 
-    @Override
-    public ArrayList<Inventory> getAllInventory() {
-        ArrayList<Inventory> allInventoryAssets = new ArrayList<>(1);
-        for (Form form : getAllForms()
-                ) {
-            if (form.getAsset() != null) {
-                if (form.getAsset().isInventoryItem()){
-                    allInventoryAssets.add(form.getAsset().getInventory());
-                }
-            }
-        }
-        return allInventoryAssets;
-    }
+    public ArrayList<Form> getallInventoryFromDB() throws SQLException {
 
-    @Override
-    public ArrayList<Form> getAllExpensesForms() {
-        ArrayList<Form> Expenses = new ArrayList<>(1);
-            for (Form form : getAllForms()
-            ) {
-                String[] idForm = form.getId().split("-");
-                if (Integer.valueOf(idForm[0]) == Constants.EXPENSE_FORM_TYPE) {
-                    Expenses.add(form);
-                }
-            }
-            return Expenses;
+        SQLconection.SqlConection();
+        ArrayList<Form> InventoryForms = new ArrayList<>(1);
+
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE isInventory ='"+true+"' ");
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+
+            String Fecha = result.getString("Fecha");
+            String Id = result.getString("Id");
+            String Valor = result.getString("Valor");
+            String Fuente = result.getString("Fuente");
+            String Motivo = result.getString("Motivo");
+            String Nombre = result.getString("Nombre");
+            String Descripcion = result.getString("Descripcion");
+            String Tipo = result.getString("Tipo");
+            String PorcentajeRentabilidad = result.getString("PorcentajeRentabilidad");
+            String NumeroStock = result.getString("NumeroStock");
+            String VentasTotales = result.getString("VentasTotales");
+            String ValorUnidad = result.getString("ValorUnidad");
+            String Categoria = result.getString("Categoria");
+
+            Inventory inventory=new Inventory();
+            inventory.setRegistryDate(Fecha);
+            inventory.setId(Id);
+            inventory.setPurchaseValue(Integer.parseInt(Valor));
+            inventory.setSource(Fuente);
+            inventory.setMotive(Motivo);
+            inventory.setName(Nombre);
+            inventory.setDescription(Descripcion);
+            inventory.setType(Byte.parseByte(Tipo));
+            inventory.setRentability(Integer.parseInt(PorcentajeRentabilidad));
+            inventory.setStockNumber(Float.parseFloat(NumeroStock));
+            inventory.setSaleNumbers(Float.parseFloat(VentasTotales));
+            inventory.setUnitValue(Float.parseFloat(ValorUnidad));
+            inventory.setCategory(Byte.parseByte(Categoria));
+
+            PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria
+            InventoryForms.add(inventory);
+        }
+        return InventoryForms;
     }
 
     @Override
@@ -177,16 +270,14 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
-                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo) VALUES(?,?,?,?,?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo) VALUES(?,?,?,?,?)");
 
             consulta.setString(1, assets.getRegistryDate());
             consulta.setString(2, assets.getId());
             consulta.setDouble(3, assets.getPurchaseValue());
             consulta.setString(4, assets.getSource());
             consulta.setString(5, assets.getMotive());
-            consulta.setString(6, assets.getName());
-            consulta.setString(7, assets.getDescription());
-            consulta.setByte(8, assets.getType());
+
 
 
 

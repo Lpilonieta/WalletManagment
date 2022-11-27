@@ -106,6 +106,8 @@ public class Form  {
 
     public String getId() {
         return id;
+
+
     }
 
     public float getPurchaseValue() {
@@ -159,5 +161,13 @@ public class Form  {
 
     public boolean isNeedPasiveData() {
         return needPasiveData;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setRegistryDate(String registryDate) {
+        this.registryDate = registryDate;
     }
 }

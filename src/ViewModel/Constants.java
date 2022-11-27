@@ -21,4 +21,11 @@ public class Constants {
     public static final byte RENEUE_FORM_TYPE = 8;
     public static final byte EXPENSE_FORM_TYPE = 9;
     public static final String DEFAULT_GROUP = "";
+    public static final float MAX_BRUTE_WORTH = 163386000;
+    public static final float MAX_BRUTE_REVENUES = 50831000;
+    public static final float MAX_CREDIT_CARD_EXPENSES = 50831000;
+    public static final float MAX_EXPENSES = 50831000;
+    public static final float MAX_TRANSACTIONS_EXPENSES = 50831000;
+    public static final float MAX_IVA_EXPENSES = 14000000;
+    public static final float MAX_IVA_REVUNES = 14000000;
 }

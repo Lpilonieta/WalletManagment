@@ -13,6 +13,7 @@ public class Stats implements Liquidity, Solvency, Rentability{
 
     //stats generales
     private float netWorth;
+    private float bruteWorth;
     private float totalRevenue;
     private float totalExpenses;
 
@@ -37,6 +38,7 @@ public class Stats implements Liquidity, Solvency, Rentability{
         calculateTotalRevenue();
         calculateTotalExpenses();
         calculateNethWorth();
+        calculateBruteWorth();
         fondoDeManiobra = calcWorkingCapital();
         razonCorriente = calcCurrentReason();
         pruebaAcida = calcAcidTest();
@@ -47,6 +49,19 @@ public class Stats implements Liquidity, Solvency, Rentability{
         rentabilidadSobrePatrimonio = calcReturnOnEquity();
         rentabilidadSobreActivos = calcRenturnOnAssets();
         rentabilidadSobreVentas = calcRenturnOnSales();   //check 'til here
+    }
+
+    private void calculateBruteWorth() {
+        for (Form form: new GeneralRegistry().getAllForms()
+             ) {
+            if (!form.isNeedPasiveData()){
+                if (form.isNeedAssetData()){
+                    if (form.getAsset().isInventoryItem()){
+                        
+                    }
+                }
+            }
+        }
     }
 
     private void calculateNethWorth() {

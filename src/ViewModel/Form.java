@@ -23,6 +23,7 @@ public class Form  {
     private Assets asset;
     private Pasives pasive;
     private int financialSpaceIdRegistered;
+
     // fin atributos del form
 
 
@@ -31,28 +32,15 @@ public class Form  {
     }
 
     // Constructor (s)
-    public Form() {
-        this.registryDate = parseDatetoString(); // automatico
-        this.purchaseValue = 0;         // valor
-        this.source = "";   // combo box []
-        this.comments = "";
-        this.formType = Constants.NONE;
-        this.asset = null;
-        this.pasive = null;
-        this.financialSpaceIdRegistered = Manager.getFinEspId();
-        getNewId();
-    }
+
     public Form(byte type) {
-        this.registryDate = parseDatetoString(); //automatico
-        this.purchaseValue = 0;                     // valor
-        this.source = "";                           //
-        this.comments = "";
-        this.formType = type;
-        this.asset = null;
-        this.pasive = null;
-        this.financialSpaceIdRegistered = Manager.getFinEspId();
-//        getNewId();
+        this.formType=type;
     }
+
+    public Form(){
+
+    }
+
     //-------------------------------------------------------------------
 
     public void getNewId() {

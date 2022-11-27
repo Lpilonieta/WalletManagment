@@ -4,6 +4,7 @@ package ViewModel;
 import Model.GeneralRegistry;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Pasives extends Form {
 
@@ -64,7 +65,7 @@ public class Pasives extends Form {
         this.periodicy = periodicy;
         this.especificPeriodicy = especificPeriodicy;
         setPasive(this);
-        GeneralRegistry.save(this);
+       // GeneralRegistry.save(this);
         getNewId();
 
     }
@@ -241,7 +242,19 @@ public class Pasives extends Form {
         return NuevoSaldoDeuda;
     }
 
+    public Pasives getPasivoMasCaro(){
+        GeneralRegistry generalRegistry=new GeneralRegistry();
+        ArrayList<Pasives> ListaPasivos = generalRegistry.getAllPasives();
 
+        Iterator<Pasives> iterator = ListaPasivos.iterator();
+        Pasives maxPasive = ListaPasivos.get(0);
+        while(iterator.hasNext()){
+            if(iterator.next().getInstallmentValue()>maxPasive.getInstallmentValue()){
+                maxPasive = iterator.next();
+            }
+        }
+        return maxPasive;
+    }
 
 
 

@@ -3,6 +3,10 @@ package ViewModel.Spaces;
 import Model.GeneralRegistry;
 
 public class FinancialSpace {
+    public FinancialSpace() {
+
+    }
+
     //atributos estáticos:
     private static int lastIdFromDataBase(){
         int id =GeneralRegistry.getFinancialSpaceHashMap().size();

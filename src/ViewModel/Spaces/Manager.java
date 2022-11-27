@@ -1,7 +1,11 @@
 package ViewModel.Spaces;
 
+import Model.SQLconection;
 import ViewModel.Constants;
 import Model.GeneralRegistry;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Manager  {
     //private int
@@ -65,6 +69,13 @@ public class Manager  {
     public static void switchFinancialSpace(FinancialSpace financialSpace) {
         currentFinancialSpace = financialSpace;
         currentID = financialSpace.getId();
+    }
+    public ArrayList<FinancialSpace> getAllFinancialSpaces() {
+        try {
+            return  SQLconection.getAllFinancialSpacesBD();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

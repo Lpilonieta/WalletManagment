@@ -1,6 +1,7 @@
 package Model;
 
 import ViewModel.*;
+import ViewModel.Spaces.FinancialSpace;
 
 import javax.swing.*;
 import java.sql.DriverManager;
@@ -8,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SQLconection {
 
@@ -38,13 +41,118 @@ public class SQLconection {
 
     }
 
+    public static void SaveSqlForms(Assets assets){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo) VALUES(?,?,?,?,?)");
+
+            consulta.setString(1, assets.getRegistryDate());
+            consulta.setString(2, assets.getId());
+            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setString(4, assets.getSource());
+            consulta.setString(5, assets.getMotive());
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+
+    public static void SaveSqlAssets(Assets assets){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad) VALUES(?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, assets.getRegistryDate());
+            consulta.setString(2, assets.getId());
+            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setString(4, assets.getSource());
+            consulta.setString(5, assets.getMotive());
+            consulta.setString(6, assets.getName());
+            consulta.setString(7, assets.getDescription());
+            consulta.setByte(8, assets.getType());
+            consulta.setInt(9, assets.getRentability());
+
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }
+    public static void SaveSqlPasives(Pasives pasives){
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, SaldoDeuda, PorcentajeInteres, NumeroCuotas, ValorSiguienteCuota, Periodicidad, periodicidadEspecifica) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, pasives.getRegistryDate());
+            consulta.setString(2, pasives.getId());
+            consulta.setInt(3, pasives.getPurchaseValue());
+            consulta.setString(4, pasives.getSource());
+            consulta.setString(5, pasives.getMotive());
+            consulta.setString(6, pasives.getName());
+            consulta.setString(7, pasives.getDescription());
+            consulta.setInt(8, pasives.getType());
+            consulta.setInt(9, pasives.getSaldoDeuda());
+            consulta.setFloat(10, pasives.getInterestPercentage());
+            consulta.setInt(11, pasives.getNumberOfInstallments());
+            consulta.setFloat(12, pasives.getInstallmentValue());
+            consulta.setInt(13, pasives.getPeriodicy());
+            consulta.setInt(14, pasives.getEspecificPeriodicy());
+
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public static void SaveSqlInventory(Inventory inventory) {
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO " + "tablaregistros" +
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+            consulta.setString(1, inventory.parseDatetoString());
+            consulta.setString(2, inventory.getId());
+            consulta.setInt(3, inventory.getPurchaseValue());
+            consulta.setString(4, inventory.getSource());
+            consulta.setString(5, inventory.getMotive());
+            consulta.setString(6, inventory.getName());
+            consulta.setString(7, inventory.getDescription());
+            consulta.setByte(8, inventory.getType());
+            consulta.setInt(9, inventory.getRentability());
+            consulta.setFloat(10, inventory.getStockNumber());
+            consulta.setFloat(11, inventory.getSaleNumbers());
+            consulta.setFloat(12, inventory.getUnitValue());
+            consulta.setInt(13, inventory.getCategory());
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static ArrayList<Inventory> getallInventoryFromDB() throws SQLException {
 
         SQLconection.SqlConection();
         ArrayList<Inventory> InventoryForms = new ArrayList<>(1);
 
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaregistro WHERE isInventory ='"+true+"' ");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaregistros WHERE isInventory ='"+true+"' ");
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
@@ -87,7 +195,7 @@ public class SQLconection {
         SQLconection.SqlConection();
         ArrayList<Pasives> PasiveForms = new ArrayList<>(1);
 
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaregistro WHERE isPasive ='"+true+"' ");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaregistros WHERE isPasive ='"+true+"' ");
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
@@ -199,7 +307,7 @@ public class SQLconection {
 
         SQLconection.SqlConection();
 
-        PreparedStatement pps = con.prepareStatement("DELETE FROM planetas WHERE Id =' "+id+" ' ");
+        PreparedStatement pps = con.prepareStatement("DELETE FROM tablaregistros WHERE Id =' "+id+" ' ");
         pps.executeUpdate();
     }
 
@@ -240,16 +348,84 @@ public class SQLconection {
         JOptionPane.showMessageDialog(null, "Datos actualizados");
     }
 
+    public static void deleteFinancialSpace(String id) throws SQLException {
+
+        PreparedStatement pps = con.prepareStatement("DELETE FROM tablaespaciosfinancieros WHERE Id =' "+id+" ' ");
+        pps.executeUpdate();
+    }
+
+    public static void addFinancialSpace(){
+        PreparedStatement consulta;
+        FinancialSpace financialSpace = new FinancialSpace();
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaespaciosfinancieros" +
+                    "(Id, Nombre, Grupo) VALUES(?,?,?)");
+
+            consulta.setString(1, String.valueOf(financialSpace.getId()));
+            consulta.setString(2, financialSpace.getName());
+            consulta.setInt(3, Integer.parseInt(financialSpace.getGroup()));
+
+
+
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static ArrayList<FinancialSpace> getAllFinancialSpacesBD() throws SQLException {
+
+        ArrayList<FinancialSpace> allForms = new ArrayList<>(1);
+
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaespaiosfinancieros");
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+
+
+            String Id = result.getString("Id");
+            String Nombre = result.getString("Nombre");
+            String Grupo = result.getString("Grupo");
+
+            FinancialSpace financialSpace =new FinancialSpace();
+
+            financialSpace.setId(Integer.parseInt(Id));
+            financialSpace.setName(Nombre);
+            financialSpace.setGroup(Grupo);
+
+            allForms.add(financialSpace);
+        }
+        return allForms;
+    }
+
+    public static void modifyFinancialSpace(String id, String NuevoNombre, String NuevoGrupo) throws SQLException {
+        SQLconection.SqlConection();
+
+        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaespaciosfinancieros"+" SET Nombre= ' "+NuevoNombre+" ' ,Grupo= ' "+NuevoGrupo+" ' WHERE Id ="+id);
+
+        pps.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Datos actualizados");
+    }
+
     public static ArrayList<Form> ArrayFormsDB;
     public static ArrayList<Assets> ArrayAssetsDB;
     public static ArrayList<Pasives> ArrayPasivesDB;
     public static ArrayList<Inventory> ArrayInventoryDB;
+
+
+    public static ArrayList<FinancialSpace> ArrayFinancialSpaceDB;
+
 
     public static void getFormsFromDB() throws SQLException {
         ArrayFormsDB = getallFormsDB();
         ArrayAssetsDB = getallAssetsDB();
         ArrayPasivesDB = getallPasivesDB();
         ArrayInventoryDB = getallInventoryFromDB();
+
+
+        ArrayFinancialSpaceDB = getAllFinancialSpacesBD();
+
     }
 
     public static ArrayList<Form> getArrayFormsDB() {
@@ -266,5 +442,9 @@ public class SQLconection {
 
     public static ArrayList<Inventory> getArrayInventoryDB() {
         return ArrayInventoryDB;
+    }
+
+    public static ArrayList<FinancialSpace> getArrayFinancialSpaceDB() {
+        return ArrayFinancialSpaceDB;
     }
 }

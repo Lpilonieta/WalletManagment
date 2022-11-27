@@ -55,6 +55,6 @@ public class Constants {
             "EquiposTelefoniaMovilYSimilares", "Cerveza", "Cigarrilos", "HigieneCorporal", "HigieneYCuidadoFacial", "CuidadoDelCabello", "OtrosProductosRelacionadosConHigienePersonal", "CorteCabello", "OtrosServiciosRelacionadosParaElCuidadoPersonal",
             "JoyeriaEnOro", "JoyeriaEnPlata", "Relojes", "OtrosArticulosPersonales", "OtrosServiciosFinancieros"
 
-    }
+    };
 
 }

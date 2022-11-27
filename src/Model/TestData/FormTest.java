@@ -1,10 +1,11 @@
 package Model.TestData;
 
 import ViewModel.Assets;
+import ViewModel.Constants;
 import ViewModel.Form;
 
 public class FormTest {
-    public Form formTest_01;
+    public Form formTest_01 = new Form(Constants.RENEUE_FORM_TYPE);
     public Form formTest_02;
     public Form formTest_03;
     public Form formTest_04;

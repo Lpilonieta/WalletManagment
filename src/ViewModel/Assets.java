@@ -34,7 +34,7 @@ Assets extends Form {
 
     public Assets() {}
 
-    public Assets(byte formtype,String name, String description, String comments, byte type, byte category, int rentability) {
+    public Assets(byte formtype,String name, String description, String comments, byte type, int rentability) {
         super(formtype);
         this.name = name;
         this.description = description;
@@ -49,6 +49,13 @@ Assets extends Form {
 
     }
 
+    public Assets(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability) {
+        super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered);
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.rentability = rentability;
+    }
 
     public String getName() {
         return name;

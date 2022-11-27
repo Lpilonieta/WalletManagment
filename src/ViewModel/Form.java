@@ -17,7 +17,6 @@ public class Form  {
     private int purchaseValue;
     private String source;  // TODO: [ CREAR TABLA EN CONSTANTS ]
     private String motive;  // TODO: cambiar por objeto motivos para gestionar los motivos. [ CREAR TABLA EN CONSTANTS ]
-    private String comments;
     private byte formType;
     private boolean needAssetData, needPasiveData;
     private Assets asset;
@@ -41,6 +40,15 @@ public class Form  {
 
     }
 
+    public Form(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered) {
+        this.registryDate = registryDate;  //TODO: cambiar por que se ponga automático cuando se implemente en la GUI
+        this.purchaseValue = purchaseValue;
+        this.source = source;
+        this.motive = motive;
+        this.formType = formType;
+        this.financialSpaceIdRegistered = financialSpaceIdRegistered;
+        getNewId();
+    }
     //-------------------------------------------------------------------
 
     public void getNewId() {
@@ -116,10 +124,6 @@ public class Form  {
 
     public void setMotive(String motive) {
         this.motive = motive;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public void setAsset(Assets asset) {

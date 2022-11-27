@@ -14,14 +14,14 @@ public class Inventory extends Assets {
     private static float inventoryValue;
     private byte category;
 
-    public Inventory(byte formtype, String name, String description, String comments, byte type, byte category, int rentability, int saleValue, float stockNumber, float saleNumbers, float totalItemValue, float unitValue) {
-        super(formtype, name, description, comments, type, category, rentability);
+
+    public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, float stockNumber, float saleNumbers, float totalItemValue, float unitValue, byte category) {
+        super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered, name, description, type, rentability);
         this.stockNumber = stockNumber;
         this.saleNumbers = saleNumbers;
         this.totalItemValue = totalItemValue;
         this.unitValue = unitValue;
-        setInventory(this);
-        GeneralRegistry.save(this);
+        this.category = category;
     }
 
     public Inventory() {

@@ -6,39 +6,10 @@ import ViewModel.Spaces.Manager;
 import javax.swing.*;
 
 public class User extends Stats {
-    /*TODO: El usuario puede
-    crear nuevos espacios financieros---check---
-    eliminar espacios financieros ---check---
-    seleccionar un espacio financiero:
-        calcular indices financieros a partir de los registros que pertenecen a este espacio financiero ** hacer esto en stats**
-          solo si el espacio financiero es distinto de area personal calcula los indices de inventario y rentabilidad ** hacer esto en stats**
-            indicar si no se puede calcular ** hacer esto en stats**
-            indicar que significa el indice financiero ** hacer esto en consejos financieros**
-        hacer registros
-        añadir items al inventario del espacio financiero
-        registrar las ventas de uno de los productos del invnetario
-            actualizar el stock
-        ver cuanto impuesto por ventas tiene que pagar
-
-    ATT: esDeclarante? ** hacer esto en stats**
-        solo si cumple con los requisitos
-    ver el flujo de caja.
-    */
-
-
-
     public void newFinancianSpace(String name, String group){
-        /*
-        *       Objetivos de éste método
-        * 1. crear el espacio financiero
-        * 2. guardarlo en el registro de espacios financieros
-        * 3. cambiar el espacio financiero actual a el recién creado
-        *
-        */
         FinancialSpace newFinancialSpace = new FinancialSpace(name, group);
         Manager.save(newFinancialSpace);
         Manager.switchFinancialSpace(newFinancialSpace);
-
     }
     public void openFinancialSpace(FinancialSpace financialSpace){
 

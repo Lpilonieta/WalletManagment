@@ -70,6 +70,11 @@ public class Pasives extends Form {
 
     }
 
+    public static Pasives checkNearPasivePayment() {
+        //TODO: buscar por fecha el pasivo más pronto por pagar
+        return null;
+    }
+
     public String getName() {
         return name;
     }

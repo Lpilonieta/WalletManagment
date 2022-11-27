@@ -14,8 +14,12 @@ public class Stats implements Liquidity, Solvency, Rentability{
     //stats generales
     private float netWorth;
     private float bruteWorth;
+    private float bruteRevenues;
     private float totalRevenue;
     private float totalExpenses;
+    private float totalIvaExpenses;
+    private float totalIvaRevenue;
+
 
 
     //liquidez
@@ -39,6 +43,9 @@ public class Stats implements Liquidity, Solvency, Rentability{
         calculateTotalExpenses();
         calculateNethWorth();
         calculateBruteWorth();
+        calculateBruteRevenues();
+        calculateIvaExpenses();
+        calculateIvaRevenues();
         fondoDeManiobra = calcWorkingCapital();
         razonCorriente = calcCurrentReason();
         pruebaAcida = calcAcidTest();
@@ -52,15 +59,35 @@ public class Stats implements Liquidity, Solvency, Rentability{
     }
 
     private void calculateBruteWorth() {
+        bruteWorth = 0;
         for (Form form: new GeneralRegistry().getAllForms()
              ) {
-            if (!form.isNeedPasiveData()){
-                if (form.isNeedAssetData()){
-                    if (form.getAsset().isInventoryItem()){
-                        
-                    }
-                }
+            if (!form.isNeedPasiveData()) {
+                bruteWorth+=form.getPurchaseValue();
             }
+        }
+    }
+    private void calculateBruteRevenues() {
+        bruteRevenues = 0;
+        for (Form form: new GeneralRegistry().getAllForms()
+             ) {
+            if (form.getFormType() == Constants.RENEUE_FORM_TYPE) {
+                bruteRevenues+=form.getPurchaseValue();
+            }
+        }
+    }
+    private void calculateIvaRevenues(){
+        totalIvaRevenue = 0;
+        for (Inventory inventory:new GeneralRegistry().getAllInventory()
+             ) {
+            totalIvaRevenue += inventory.getSaleNumbers()* inventory.getUnitValue();
+        }
+    }
+    private void calculateIvaExpenses(){
+        totalIvaExpenses = 0;
+        for (Inventory inventory:new GeneralRegistry().getAllInventory()
+        ) {
+            totalIvaExpenses += inventory.getPurchaseValue();
         }
     }
 
@@ -102,6 +129,29 @@ public class Stats implements Liquidity, Solvency, Rentability{
 //        System.out.println("rentabilidad sobre ventas: "+ this.rentabilidadSobreVentas);
     }
 
+    public float getBruteWorth() {
+        return bruteWorth;
+    }
+
+    public float getBruteRevenues() {
+        return bruteRevenues;
+    }
+
+    public float getTotalRevenue() {
+        return totalRevenue;
+    }
+
+    public float getTotalExpenses() {
+        return totalExpenses;
+    }
+
+    public float getTotalIvaExpenses() {
+        return totalIvaExpenses;
+    }
+
+    public float getTotalIvaRevenue() {
+        return totalIvaRevenue;
+    }
 
     // @overwrite interfaz Rentabilidad
     @Override

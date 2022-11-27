@@ -17,13 +17,25 @@ public class User extends Stats {
     public User(){
         mustDeclareRentTax = checkRentTaxRequirements();
         mustIvaTax = checkIvaTaxRequirements();
-        nearestPasivePayment = Pasive.checkNearPasivePayment();
+        nearestPasivePayment = Pasives.checkNearPasivePayment();
         calcStats();
 
     }
 
-    private boolean checkRentTaxRequirements() {
+    private boolean checkIvaTaxRequirements() {
+    if ((getTotalIvaRevenue() >= Constants.MAX_IVA_REVUNES) || getTotalIvaExpenses()>=Constants.MAX_IVA_EXPENSES)return true;
+    return false;
+    }
 
+    private boolean checkRentTaxRequirements() {
+    if (
+            getBruteRevenues() >= Constants.MAX_BRUTE_REVENUES ||
+                    getBruteWorth() >= Constants.MAX_BRUTE_WORTH ||
+                    getTotalExpenses() >= Constants.MAX_EXPENSES ||
+                    getTotalRevenue() >= Constants.MAX_BRUTE_REVENUES ||
+                    mustIvaTax
+    )return true;
+    return false;
     }
 
     public void newFinancianSpace(String name, String group){

@@ -28,6 +28,10 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
             GENERAL_REGISTRY.put(form.getId(), form);
         }
     }
+
+    public static void updatePasiveInDatabase() {
+        //TODO: actualizar pasivo en la base de datos
+    }
     /*
     *
     *       @Overwrite Interface
@@ -164,6 +168,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     }
     private static HashMap <String, Assets> ASSETS_REGISTRY = new HashMap<>();
     private static HashMap <String, Inventory> INVENTORY_REGISTRY = new HashMap<>();
+
 
 
 }

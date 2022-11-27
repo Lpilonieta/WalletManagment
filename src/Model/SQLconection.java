@@ -23,7 +23,6 @@ public class SQLconection {
 
 
     public static void SqlConection() throws SQLException {
-        GeneralRegistry saveSqlPasives = new GeneralRegistry();
         con = null;
         //Aca se puede probrar si la conexion fue exitosa
 
@@ -37,6 +36,7 @@ public class SQLconection {
         } catch (SQLException e) {
             System.out.println("Conexión no exitosa");
         }
+
 
 
     }
@@ -447,4 +447,5 @@ public class SQLconection {
     public static ArrayList<FinancialSpace> getArrayFinancialSpaceDB() {
         return ArrayFinancialSpaceDB;
     }
+
 }

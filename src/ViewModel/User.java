@@ -4,6 +4,7 @@ import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class User extends Stats {
@@ -14,7 +15,7 @@ public class User extends Stats {
     HashMap<String, Float>totalExpensesByMotive = new HashMap<>();
     HashMap<String, Float>totalRenenuesesByMotive = new HashMap<>();
     private Pasives nearestPasivePayment;
-    public User(){
+    public User()   {
         mustDeclareRentTax = checkRentTaxRequirements();
         mustIvaTax = checkIvaTaxRequirements();
         nearestPasivePayment = Pasives.checkNearPasivePayment();
@@ -51,7 +52,7 @@ public class User extends Stats {
     public void deleteFinancialSpace(FinancialSpace financialSpace){Manager.deleteFinancialSpace(financialSpace);}
     public void deleteFinancialSpaceByID (int id ){Manager.deleteFinancialSpaceByID(id);}
 
-    public static void ChangeFinancialSpace(int idFinancialSpace){
+    public static void ChangeFinancialSpace(int idFinancialSpace) throws SQLException {
         Manager.switchFinancialSpaceByID(idFinancialSpace);
 
         Assets.updateTotalAssetsFromDB();

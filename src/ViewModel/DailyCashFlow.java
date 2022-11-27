@@ -99,7 +99,6 @@ public class DailyCashFlow extends ArrayList {
         SaldoFinal = calcSaldoFinal();
         System.out.println(FechaDiaAnterior);
         System.out.println(Fecha);
-        System.out.println("");
 
         }
 

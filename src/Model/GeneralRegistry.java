@@ -26,6 +26,10 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
             GENERAL_REGISTRY.put(form.getId(), form);
         }
     }
+
+    public static void updatePasiveInDatabase() {
+        //TODO: actualizar pasivo en la base de datos
+    }
     /*
     *
     *       @Overwrite Interface
@@ -177,7 +181,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
 
             consulta.setString(1, assets.getRegistryDate());
             consulta.setString(2, assets.getId());
-            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setDouble(3, assets.getPurchaseValue());
             consulta.setString(4, assets.getSource());
             consulta.setString(5, assets.getMotive());
             consulta.setString(6, assets.getName());
@@ -204,7 +208,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
 
             consulta.setString(1, assets.getRegistryDate());
             consulta.setString(2, assets.getId());
-            consulta.setInt(3, assets.getPurchaseValue());
+            consulta.setDouble(3, assets.getPurchaseValue());
             consulta.setString(4, assets.getSource());
             consulta.setString(5, assets.getMotive());
             consulta.setString(6, assets.getName());
@@ -230,7 +234,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
 
             consulta.setString(1, pasives.getRegistryDate());
             consulta.setString(2, pasives.getId());
-            consulta.setInt(3, pasives.getPurchaseValue());
+            consulta.setDouble(3, pasives.getPurchaseValue());
             consulta.setString(4, pasives.getSource());
             consulta.setString(5, pasives.getMotive());
             consulta.setString(6, pasives.getName());
@@ -260,7 +264,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry{
 
             consulta.setString(1, inventory.parseDatetoString());
             consulta.setString(2, inventory.getId());
-            consulta.setInt(3, inventory.getPurchaseValue());
+            consulta.setDouble(3, inventory.getPurchaseValue());
             consulta.setString(4, inventory.getSource());
             consulta.setString(5, inventory.getMotive());
             consulta.setString(6, inventory.getName());

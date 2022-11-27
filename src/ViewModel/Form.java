@@ -14,7 +14,7 @@ public class Form  {
     //Atributos del form
     private String registryDate;
     private String id;
-    private int purchaseValue;
+    private float purchaseValue;
     private String source;  // TODO: [ CREAR TABLA EN CONSTANTS ]
     private String motive;  // TODO: cambiar por objeto motivos para gestionar los motivos. [ CREAR TABLA EN CONSTANTS ]
     private String comments;
@@ -108,7 +108,7 @@ public class Form  {
         return id;
     }
 
-    public int getPurchaseValue() {
+    public float getPurchaseValue() {
         return purchaseValue;
     }
 
@@ -116,7 +116,7 @@ public class Form  {
         this.formType = formType;
     }
 
-    public void setPurchaseValue(int purchaseValue) {
+    public void setPurchaseValue(float purchaseValue) {
         this.purchaseValue = purchaseValue;
     }
 

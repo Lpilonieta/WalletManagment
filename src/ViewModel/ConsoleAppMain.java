@@ -56,6 +56,7 @@ public class ConsoleAppMain {
                             "nombre: " +" "+ inv.getName()+" "+
                             "descripcion: " +" "+ inv.getDescription()+" "+
                             "tipo: " +" "+ inv.getType() +" "+
+                            "categoría: " +" "+ inv.getCategory() +" "+
                             "valor por unidad: " +" "+ inv.getUnitValue() +" "+
                             "unidades en stock" +" " + inv.getStockNumber()+ " " +
                             "numero de venta" + " " + inv.getSaleNumbers()

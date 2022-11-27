@@ -24,6 +24,9 @@ public class Inventory extends Assets {
         GeneralRegistry.save(this);
     }
 
+    public Inventory() {
+    }
+
     public float getStockNumber() {
         return stockNumber;
     }
@@ -60,7 +63,7 @@ public class Inventory extends Assets {
         this.category = category;
     }
 
-    public static float getInventoryValue() throws SQLException {
+    public static float getInventoryValue() {
         inventoryValue = Constants.NONE;
         for (Inventory inventoryItem:new GeneralRegistry().getAllInventory()
              ) {

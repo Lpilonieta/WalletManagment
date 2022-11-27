@@ -2,7 +2,6 @@ package ViewModel;
 
 //import Model.GeneralRegistry;
 import Model.GeneralRegistry;
-import Model.PasivesRegistry;
 
 import java.util.ArrayList;
 
@@ -14,7 +13,7 @@ public class Pasives extends Form {
     private String description;
     private byte type;
     private float interestPercentage;
-    private int interestType;
+    private int SaldoDeuda;
     private int numberOfInstallments;   //numero de cuotas;
     private float installmentValue;     //valor de pago por cuota.
     private byte periodicy;
@@ -32,7 +31,7 @@ public class Pasives extends Form {
         this.name = "";
         this.description = "";
         this.type = Constants.NONE;
-        this.interestType = Constants.NONE;
+        this.SaldoDeuda = Constants.NONE;
         this.interestPercentage = Constants.NONE;
         this.numberOfInstallments = Constants.NONE;
         this.periodicy = Constants.NONE;
@@ -46,7 +45,7 @@ public class Pasives extends Form {
                    String name,
                    String deudor,
                    String description,
-                   int interestType,
+                   int SaldoDeuda,
                    int interestPercentage,
                    int numberOfInstallments,
                    byte type,
@@ -58,7 +57,7 @@ public class Pasives extends Form {
         this.name = name;
         this.deudor = deudor;
         this.description = description;
-        this.interestType = interestType;
+        this.SaldoDeuda = SaldoDeuda;
         this.interestPercentage = interestPercentage;
         this.numberOfInstallments = numberOfInstallments;
         this.type = type;
@@ -103,12 +102,12 @@ public class Pasives extends Form {
 //        return purchaseValue;
 //    }
 
-    public int getInterestType() {
-        return interestType;
+    public int getSaldoDeuda() {
+        return SaldoDeuda;
     }
 
-    public void setInterestType(int interestType) {
-        this.interestType = interestType;
+    public void setSaldoDeuda(int saldoDeuda) {
+        this.SaldoDeuda = saldoDeuda;
     }
 
     public float getInterestPercentage() {
@@ -237,6 +236,10 @@ public class Pasives extends Form {
     //metodos para pasar atributos a texto
 
 
+    public float NuevoSaldoDeuda(int NumCuotasPagadas){
+        float NuevoSaldoDeuda = (numberOfInstallments - NumCuotasPagadas)*installmentValue;
+        return NuevoSaldoDeuda;
+    }
 
 
 

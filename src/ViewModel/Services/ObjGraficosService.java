@@ -163,7 +163,7 @@ public class ObjGraficosService extends JFrame {
     }
 
     public JTextField construirJTextFiel (int x, int y, int ancho, int alto, String texto,
-                                         Color colorCaret,Border borde, Font font, String direccion){
+                                         Color colorCaret, Font font, String direccion, Cursor cursor){
 
 
         textField = new JTextField(texto);
@@ -173,8 +173,7 @@ public class ObjGraficosService extends JFrame {
         textField.setBackground(Color.WHITE);
         textField.setCaretColor(colorCaret);
         textField.setHorizontalAlignment(SwingConstants.CENTER);
-        textField.setCursor(recursosService.getCursoTexto());
-        textField.setBorder(borde);
+        textField.setCursor(cursor);
         textField.setFont(font);
         textField.setHorizontalAlignment(SwingConstants.CENTER);
         switch (direccion) {

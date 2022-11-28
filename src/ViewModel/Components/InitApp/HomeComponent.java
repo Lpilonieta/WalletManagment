@@ -29,7 +29,7 @@ public class HomeComponent implements ActionListener {
         String optionSelectedInString = "null";
 
 
-        if (optionSelected == homeTemplate.getbConsejosFinancieros()) {
+        if (optionSelected == homeTemplate.getbFlujoDeCaja()) {
 
             optionSelectedInString = "Consejos Financieros";
             System.out.println(optionSelectedInString);

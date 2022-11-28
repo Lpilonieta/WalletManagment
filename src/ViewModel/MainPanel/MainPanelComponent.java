@@ -1,10 +1,11 @@
 package ViewModel.MainPanel;
 
-import ViewModel.Components.DailyRecord.*;
+import ViewModel.Components.CashFlow.*;
 import ViewModel.Components.InitApp.HomeComponent;
 import ViewModel.Components.FinancialSpaces.FinalcialSpacesComponent;
 import ViewModel.Components.NewItemInventory.NewItemInventoryComponent;
 import ViewModel.Components.PersonalArea.PersonalAreaComponent;
+import ViewModel.Components.SalesRegistry.SalesRegistryComponent;
 import ViewModel.Components.SeeFinalcialSpaces.SeeFinalcialSpacesComponent;
 import ViewModel.Components.TitleBar.TitleBarComponent;
 import ViewModel.Components.UserBrowsing.UserBrowsingComponent;
@@ -22,6 +23,8 @@ public class MainPanelComponent {
     private TitleBarComponent titleBarComponent;
     private LoginComponent loginComponent;
     private UserBrowsingComponent userBrowsingComponent;
+
+    private SalesRegistryComponent salesRegistryComponent;
 
     private EgresosComponent egresosComponent;
 
@@ -103,13 +106,19 @@ public class MainPanelComponent {
             break;
 
         case "Egresos":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Egresos en maintemplate");
-
+            if (this.egresosComponent == null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new EgresosComponent(this).getEgresosTemplate());
+                System.out.println("Registro de ventas en maintemplate");
+            }
             break;
 
         case "Ingresos":
-            mainPanelTemplate.getpShowData().removeAll();
+            if (this.ingresosComponent== null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new IngresosComponent(this).getIngresosTemplate());
+                System.out.println("Inventario en maintemplate");
+            }
             System.out.println("Ingresos en maintemplate");
 
             break;
@@ -148,8 +157,13 @@ public class MainPanelComponent {
             break;
 
         case "Registro de ventas":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Registro de ventas en maintemplate");
+
+            if (this.newItemInventoryComponent == null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new SalesRegistryComponent(this).getSalesRegistryTemplate());
+                System.out.println("Registro de ventas en maintemplate");
+            }
+
 
             break;
         default:

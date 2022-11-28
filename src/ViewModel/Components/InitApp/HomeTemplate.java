@@ -17,9 +17,9 @@ public class HomeTemplate extends JPanel {
 
 // Obj. Graficos
 
-    private JPanel pConsejosFinancieros, pIngresos, pEgresos, pEstadisticas, pOtros;
+    private JPanel pFlujoDeCaja, pIngresos, pEgresos, pEstadisticas, pOtros;
     private JLabel infoUtil;
-    private JButton bConsejosFinancieros, bEstadisticas, bEgresos, bIngresos, bTablaIngresosxMotivos, bTablaEgresosxMotivo, bFlujodeCaja, bInventario, bRegistroVentas;
+    private JButton bFlujoDeCaja, bEstadisticas, bEgresos, bIngresos, bTablaIngresosxMotivos, bTablaEgresosxMotivo, bFlujodeCaja, bInventario, bRegistroVentas;
     private ImageIcon iIngresos, iEgresos, iEstadisticas, iConsejosFinancieros,iInventarios, iTabla, iClashFlow, iRegistroVentas;
 
     public HomeTemplate(HomeComponent homeComponent, String ingresosTotales, String egresosTotales) {
@@ -47,8 +47,8 @@ public class HomeTemplate extends JPanel {
 
     public void builtPanel (){
 
-        this.pConsejosFinancieros = objGraficosService.contruirPanelGenerico(40,50,200,240, recursosService.getMainColor(), recursosService.getGrayBorder());
-        this.add(pConsejosFinancieros);
+        this.pFlujoDeCaja = objGraficosService.contruirPanelGenerico(40,50,200,240, recursosService.getMainColor(), recursosService.getGrayBorder());
+        this.add(pFlujoDeCaja);
 
         this.pIngresos = objGraficosService.contruirPanelGenerico(290,50,200,240, recursosService.getMainColor(), recursosService.getGrayBorder());
         this.add(pIngresos);
@@ -65,10 +65,10 @@ public class HomeTemplate extends JPanel {
     }
 
     public void builtButtons (){
-        this.bConsejosFinancieros = objGraficosService.builtButton("Ver Consejos", 5, 180, 190, 50,
+        this.bFlujoDeCaja = objGraficosService.builtButton("Ver flujo de caja", 5, 180, 190, 50,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), null, Color.WHITE, null, null, false, "CENTER");
-        this.bConsejosFinancieros.addActionListener(homeComponent);
-        this.pConsejosFinancieros.add(bConsejosFinancieros);
+        this.bFlujoDeCaja.addActionListener(homeComponent);
+        this.pFlujoDeCaja.add(bFlujoDeCaja);
 
         this.bIngresos = objGraficosService.builtButton("Registrar", 5, 180, 190, 50,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), null, Color.WHITE, null, null, false, "CENTER");
@@ -101,7 +101,7 @@ public class HomeTemplate extends JPanel {
 
         this.pEstadisticas.add(new CardComponent(
                 "<html><body> Estadisticas <br> Financieras </body></html> ",
-                iEstadisticas, "", "Ver").getCardTemplate());
+                iEstadisticas, "<html><body> Mira aqui tus estadisticas<br>  financieras</body></html> ", "Ver").getCardTemplate());
     }
     public void builtpIngresosComponents (String ingresosTotales){
 
@@ -116,9 +116,9 @@ public class HomeTemplate extends JPanel {
     }
     public void builtpConsejosFinancierosComponents (){
 
-        this.pConsejosFinancieros.add(new CardComponent(
-                "Consejos financieros",
-                iConsejosFinancieros, "", "Ver").getCardTemplate());
+        this.pFlujoDeCaja.add(new CardComponent(
+                "Flujo de caja",
+                iClashFlow, "Mira aqui tu flujo de caja", "Ver").getCardTemplate());
 
     }
 
@@ -146,12 +146,7 @@ public class HomeTemplate extends JPanel {
         this.bInventario .addActionListener(homeComponent);
         this.pOtros.add(bInventario);
 
-        this.bFlujodeCaja = objGraficosService.builtButton(null, 15, 250, 250,125,
-                recursosService.getCursoMano(), null, null, null, null, null, false, "null");
-        this.bFlujodeCaja .addActionListener(homeComponent);
-        this.pOtros.add(bFlujodeCaja);
-
-        this.bRegistroVentas= objGraficosService.builtButton(null, 350, 250, 250,125,
+        this.bRegistroVentas= objGraficosService.builtButton(null, 15, 250, 250,125,
                 recursosService.getCursoMano(), null, null, null, null, null, false, "null");
         this.bRegistroVentas .addActionListener(homeComponent);
         this.pOtros.add(bRegistroVentas);
@@ -170,17 +165,13 @@ public class HomeTemplate extends JPanel {
         p3.setLocation(685, 60);
         this.pOtros.add(p3);
 
-        InfoUtilTemplate p4 = new InfoUtilComponent("Flujo de caja", "Mira aqui tu flujo de caja", iClashFlow).getInfoUtilTemplate();
-        p4.setLocation(15,250);
-        this.pOtros.add(p4);
-
         InfoUtilTemplate p5 = new InfoUtilComponent("Registro de ventas", "Registra aqui nuevas ventas", iRegistroVentas).getInfoUtilTemplate();
-        p5.setLocation(350,250);
+        p5.setLocation(15,250);
         this.pOtros.add(p5);
     }
 
-    public JButton getbConsejosFinancieros() {
-        return bConsejosFinancieros;
+    public JButton getbFlujoDeCaja() {
+        return bFlujoDeCaja;
     }
 
     public JButton getbEstadisticas() {

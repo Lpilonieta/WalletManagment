@@ -29,14 +29,14 @@ public class NewItemInventoryComponent implements ActionListener {
 
 
         System.out.println("Boton selecionado");
-        this.getDataForm();
+        this.getDataFormRegistrarInventario();
 
         //Prueba de que se ajunten los datos a las variables
         System.out.println(name_Product + ", " + description_Product + ", " + type_Product + ", " + category_Product + ", " + valorXUnidad_Product + ", " + valorStock_Product);
 
     }
 
-    public void getDataForm (){
+    public void getDataFormRegistrarInventario (){
 
       name_Product = newItemInventoryTemplate.getTextFieldName().getText();
       description_Product = newItemInventoryTemplate.getTextFieldDescription().getText();

@@ -99,7 +99,7 @@ public class IngresosTemplate extends JPanel {
         ((JLabel) comboBoxMotivo.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
         this.standar.add(comboBoxMotivo);
 
-        saveData = sOjGraficosService.builtButton("Guardar datos", (1300 - 260)/2 - 200, 400, 200, 40,
+        saveData = sOjGraficosService.builtButton("Guardar datos", (1300 - 260)/2 - 200, 0, 200, 40,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), recursosService.getMainColor(),
                 Color.WHITE, null, null, true, "null");
         this.saveData.addActionListener(ingresosComponent);

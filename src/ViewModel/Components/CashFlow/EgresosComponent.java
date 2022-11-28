@@ -9,6 +9,10 @@ public class EgresosComponent implements ActionListener {
 
     private EgresosTemplate egresosTemplate;
 
+    private String textFieldValorInString, comboBoxFuenteInString, comboBoxMotivoInString;
+
+    private GetDebtsTemplate getDebtsTemplate;
+
     private MainPanelComponent mainPanelComponent;
     public EgresosComponent (MainPanelComponent mainPanelComponent){
 
@@ -23,5 +27,29 @@ public class EgresosComponent implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        this.getDataIngresosForm();
+        this.checkValidadtion();
+
+    }
+
+    public void getDataIngresosForm (){
+
+        textFieldValorInString = egresosTemplate.getTextFieldValor().getText();
+        comboBoxFuenteInString = ((String) egresosTemplate.getComboBoxFuente().getSelectedItem());
+        comboBoxMotivoInString = ((String) egresosTemplate.getComboBoxMotivo().getSelectedItem());
+
+    }
+
+    public void checkValidadtion (){
+
+        if (egresosTemplate.getCheckOpcionesAvanzadas().isSelected()) {
+            if (this.getDebtsTemplate == null) {
+                egresosTemplate.getAdvanced().removeAll();
+                egresosTemplate.getAdvanced().add(new GetDebtsComponent(this, egresosTemplate).getGetDebtsTemplate());
+                egresosTemplate.getAdvanced().repaint();
+                System.out.println("Entró");
+
+            }
+        }
     }
 }

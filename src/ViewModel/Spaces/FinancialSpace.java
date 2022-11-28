@@ -1,15 +1,18 @@
 package ViewModel.Spaces;
 
 import Model.GeneralRegistry;
+import ViewModel.Constants;
 
 public class FinancialSpace {
     public FinancialSpace() {
-
+    name = "Área personal";
+    group = Constants.DEFAULT_GROUP;
+    id = 0;
     }
 
     //atributos estáticos:
     private static int lastIdFromDataBase(){
-        int id =GeneralRegistry.getFinancialSpaceHashMap().size();
+        int id =Manager.getAllFinancialSpaces().size();
         while (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
             System.out.println("ID : "+ id + " ya existe");
             id+=1;
@@ -24,14 +27,14 @@ public class FinancialSpace {
         this.name = name;
         this.id = id;
         this.group = group;
-        GeneralRegistry.addFinancialSpaceToDB(this);
+        Manager.save(this);
     }
 
     public FinancialSpace(String name, String group) {
         this.name = name;
         this.group = group;
         this.id = lastIdFromDataBase();
-        GeneralRegistry.addFinancialSpaceToDB(this);
+        Manager.save(this);
     }
     //setters y getters
 

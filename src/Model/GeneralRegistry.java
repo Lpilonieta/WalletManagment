@@ -2,6 +2,7 @@ package Model;
 
 import ViewModel.*;
 import ViewModel.Spaces.FinancialSpace;
+import ViewModel.Spaces.Manager;
 
 import javax.swing.*;
 import java.sql.PreparedStatement;
@@ -41,7 +42,14 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     @Override
     public ArrayList<Form> getAllForms() {
         try {
-            return  SQLconection.getallFormsDB();
+            ArrayList<Form>allForms = SQLconection.getallFormsDB();
+            ArrayList<Form>sortedForms = new ArrayList<>();
+            for (Form form: allForms
+                 ) {
+                String splitId[] = form.getId().split("-");
+                if (Integer.valueOf(splitId[2])== Manager.getFinEspId())sortedForms.add(form);
+            }
+            return sortedForms;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -50,6 +58,13 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     @Override
     public ArrayList<Assets> getAllAssets() {
         try {
+            ArrayList<Assets>allForms = SQLconection.getallAssetsDB();
+            ArrayList<Assets>sortedAssets = new ArrayList<>();
+            for (Assets assets: allForms
+            ) {
+                String splitId[] = assets.getId().split("-");
+                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedAssets.add(assets);
+            }
             return SQLconection.getallAssetsDB();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,6 +74,13 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     @Override
     public ArrayList<Pasives> getAllPasives() {
         try {
+            ArrayList<Pasives>allForms = SQLconection.getallPasivesDB();
+            ArrayList<Pasives>sortedForms = new ArrayList<>();
+            for (Pasives pasives: allForms
+            ) {
+                String splitId[] = pasives.getId().split("-");
+                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedForms.add(pasives);
+            }
             return SQLconection.getallPasivesDB();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -68,6 +90,13 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     @Override
     public ArrayList<Inventory> getAllInventory() {
         try {
+            ArrayList<Inventory>allForms = SQLconection.getArrayInventoryDB();
+            ArrayList<Inventory>sortedForms = new ArrayList<>();
+            for (Inventory inventory: allForms
+            ) {
+                String splitId[] = inventory.getId().split("-");
+                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedForms.add(inventory);
+            }
             return SQLconection.getallInventoryFromDB();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -121,9 +150,9 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
     public void addFinancialSpacesToDB(FinancialSpace espacio) {
         financialSpaceHashMap.put(espacio.getId(),espacio);
     }
-    public static void addFinancialSpaceToDB(FinancialSpace espacio) {
-        financialSpaceHashMap.put(espacio.getId(),espacio);
-    }
+//    public static void addFinancialSpaceToDB(FinancialSpace espacio) {
+//        financialSpaceHashMap.put(espacio.getId(),espacio);
+//    }
 
     private void saveForm(Form form) {
         EXAMPLE_GENERAL_REGISTRY.put(form.getId(),form);        //TODO: para dejarlo definitivo solo quitar la parte de "EXAMPLE_"

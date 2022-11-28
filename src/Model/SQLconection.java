@@ -41,6 +41,24 @@ public class SQLconection {
 
     }
 
+    public static void SaveSqlFinancialSpaces(FinancialSpace financialSpace) {
+        PreparedStatement consulta;
+        try {
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+                    "(Id, Nombre, Grupo) VALUES(?,?,?)");
+
+            consulta.setString(1, String.valueOf(financialSpace.getId()));
+            consulta.setString(2, financialSpace.getName());
+            consulta.setString(3, financialSpace.getGroup());
+            consulta.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "algo salió mal");
+
+            Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void SaveSqlForms(Assets assets){
         PreparedStatement consulta;
         try {
@@ -62,7 +80,6 @@ public class SQLconection {
 
 
     }
-
     public static void SaveSqlAssets(Assets assets){
         PreparedStatement consulta;
         try {
@@ -119,6 +136,7 @@ public class SQLconection {
         }
 
     }
+
     public static void SaveSqlInventory(Inventory inventory) {
         PreparedStatement consulta;
         try {
@@ -238,7 +256,6 @@ public class SQLconection {
         }
         return PasiveForms;
     }
-
     public static ArrayList<Assets> getallAssetsDB() throws SQLException {
 
         SQLconection.SqlConection();
@@ -275,6 +292,7 @@ public class SQLconection {
         }
         return assetForms;
     }
+
     public static ArrayList<Form> getallFormsDB() throws SQLException {
 
         ArrayList<Form> allForms = new ArrayList<>(1);
@@ -350,15 +368,14 @@ public class SQLconection {
 
     public static void deleteFinancialSpace(String id) throws SQLException {
 
-        PreparedStatement pps = con.prepareStatement("DELETE FROM tablaespaciosfinancieros WHERE Id =' "+id+" ' ");
+        PreparedStatement pps = con.prepareStatement("DELETE FROM tablaEspaciosfinancieros WHERE Id =' "+id+" ' ");
         pps.executeUpdate();
     }
-
     public static void addFinancialSpace(){
         PreparedStatement consulta;
         FinancialSpace financialSpace = new FinancialSpace();
         try {
-            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaespaciosfinancieros" +
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaEspaciosfinancieros" +
                     "(Id, Nombre, Grupo) VALUES(?,?,?)");
 
             consulta.setString(1, String.valueOf(financialSpace.getId()));
@@ -374,11 +391,12 @@ public class SQLconection {
             Logger.getLogger(SQLconection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public static ArrayList<FinancialSpace> getAllFinancialSpacesBD() throws SQLException {
 
         ArrayList<FinancialSpace> allForms = new ArrayList<>(1);
 
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaespaiosfinancieros");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaEspaiosfinancieros");
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
@@ -402,15 +420,15 @@ public class SQLconection {
     public static void modifyFinancialSpace(String id, String NuevoNombre, String NuevoGrupo) throws SQLException {
         SQLconection.SqlConection();
 
-        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaespaciosfinancieros"+" SET Nombre= ' "+NuevoNombre+" ' ,Grupo= ' "+NuevoGrupo+" ' WHERE Id ="+id);
+        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaEspaciosfinancieros"+" SET Nombre= ' "+NuevoNombre+" ' ,Grupo= ' "+NuevoGrupo+" ' WHERE Id ="+id);
 
         pps.executeUpdate();
         JOptionPane.showMessageDialog(null, "Datos actualizados");
     }
-
     public static ArrayList<Form> ArrayFormsDB;
     public static ArrayList<Assets> ArrayAssetsDB;
     public static ArrayList<Pasives> ArrayPasivesDB;
+
     public static ArrayList<Inventory> ArrayInventoryDB;
 
 

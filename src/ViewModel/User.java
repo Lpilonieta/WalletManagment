@@ -53,8 +53,13 @@ public class User extends Stats {
     public void deleteFinancialSpaceByID (int id ){Manager.deleteFinancialSpaceByID(id);}
 
     public static void ChangeFinancialSpace(int idFinancialSpace) throws SQLException {
-        Manager.switchFinancialSpaceByID(idFinancialSpace);
-
+        for (FinancialSpace finacialSpace :
+                Manager.getAllFinancialSpaces()) {
+            if (idFinancialSpace == finacialSpace.getId()){
+                Manager.switchFinancialSpaceByID(finacialSpace);
+                break;
+            }
+        }
         Assets.updateTotalAssetsFromDB();
         Assets.updateTypeValues();
         Assets.updateCurrentValue();

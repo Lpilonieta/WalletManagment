@@ -6,61 +6,67 @@ import Model.GeneralRegistry;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Manager  {
-    //private int
+    private static ArrayList<FinancialSpace> allFinancialSpacesInDB;
     private static int currentID = Constants.AREA_PERSONAL_ID;
     private static FinancialSpace currentFinancialSpace = Constants.AREA_PERSONAL;
+
+
+
     public static int getFinEspId(){
-        if (currentID == Constants.NONE){
-            currentID = getIdFromDb();
-        }
         return currentID;
     }
-    private static void updateCurrentID() {
-        if (! GeneralRegistry.getFinancialSpaceHashMap().isEmpty()){
-        while (GeneralRegistry.getFinancialSpaceHashMap().containsKey(currentID+1)){
-            currentID+=1;
-        }
+    private static void update() {
+        Iterator<FinancialSpace> financialSpaceIterator = allFinancialSpacesInDB.iterator();
+        FinancialSpace financialSpace;
+        while (financialSpaceIterator.hasNext()){
+            financialSpace = financialSpaceIterator.next();
+            if (financialSpace.getId() > currentID){
+                currentFinancialSpace = financialSpace;
+                currentID= financialSpace.getId();
+            }
         }
     }
 
-    private static int getIdFromDb() {
-        return 0;
+    public Manager() {
+        allFinancialSpacesInDB = getAllFinancialSpaces();
+        update();
     }
-
-
-
-
-
-
-
-
 
 
     public static void deleteFinancialSpace(FinancialSpace financialSpace){
-        deleteFinancialSpaceByID(financialSpace.getId());
+        allFinancialSpacesInDB.remove(financialSpace);
+        try {
+            SQLconection.deleteFinancialSpace(String.valueOf(financialSpace.getId()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static void deleteFinancialSpaceByID(int id){
-        /*
-        * revisa que exista la key
-        * si existe la borra
-        * shiftea todos los id superiores
-        * */
-        if (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
-            GeneralRegistry.getFinancialSpaceHashMap().remove(id);
+        FinancialSpace toEliminate;
+        for (FinancialSpace financialSpace :
+        allFinancialSpacesInDB) {
+            if (id == financialSpace.getId()){
+                toEliminate=financialSpace;
+                deleteFinancialSpace(toEliminate);
+                break;
+            }
         }
+
     }
 
     public static void save(FinancialSpace financialSpace) {
-        GeneralRegistry.addFinancialSpaceToDB(financialSpace);
+        SQLconection.SaveSqlFinancialSpaces(financialSpace);
+        update();
 
     }
 
-    public static void switchFinancialSpaceByID(int id){
-        if (GeneralRegistry.getFinancialSpaceHashMap().containsKey(id)){
-            currentID = id;
-            currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(id);
+    public static void switchFinancialSpaceByID(FinancialSpace financialSpace){
+        if (allFinancialSpacesInDB.contains(financialSpace)){
+            currentID = financialSpace.getId();
+            currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(financialSpace);
         }else {
             System.out.println("\nKEY incorrecta\n");
         }
@@ -70,7 +76,7 @@ public class Manager  {
         currentFinancialSpace = financialSpace;
         currentID = financialSpace.getId();
     }
-    public ArrayList<FinancialSpace> getAllFinancialSpaces() {
+    public static ArrayList<FinancialSpace> getAllFinancialSpaces() {
         try {
             return  SQLconection.getAllFinancialSpacesBD();
         } catch (SQLException e) {

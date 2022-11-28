@@ -255,7 +255,7 @@ public class Pasives extends Form {
         return NuevoSaldoDeuda;
     }
 
-    public Pasives getPasivoMasCaro(){
+    public static Pasives getPasivoMasCaro(){
         GeneralRegistry generalRegistry=new GeneralRegistry();
         ArrayList<Pasives> ListaPasivos = generalRegistry.getAllPasives();
 

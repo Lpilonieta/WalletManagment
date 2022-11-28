@@ -2,8 +2,6 @@ package ViewModel;
 
 import Model.GeneralRegistry;
 
-import java.sql.SQLException;
-
 public class Inventory extends Assets {
 
     private float stockNumber;
@@ -15,7 +13,7 @@ public class Inventory extends Assets {
     private byte category;
 
 
-    public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, float stockNumber, float saleNumbers, float totalItemValue, float unitValue, byte category) {
+    public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, int stockNumber, int saleNumbers, float unitValue, byte category) {
         super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered, name, description, type, rentability);
         this.stockNumber = stockNumber;
         this.saleNumbers = saleNumbers;

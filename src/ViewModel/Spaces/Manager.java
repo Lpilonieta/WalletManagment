@@ -1,7 +1,6 @@
 package ViewModel.Spaces;
 
 import Model.SQLconection;
-import ViewModel.Constants;
 import Model.GeneralRegistry;
 
 import java.sql.SQLException;

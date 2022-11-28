@@ -1,5 +1,7 @@
 package ViewModel.Login;
 
+import ViewModel.Components.NewItemInventory.NewItemInventoryComponent;
+import ViewModel.Components.NewItemInventory.NewItemInventoryTemplate;
 import ViewModel.MainPanel.MainPanelComponent;
 
 import java.awt.event.ActionEvent;
@@ -16,6 +18,8 @@ public class LoginComponent implements ActionListener {
     public LoginComponent (){
         this.loginUITemplate = new LoginUITemplate(this);
     }
+
+    private String nameUser, claveUser, check;
 
 
     @Override
@@ -37,9 +41,9 @@ public class LoginComponent implements ActionListener {
 
     public void showDataUser (){
 
-        String nameUser = loginUITemplate.getTextNombreUsuario().getText();
-        String claveUser = new String (loginUITemplate.gettClaveUser().getPassword());
-        String check = "";
+        nameUser = loginUITemplate.getTextNombreUsuario().getText();
+        claveUser = new String (loginUITemplate.gettClaveUser().getPassword());
+        check = "";
         if (loginUITemplate.getCheckSi().isSelected()){
             check = "si";
         } else if (loginUITemplate.getCheckNo().isSelected()){

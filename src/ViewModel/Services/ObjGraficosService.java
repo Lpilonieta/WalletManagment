@@ -18,6 +18,8 @@ public class ObjGraficosService extends JFrame {
     private JTextArea textArea;
     private JComboBox<String> comboBox;
 
+    private RecursosService recursosService;
+
     private ObjGraficosService(){
 
     }
@@ -160,16 +162,19 @@ public class ObjGraficosService extends JFrame {
         return label;
     }
 
-    public JTextField construirJTextFiel (int x, int y, int ancho, int alto, String texto, Color colorFuente,
-                                          Color colorFondo, Color colorCarte, Color colorCaret, Font font, String direccion){
+    public JTextField construirJTextFiel (int x, int y, int ancho, int alto, String texto,
+                                         Color colorCaret,Border borde, Font font, String direccion){
 
-        textField = new JTextField();
-        textField.setLocation(x, y);
-        textField.setSize(ancho, alto);
-        textField.setText(texto);
-        textField.setForeground(colorFuente);
-        textField.setBackground(colorFondo);
+
+        textField = new JTextField(texto);
+        textField.setSize(ancho,alto);
+        textField.setLocation(x , y);
+        textField.setForeground(Color.DARK_GRAY);
+        textField.setBackground(Color.WHITE);
         textField.setCaretColor(colorCaret);
+        textField.setHorizontalAlignment(SwingConstants.CENTER);
+        textField.setCursor(recursosService.getCursoTexto());
+        textField.setBorder(borde);
         textField.setFont(font);
         textField.setHorizontalAlignment(SwingConstants.CENTER);
         switch (direccion) {
@@ -182,6 +187,8 @@ public class ObjGraficosService extends JFrame {
             default:
                 break;
         }
+
+
 
 
         return textField;

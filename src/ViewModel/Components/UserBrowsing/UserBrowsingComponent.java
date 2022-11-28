@@ -12,8 +12,6 @@ public class UserBrowsingComponent implements ActionListener {
 
     private MainPanelComponent mainPanelComponent;
 
-    public static boolean getSelectedJCombox;
-
     public UserBrowsingComponent(MainPanelComponent mainPanelComponent) {
 
         this.userBrowsingTemplate = new UserBrowsingTemplate(this);
@@ -25,12 +23,6 @@ public class UserBrowsingComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         this.mainPanelComponent.showComponents(e.getActionCommand().trim());
-
-        //JComboBox
-        String typeForm = ((String) userBrowsingTemplate.getAddDailyRecord().getSelectedItem());
-        this.mainPanelComponent.showComponents(typeForm);
-
-        userBrowsingTemplate.getAddDailyRecord().setSelectedIndex(0);
 
     }
         public UserBrowsingTemplate getUserBrowsingTemplate () {

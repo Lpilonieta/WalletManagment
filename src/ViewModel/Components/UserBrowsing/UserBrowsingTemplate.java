@@ -39,7 +39,7 @@ public class UserBrowsingTemplate extends JPanel {
         this.builtObjectsDecoratives();
         this.bulitPanels();
         this.builtLabels();
-        this.builtJComboBox();
+       // this.builtJComboBox();
         this.builtJButtons();
 
         this.setSize(250, 900);
@@ -100,17 +100,17 @@ public class UserBrowsingTemplate extends JPanel {
                 null, null, null, null, iconUserImage, null, "null");
 
         this.pUpper.add(lUserImage);
-
+/*
         this.lDialyRecord = objGraficosService.construirJLabel("Registro diario", 65,50, 250,20, Color.WHITE,
                 null, recursosService.getMainFont(), null, null, null, "null");
         this.pLower.add(lDialyRecord);
-
-        this.lFinanceSpaces = objGraficosService.construirJLabel("Espacios financieros", 47,205, 250,20, Color.WHITE,
+*/
+        this.lFinanceSpaces = objGraficosService.construirJLabel("Espacios financieros", 47,100, 250,20, Color.WHITE,
                 null, recursosService.getMainFont(), null, null, null, "null");
         this.pLower.add(lFinanceSpaces );
 
     }
-
+/*
     public void builtJComboBox (){
 
         this.addDailyRecord = objGraficosService.construirJComboBox(20, 90, 200, 40, recursosService.getFontMediana(), "", recursosService.getMainColor(), Color.WHITE, "null");
@@ -126,14 +126,14 @@ public class UserBrowsingTemplate extends JPanel {
         this.addDailyRecord.addActionListener(userBrowsingComponent);
         this.pLower.add(addDailyRecord);
     }
-
+*/
     public void builtJButtons() {
 
 
         this.addFinanceSpace = objGraficosService.builtButton(
 
                 "Add Espacio Financiero",
-                5, 235, 300, 40,
+                5, 150, 300, 40,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), null, Color.WHITE,
                 iconAdd, bEmpty, true, "LEFT"
         );
@@ -144,7 +144,7 @@ public class UserBrowsingTemplate extends JPanel {
         this.seeMyFinanceSpaces = objGraficosService.builtButton(
 
                 "Ver espacios financieros",
-                5, 270, 300, 40,
+                5, 190, 200, 40,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), null, Color.WHITE,
                 iconSee, bEmpty, true, "LEFT"
         );
@@ -155,7 +155,7 @@ public class UserBrowsingTemplate extends JPanel {
         this.seeMyPersonalArea = objGraficosService.builtButton(
 
                 "Ver area personal",
-                30, 380, 350, 40,
+                30, 290, 350, 40,
                 recursosService.getCursoMano(), recursosService.getFontMediana(), null, Color.WHITE,
                 iconPersonalArea, bEmpty, true, "LEFT"
         );
@@ -176,9 +176,6 @@ public class UserBrowsingTemplate extends JPanel {
 
     }
 
-    public JComboBox getAddDailyRecord() {
-        return addDailyRecord;
-    }
 }
 
 

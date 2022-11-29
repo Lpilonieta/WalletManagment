@@ -6,14 +6,12 @@ import java.awt.*;
 
 public class RecursosService {
 
-    private Color mainColor, colorSecundario;
-
-    private Cursor cursoMano;
-    private Cursor cursoTexto;
-    private ImageIcon iconLogin, iConUser, iConPassword, iconExit;
-
-    private Border bInferiorVerde;
+    private Color mainColor, colorSecundario, colorGris;
+    private Cursor cursoMano, cursoTexto;
+    private ImageIcon iconLogin;
+    private Border bInferiorVerde, grayBorder, bVerde;
     private Font mainFont, specialTitle, cursivafont, lightFont, fontMediana, fontSubtitulo;
+
 
     static private RecursosService servicio;
 
@@ -26,23 +24,20 @@ public class RecursosService {
         this.crearCursores();
 
     }
-
     public Color getColorSecundario() {
         return colorSecundario;
     }
 
-    public static RecursosService getServicio() {
-        return servicio;
-    }
 
     public void crearCursores (){
         cursoMano = new Cursor(Cursor.HAND_CURSOR);
-
+        cursoTexto = new Cursor(Cursor.TEXT_CURSOR);
     }
 
     private void crearColores (){
         mainColor = new Color(76,175,80);
         colorSecundario = new Color(66, 235, 209);
+        colorGris = new Color(249,246, 249);
     }
 
     public Font getLightFont() {
@@ -59,9 +54,24 @@ public class RecursosService {
         fontSubtitulo = new Font("Forte", Font.PLAIN,13);
     }
 
+    public Border getGrayBorder() {
+        return grayBorder;
+    }
+
+    public Border getbVerde() {
+        return bVerde;
+    }
+
+    public Color getColorGris() {
+        return colorGris;
+    }
+
     private void crearBordes (){
 
         bInferiorVerde = BorderFactory.createMatteBorder(0,0,3,0,mainColor);
+        grayBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY,2, true);
+        bVerde = BorderFactory.createLineBorder(mainColor, 2, true);
+
     }
 
     private void crearImagenes (){
@@ -94,13 +104,6 @@ public class RecursosService {
         return fontSubtitulo;
     }
 
-    public ImageIcon getiConUser() {
-        return iConUser;
-    }
-
-    public ImageIcon getIconExit() {
-        return iconExit;
-    }
 
     public Border getbInferiorVerde() {
         return bInferiorVerde;

@@ -69,9 +69,10 @@ public class LoginUITemplate extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(630,900);
         setLocationRelativeTo(this);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         setLayout(null);
+
 
     }
 
@@ -179,7 +180,6 @@ public class LoginUITemplate extends JFrame {
         textNombreUsuario.setBorder(bInferiorVerde);
         textNombreUsuario.setFont(cursivafont);
         panelLogin.add(textNombreUsuario);
-
 
     }
 

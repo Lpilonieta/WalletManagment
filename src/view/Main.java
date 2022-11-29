@@ -1,4 +1,4 @@
-package ViewModel;
+package view;
 
 import view.Login.LoginComponent;
 
@@ -19,3 +19,4 @@ public class Main {
         SwingUtilities.invokeLater(runnable);
     }
 }
+

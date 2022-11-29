@@ -9,6 +9,14 @@ import java.util.Date;
 public class Form  {
     //forms de ejemplo para db
 
+    public static int getLastID() {
+        return lastID;
+    }
+
+    public static void setLastID(int lastID) {
+        Form.lastID = lastID;
+    }
+
     private static int lastID=0;
 
     //Atributos del form

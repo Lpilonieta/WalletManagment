@@ -3,6 +3,7 @@ package ViewModel.Spaces;
 import Model.SQLconection;
 import ViewModel.Constants;
 import Model.GeneralRegistry;
+import ViewModel.Form;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,16 +19,30 @@ public class Manager  {
     public static int getFinEspId(){
         return currentID;
     }
-    private static void update() {
-        Iterator<FinancialSpace> financialSpaceIterator = allFinancialSpacesInDB.iterator();
-        FinancialSpace financialSpace;
-        while (financialSpaceIterator.hasNext()){
-            financialSpace = financialSpaceIterator.next();
-            if (financialSpace.getId() > currentID){
-                currentFinancialSpace = financialSpace;
-                currentID= financialSpace.getId();
+    public static void update() {
+
+        try {
+            allFinancialSpacesInDB = SQLconection.getAllFinancialSpacesBD();
+            Iterator<FinancialSpace> financialSpaceIterator = allFinancialSpacesInDB.iterator();
+            for (Form form:SQLconection.getallFormsDB()){
+                String[] splitId = form.getId().split("-");
+                if (Form.getLastID()<=Integer.valueOf(splitId[1])){
+                    Form.setLastID(Integer.valueOf(splitId[1]));
+                }
             }
-        }
+            FinancialSpace financialSpace;
+            while (financialSpaceIterator.hasNext()){
+                financialSpace = financialSpaceIterator.next();
+                if (financialSpace.getId() > currentID){
+                    currentFinancialSpace = financialSpace;
+                    currentID= financialSpace.getId();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } ;
+
+
     }
 
     public Manager() {

@@ -1,5 +1,11 @@
 package View.Components.CashFlow;
 
+import Model.SQLconection;
+import ViewModel.Constants;
+import ViewModel.Form;
+import ViewModel.Pasives;
+import ViewModel.Spaces.Manager;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,8 +31,17 @@ public class GetDebtsComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         this.getDataAquirirDeudaForm();
-
-
+        //aqui
+        Pasives pasive = new Pasives(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,comboBoxMotivoInString,
+                Constants.EXPENSE_FORM_TYPE,
+                Manager.getFinEspId(),textFieldNombre,
+                textFieldDescripcion,
+                Constants.CURRENT,
+                Integer.valueOf(textFieldPorcentajeInteres),
+                Integer.valueOf(textFieldValorInString),
+                Integer.valueOf(textFieldNumCoutas),0,Constants.DAILY,Integer.valueOf(textFieldPeriodicidadEspecifica));
+        SQLconection.SaveSqlPasives(pasive);
     }
 
 

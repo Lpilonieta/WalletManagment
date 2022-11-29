@@ -39,7 +39,7 @@ public class PersonalAreaTemplate extends JPanel {
         this.builtActions();
 
         this.setSize(1300, 850);
-        this.setBackground(recursosService.getColorGris());
+        this.setBackground(recursosService.getColorGrisClaro());
         this.setLayout(null);
         this.setVisible(true);
 

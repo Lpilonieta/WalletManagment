@@ -21,7 +21,7 @@ public class Constants {
     //form types
     public static final byte RENEUE_FORM_TYPE = 8;
     public static final byte EXPENSE_FORM_TYPE = 9;
-    public static final String DEFAULT_GROUP = "";
+    public static final String DEFAULT_GROUP = "default";
 
     public static final float MAX_BRUTE_WORTH = 163386000;
     public static final float MAX_BRUTE_REVENUES = 50831000;

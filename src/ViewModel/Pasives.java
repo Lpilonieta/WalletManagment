@@ -42,7 +42,21 @@ public class Pasives extends Form {
 
     }
 
-    public Pasives(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, float interestPercentage, int saldoDeuda, int numberOfInstallments, float installmentValue, byte periodicy, int especificPeriodicy) {
+    public Pasives(String registryDate,
+                   int purchaseValue,
+                   String source,
+                   String motive,
+                   byte formType,
+                   int financialSpaceIdRegistered,
+                   String name,
+                   String description,
+                   byte type,
+                   float interestPercentage,
+                   int saldoDeuda,
+                   int numberOfInstallments,
+                   float installmentValue,
+                   byte periodicy,
+                   int especificPeriodicy) {
         super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered);
         this.name = name;
         this.description = description;

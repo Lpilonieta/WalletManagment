@@ -398,7 +398,7 @@ public class SQLconection {
 
         ArrayList<FinancialSpace> allForms = new ArrayList<>(1);
 
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaEspaiosfinancieros");
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablaEspaciosfinancieros");
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {

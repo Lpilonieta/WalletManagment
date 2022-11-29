@@ -1,5 +1,11 @@
 package View.Components.CashFlow;
 
+import Model.SQLconection;
+import ViewModel.Assets;
+import ViewModel.Constants;
+import ViewModel.Form;
+import ViewModel.Spaces.Manager;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +34,10 @@ public class RegistryNewAssetComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
      this.getDataRegistroActivoForm();
-
+        Assets asset = new Assets(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,
+                comboBoxFuenteInString, Constants.RENEUE_FORM_TYPE, Manager.getFinEspId(),name_assetInString,description_assetInString,
+                Constants.CURRENT,Integer.valueOf(percetRentibyliyInString));
+        SQLconection.SaveSqlAssets(asset);
         System.out.println(name_assetInString + " " + description_assetInString + " " + type_assetInString + " " + percetRentibyliyInString + " " + textFieldValorInString
         + " " + comboBoxMotivoInString + " " + comboBoxFuenteInString);
 

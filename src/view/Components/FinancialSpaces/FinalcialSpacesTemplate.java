@@ -1,4 +1,4 @@
-package view.Components.FinancialSpaces;
+package View.Components.FinancialSpaces;
 
 import javax.swing.*;
 import java.awt.*;

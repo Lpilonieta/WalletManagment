@@ -1,6 +1,9 @@
-package view.Components.NewItemInventory;
+package View.Components.NewItemInventory;
 
-import view.MainPanel.MainPanelComponent;
+
+import View.MainPanel.MainPanelComponent;
+import View.Components.Groups.GroupsComponent;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +13,10 @@ public class NewItemInventoryComponent implements ActionListener {
     private NewItemInventoryTemplate newItemInventoryTemplate;
     private MainPanelComponent mainPanelComponent;
 
+    private GroupsComponent groupsComponent;
+
     //Obj. de clase
-   private String name_Product,  description_Product, type_Product, category_Product, valorStock_Product, valorXUnidad_Product;
+   private String name_Product,  description_Product, type_Product, category_Product, valorStock_Product, valorXUnidad_Product, comboBoxNegociosInString;
 
     public NewItemInventoryComponent (MainPanelComponent mainPanelComponent){
 
@@ -32,7 +37,8 @@ public class NewItemInventoryComponent implements ActionListener {
         this.getDataFormRegistrarInventario();
 
         //Prueba de que se ajunten los datos a las variables
-        System.out.println(name_Product + ", " + description_Product + ", " + type_Product + ", " + category_Product + ", " + valorXUnidad_Product + ", " + valorStock_Product);
+        System.out.println(name_Product + ", " + description_Product + ", " + type_Product + ", " + category_Product + ", " + valorXUnidad_Product + ", " + valorStock_Product + ", "
+        + comboBoxNegociosInString);
 
     }
 
@@ -44,8 +50,7 @@ public class NewItemInventoryComponent implements ActionListener {
       category_Product = ((String) newItemInventoryTemplate.getComboBoxCategory().getSelectedItem());
       valorStock_Product = newItemInventoryTemplate.getTextFielValorStock().getText();
       valorXUnidad_Product = newItemInventoryTemplate.getTextFielValorxUnidad().getText();
-
+      comboBoxNegociosInString = ((String) newItemInventoryTemplate.getComboBoxNegocio().getSelectedItem());
     }
-
 
 }

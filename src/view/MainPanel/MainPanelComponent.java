@@ -1,15 +1,18 @@
-package view.MainPanel;
+package View.MainPanel;
 
-import view.Components.CashFlow.*;
-import view.Components.InitApp.HomeComponent;
-import view.Components.FinancialSpaces.FinalcialSpacesComponent;
-import view.Components.NewItemInventory.NewItemInventoryComponent;
-import view.Components.PersonalArea.PersonalAreaComponent;
-import view.Components.SalesRegistry.SalesRegistryComponent;
-import view.Components.SeeFinalcialSpaces.SeeFinalcialSpacesComponent;
-import view.Components.TitleBar.TitleBarComponent;
-import view.Components.UserBrowsing.UserBrowsingComponent;
-import view.Login.LoginComponent;
+
+import View.Components.CashFlow.*;
+import View.Components.InitApp.HomeComponent;
+import View.Components.NewItemInventory.NewItemInventoryComponent;
+import View.Components.PersonalArea.PersonalAreaComponent;
+import View.Components.SalesRegistry.SalesRegistryComponent;
+import View.Components.TitleBar.TitleBarComponent;
+import View.Components.UserBrowsing.UserBrowsingComponent;
+import View.Login.LoginComponent;
+import View.IngresoxMotivo.IngresoxMotivoComponent;
+import View.Components.Groups.GroupsComponent;
+import View.Components.SeeGroups.SeeGroupsComponent;
+
 
 
 public class MainPanelComponent {
@@ -24,34 +27,32 @@ public class MainPanelComponent {
     private LoginComponent loginComponent;
     private UserBrowsingComponent userBrowsingComponent;
 
-    private SalesRegistryComponent salesRegistryComponent;
-
     private EgresosComponent egresosComponent;
 
     private IngresosComponent ingresosComponent;
 
     private NewItemInventoryComponent newItemInventoryComponent;
 
-    private FinalcialSpacesComponent finalcialSpacesComponent;
+    private GroupsComponent groupsComponent;
 
     private PersonalAreaComponent personalAreaComponent;
 
-    private SeeFinalcialSpacesComponent seeFinalcialSpacesComponent;
+    private SeeGroupsComponent seeGroupsComponent;
 
-    private HomeComponent homeComponent;
+    private IngresoxMotivoComponent ingresoxMotivoComponent;
 
     public MainPanelComponent (LoginComponent loginComponent){
         this.loginComponent = loginComponent;
         this.mainPanelTemplate = new MainPanelTemplate(this);
         this.titleBarComponent = new TitleBarComponent(this);
         this.userBrowsingComponent = new UserBrowsingComponent(this);
-        this.homeComponent = new HomeComponent(this);
+        this.personalAreaComponent = new PersonalAreaComponent(this);
 
         mainPanelTemplate.getpBarraSuperior().add(titleBarComponent.getTitleBarTemplate());
 
         mainPanelTemplate.getpBarraLateral().add(userBrowsingComponent.getUserBrowsingTemplate());
 
-        mainPanelTemplate.getpShowData().add(homeComponent.getHomeTemplate());
+        mainPanelTemplate.getpShowData().add(personalAreaComponent.getPersonalAreaTemplate());
 
     }
 
@@ -64,20 +65,20 @@ public class MainPanelComponent {
 
     switch (comand){
 
-        case "Add Espacio Financiero":
+        case "Add Negocio":
             System.out.println("Entró");
 
-            if (this.finalcialSpacesComponent == null){
+            if (this.groupsComponent == null){
                 mainPanelTemplate.getpShowData().removeAll();
                 System.out.println("Añadiendo espacio financiero");
-                this.mainPanelTemplate.getpShowData().add(new FinalcialSpacesComponent().getFinalcialSpacesTemplate());
+                this.mainPanelTemplate.getpShowData().add(new GroupsComponent().getFinalcialSpacesTemplate());
             }
             break;
 
-        case "Ver espacios financieros":
-            if (this.seeFinalcialSpacesComponent == null){
+        case "Ver negocios":
+            if (this.seeGroupsComponent == null){
                 mainPanelTemplate.getpShowData().removeAll();
-                mainPanelTemplate.getpShowData().add(new SeeFinalcialSpacesComponent().getSeeFinalcialSpacesTemplate());
+                mainPanelTemplate.getpShowData().add(new SeeGroupsComponent().getSeeFinalcialSpacesTemplate());
 
                 System.out.println("Viendo espacio financiero");
             }
@@ -85,15 +86,15 @@ public class MainPanelComponent {
 
         case "Ver area personal" :
 
-            if (this.personalAreaComponent == null){
+            if (this.personalAreaComponent != null){
                 mainPanelTemplate.getpShowData().removeAll();
-                mainPanelTemplate.getpShowData().add(new PersonalAreaComponent().getPersonalAreaTemplate());
-                System.out.println("Viendo espacio financiero");
+                mainPanelTemplate.getpShowData().add(new PersonalAreaComponent(this).getPersonalAreaTemplate());
+                System.out.println("Viendo area personal");
             }
 
             break;
 
-        case "Home":
+        case "Ver area avanzada":
             mainPanelTemplate.getpShowData().removeAll();
             mainPanelTemplate.getpShowData().add(new HomeComponent(this).getHomeTemplate());
 
@@ -129,15 +130,17 @@ public class MainPanelComponent {
 
             break;
 
-        case "Tabla ingresos x por motivo":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Tabla ingresos x por motivo en maintemplate");
+        case "TablaIngresos":
+            if (this.ingresoxMotivoComponent == null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new IngresoxMotivoComponent(this).getIngresosxMotivoTemplate());
+                    System.out.println("Ingreso x motiva tabla");
+            }
+        break;
 
-            break;
-
-        case "Tabla egresos x por motivo":
+        case "TablaEgresos":
             mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Tabla egresos x por motivoen maintemplate");
+            System.out.println("Tabla egresos x por motivo no está entraando");
 
             break;
 
@@ -163,9 +166,9 @@ public class MainPanelComponent {
                 mainPanelTemplate.getpShowData().add(new SalesRegistryComponent(this).getSalesRegistryTemplate());
                 System.out.println("Registro de ventas en maintemplate");
             }
-
-
             break;
+
+
         default:
             break;
     }

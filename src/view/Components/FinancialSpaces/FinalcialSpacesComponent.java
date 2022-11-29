@@ -1,4 +1,4 @@
-package view.Components.FinancialSpaces;
+package View.Components.FinancialSpaces;
 
 public class FinalcialSpacesComponent {
 

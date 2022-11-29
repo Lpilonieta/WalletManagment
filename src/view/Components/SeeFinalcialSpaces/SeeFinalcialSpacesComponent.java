@@ -1,4 +1,4 @@
-package view.Components.SeeFinalcialSpaces;
+package View.Components.SeeFinalcialSpaces;
 
 public class SeeFinalcialSpacesComponent {
 

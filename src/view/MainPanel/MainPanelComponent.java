@@ -2,6 +2,7 @@ package View.MainPanel;
 
 
 import View.Components.CashFlow.*;
+import View.Components.EgresoXMotivo.EgresoxMotivoComponent;
 import View.Components.InitApp.HomeComponent;
 import View.Components.NewItemInventory.NewItemInventoryComponent;
 import View.Components.PersonalArea.PersonalAreaComponent;
@@ -9,7 +10,7 @@ import View.Components.SalesRegistry.SalesRegistryComponent;
 import View.Components.TitleBar.TitleBarComponent;
 import View.Components.UserBrowsing.UserBrowsingComponent;
 import View.Login.LoginComponent;
-import View.IngresoxMotivo.IngresoxMotivoComponent;
+import View.Components.IngresoxMotivo.IngresoxMotivoComponent;
 import View.Components.Groups.GroupsComponent;
 import View.Components.SeeGroups.SeeGroupsComponent;
 
@@ -40,6 +41,8 @@ public class MainPanelComponent {
     private SeeGroupsComponent seeGroupsComponent;
 
     private IngresoxMotivoComponent ingresoxMotivoComponent;
+
+    private EgresoxMotivoComponent egresoxMotivoComponent;
 
     public MainPanelComponent (LoginComponent loginComponent){
         this.loginComponent = loginComponent;
@@ -139,8 +142,11 @@ public class MainPanelComponent {
         break;
 
         case "TablaEgresos":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Tabla egresos x por motivo no está entraando");
+            if (this.egresoxMotivoComponent == null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new EgresoxMotivoComponent(this).getEgresoXMotivoTemplate());
+                System.out.println("Egreso x motiva tabla");
+            }
 
             break;
 

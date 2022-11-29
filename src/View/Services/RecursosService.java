@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class RecursosService {
 
-    private Color mainColor, colorSecundario, colorGris;
+    private Color mainColor, colorSecundario, colorGrisClaro, colorGrisOscuro;
     private Cursor cursoMano, cursoTexto;
     private ImageIcon iconLogin;
     private Border bInferiorVerde, grayBorder, bVerde;
@@ -37,7 +37,8 @@ public class RecursosService {
     private void crearColores (){
         mainColor = new Color(76,175,80);
         colorSecundario = new Color(66, 235, 209);
-        colorGris = new Color(249,246, 249);
+        colorGrisClaro = new Color(249,246, 249);
+        colorGrisOscuro = new Color(80,80,80);
     }
 
     public Font getLightFont() {
@@ -62,8 +63,8 @@ public class RecursosService {
         return bVerde;
     }
 
-    public Color getColorGris() {
-        return colorGris;
+    public Color getColorGrisClaro() {
+        return colorGrisClaro;
     }
 
     private void crearBordes (){
@@ -121,6 +122,9 @@ public class RecursosService {
         return cursivafont;
     }
 
+    public Color getColorGrisOscuro() {
+        return colorGrisOscuro;
+    }
 
     public static RecursosService getService(){
         if (servicio==null) servicio = new RecursosService();

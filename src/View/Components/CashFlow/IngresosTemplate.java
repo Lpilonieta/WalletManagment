@@ -87,7 +87,7 @@ public class IngresosTemplate extends JPanel {
 
 
         this.comboBoxMotivo= new JComboBox<>();
-        this.comboBoxMotivo.addItem("5");
+        this.comboBoxMotivo.addItem("");
         this.comboBoxMotivo.addItem("6");
         this.comboBoxMotivo.addItem("7");
         this.comboBoxMotivo.addItem("8");

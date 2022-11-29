@@ -1,6 +1,11 @@
 package View.Components.CashFlow;
 
+import Model.GeneralRegistry;
+import Model.SQLconection;
 import View.MainPanel.MainPanelComponent;
+import ViewModel.Constants;
+import ViewModel.Form;
+import ViewModel.Spaces.Manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +36,12 @@ public class IngresosComponent implements ActionListener {
 
         this.getDataIngresosForm();
         this.checkValidadtion();
+        if (ingresosTemplate.getCheckOpcionesAvanzadas().isSelected()){
+            //guardar un activo
+        }else {
+            Form form = new Form(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,comboBoxMotivoInString, Constants.RENEUE_FORM_TYPE, Manager.getFinEspId());
+            SQLconection.SaveSqlForms(form);
+        }
         System.out.println(textFieldValorInString + ", " + comboBoxMotivoInString + ", " + comboBoxFuenteInString);
 
 

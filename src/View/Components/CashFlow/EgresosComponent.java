@@ -1,6 +1,11 @@
 package View.Components.CashFlow;
 
+import Model.SQLconection;
 import View.MainPanel.MainPanelComponent;
+import ViewModel.Constants;
+import ViewModel.Form;
+import ViewModel.Pasives;
+import ViewModel.Spaces.Manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +34,12 @@ public class EgresosComponent implements ActionListener {
 
         this.getDataIngresosForm();
         this.checkValidadtion();
+        if (egresosTemplate.getCheckOpcionesAvanzadas().isSelected()){
+            //save new pasive
+        }else {
+            Form form = new Form(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,comboBoxMotivoInString, Constants.EXPENSE_FORM_TYPE, Manager.getFinEspId());
+            SQLconection.SaveSqlForms(form);
+        }
 
     }
 

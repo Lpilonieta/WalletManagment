@@ -4,6 +4,7 @@ package View.Components.NewItemInventory;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
 import View.Components.Groups.GroupsComponent;
+import ViewModel.Constants;
 
 
 import javax.swing.*;
@@ -112,11 +113,8 @@ public class NewItemInventoryTemplate extends JPanel {
 
     public void builtJComboBox (){
 
-        this.comboBoxCategory = new JComboBox<>();
-        this.comboBoxCategory.addItem("1");
-        this.comboBoxCategory.addItem("2");
-        this.comboBoxCategory.addItem("3");
-        this.comboBoxCategory.addItem("4");
+        this.comboBoxCategory = new JComboBox<>(Constants.ProductosConIVA);
+        //this.comboBoxCategory.add(Constants.ProductosSinIVA);
         this.comboBoxCategory.setSize(220,40);
         this.comboBoxCategory.setLocation((1300 - 260)/2, 350);
         this.comboBoxCategory.setForeground(Color.DARK_GRAY);

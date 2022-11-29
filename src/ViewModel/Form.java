@@ -73,7 +73,7 @@ public class Form  {
         return registryDate;
     }
 
-    public String parseDatetoString(){
+    public static String parseDatetoString(){
         Date fecha=new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");
 

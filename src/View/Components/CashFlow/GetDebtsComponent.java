@@ -8,6 +8,7 @@ public class GetDebtsComponent implements ActionListener {
     private String textFielDeudor, textFieldNombre, textFieldDescripcion, textFieldPorcentajeInteres, textFieldNumCoutas,
             textFieldPeriodicidadEspecifica, textFieldFecha1erPago, comboBoxTipoInteres, comboBoxTipoCorrienteNoCorriente, comboBoxPeriodicidad,
             textFieldValorInString, comboBoxFuenteInString, comboBoxMotivoInString;
+
     private GetDebtsTemplate getDebtsTemplate;
 
     private EgresosTemplate egresosTemplate;

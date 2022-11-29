@@ -1,11 +1,13 @@
 package ViewModel;
 //import Model.EJEMPLO;
 import Model.GeneralRegistry;
+import Model.SQLconection;
 import Model.TestData.AssetsTests;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,6 +17,11 @@ public class ConsoleAppMain {
    // static EJEMPLO ejemplo =new EJEMPLO();
 
     public static void main(String[] args) {
+        try {
+            SQLconection.SqlConection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         //ejemplo.setExampleGeneralRegistry();
         AssetsTests assetsTests = new AssetsTests();
         ArrayList<FinancialSpace> financialSpacesInDB = Manager.getAllFinancialSpaces();

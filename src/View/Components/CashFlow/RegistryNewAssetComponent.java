@@ -28,6 +28,7 @@ public class RegistryNewAssetComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
      this.getDataRegistroActivoForm();
+
         System.out.println(name_assetInString + " " + description_assetInString + " " + type_assetInString + " " + percetRentibyliyInString + " " + textFieldValorInString
         + " " + comboBoxMotivoInString + " " + comboBoxFuenteInString);
 

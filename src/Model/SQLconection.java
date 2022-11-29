@@ -16,7 +16,7 @@ public class SQLconection {
 
     public static java.sql.Connection con;
 
-    public static String driver  = "com.cj.mysql.jdbc.Driver";
+    public static String driver  = "com.mysql.jdbc.Driver";
     public static String user = "root";
     public static String pass = "";
     public static String url = "jdbc:mysql://localhost:3306/registros";
@@ -24,19 +24,17 @@ public class SQLconection {
 
     public static void SqlConection() throws SQLException {
         con = null;
-        //Aca se puede probrar si la conexion fue exitosa
-
         try {
-
-
+            Class.forName(driver);
             con =  DriverManager.getConnection(url, user, pass);
             if (con != null) {
                 System.out.println("Conexión exitosa");
             }
         } catch (SQLException e) {
             System.out.println("Conexión no exitosa");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-
 
 
     }
@@ -44,7 +42,9 @@ public class SQLconection {
     public static void SaveSqlFinancialSpaces(FinancialSpace financialSpace) {
         PreparedStatement consulta;
         try {
-            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
+            SqlConection();
+
+            consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaEspaciosfinancieros" +
                     "(Id, Nombre, Grupo) VALUES(?,?,?)");
 
             consulta.setString(1, String.valueOf(financialSpace.getId()));
@@ -59,17 +59,18 @@ public class SQLconection {
         }
     }
 
-    public static void SaveSqlForms(Assets assets){
+    public static void SaveSqlForms(Form form){
         PreparedStatement consulta;
         try {
+            SqlConection();
             consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
                     "(Fecha,Id, Valor, Fuente, Motivo) VALUES(?,?,?,?,?)");
 
-            consulta.setString(1, assets.getRegistryDate());
-            consulta.setString(2, assets.getId());
-            consulta.setInt(3, assets.getPurchaseValue());
-            consulta.setString(4, assets.getSource());
-            consulta.setString(5, assets.getMotive());
+            consulta.setString(1, form.getRegistryDate());
+            consulta.setString(2, form.getId());
+            consulta.setInt(3, form.getPurchaseValue());
+            consulta.setString(4, form.getSource());
+            consulta.setString(5, form.getMotive());
 
 
             consulta.executeUpdate();
@@ -141,7 +142,7 @@ public class SQLconection {
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO " + "tablaregistros" +
-                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria, isInventory) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             consulta.setString(1, inventory.parseDatetoString());
             consulta.setString(2, inventory.getId());
@@ -156,6 +157,7 @@ public class SQLconection {
             consulta.setFloat(11, inventory.getSaleNumbers());
             consulta.setFloat(12, inventory.getUnitValue());
             consulta.setInt(13, inventory.getCategory());
+            consulta.setString(14, "true");
 
 
             consulta.executeUpdate();

@@ -10,6 +10,8 @@ public class FinancialSpace {
     id = 0;
     }
 
+
+
     //atributos estáticos:
     private static int lastIdFromDataBase(){
         int id =Manager.getAllFinancialSpaces().size();

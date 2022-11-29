@@ -4,7 +4,8 @@ import ViewModel.Spaces.FinancialSpace;
 
 public class Constants {
     public static final byte NONE = -125;
-    public static final FinancialSpace AREA_PERSONAL= new FinancialSpace("Area personal","",0x0);
+    public static final FinancialSpace AREA_PERSONAL= new FinancialSpace();
+
     public static final int AREA_PERSONAL_ID = 0x0;
     // asset-pasive types
     public static final byte NO_CURRENT = 0;
@@ -31,7 +32,7 @@ public class Constants {
     public static final float MAX_IVA_REVUNES = 14000000;
 
 
-    String[] ProductosSinIVA={
+    public static final String[] ProductosSinIVA={
             "Arroz", "Pan", "OtrosProductosPanaderia", "Papa", "Yuca", "OtrosTuberculos", "Platano", "Cebolla", "Tomate", "Zanahoria", "RevueltoVerde", "OtrasOrtalizasyLegumbresFrescas",
             "Frijol", "Arveja", "OtrasHortalizasYLegumbresSecas", "Naranjas","Bananos", "TomateArbol", "Moras", "OtrosFrutosSecos", "Res", "Cerdo", "Pollo", "Huevos", "Leche", "Queso", "Panela",
             "Sal", "Agua", "Almuerzo", "Hamburguesa", "ComidasRapidasCalientes", "GastosDeCafeteria", "ComidasRapidasFrias", "ArrendamientoEfectivo", "ArrendamientoImputado", "OtrosGastosOcupacion",
@@ -41,7 +42,7 @@ public class Constants {
             "OtrosTransporteIntermunicipal", "PorteDeCartas", "Aguardiente", "OtrasBebidasAlcoholicas", "HigieneOral", "ServiciosBancarios", "SegurosDeVehiculo"
 
         };
-    String[] ProductosConIVA={
+    public static final String[] ProductosConIVA={
             "HarinaDeMaiz", "PastasAlimenticias", "CerealesPreparados", "OtrosCereales", "HortalizasYLegumbresEnlatadas", "FrutasEnConserva", "FrutasSecas", "CarnesFrias", "OtrosProductosDeMar",
             "OtrosDerivadosLacteos", "Aceites", "Grasas", "Azucar", "Cafe", "Chocolate", "OtrosCondimentos", "SopasYCremas", "Salsas", "Aderezos", "Dulces", "Confites", "Gelatina", "OtrosAbarrotes",
             "Sala", "Comedor", "Alcoba", "EquiposDeIluminacion", "Nevera", "Estufa", "Lavadora", "OtrosAparatosHogar", "ReparacionDeArtefactosParaElHogar", "Ollas", "Sartenes", "Refractarias",

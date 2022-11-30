@@ -45,7 +45,7 @@ public class WeeklyCashFlow {
             System.out.println("Saldo Inicial "+key +": "+WeeklyCashFlow.get(key).getSaldoInicial());
             if (WeeklyCashFlow.get(key).getExpensesForms().isEmpty()) {
                 System.out.println("no hay gastos");
-            } else if (WeeklyCashFlow.get(key).getRevenuesForms().isEmpty()) {
+            }if (WeeklyCashFlow.get(key).getRevenuesForms().isEmpty()) {
                 System.out.println("no hay ingresos");
             }else {
                 System.out.println(WeeklyCashFlow.get(key).getRevenuesForms().toString());

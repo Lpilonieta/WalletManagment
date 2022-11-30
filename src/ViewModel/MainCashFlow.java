@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class MainCashFlow {
     public static void main(String[] args) throws SQLException {
-     WeeklyCashFlow cashFlow = new WeeklyCashFlow("0-20-11-2022");
+     WeeklyCashFlow cashFlow = new WeeklyCashFlow("3-30-11-2022");
      cashFlow.printCashFlow();
 
 

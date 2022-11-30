@@ -42,6 +42,7 @@ public class GetDebtsComponent implements ActionListener {
                 Integer.valueOf(textFieldValorInString),
                 Integer.valueOf(textFieldNumCoutas),0,Constants.DAILY,Integer.valueOf(textFieldPeriodicidadEspecifica));
         SQLconection.SaveSqlPasives(pasive);
+        SQLconection.SaveCashFlow(pasive);
     }
 
 

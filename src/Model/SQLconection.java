@@ -339,23 +339,24 @@ public class SQLconection {
         pps.executeUpdate();
     }
 
-    public static String SaldoInicial(String fechaDiaAnterior) throws SQLException {
-        SQLconection.SqlConection();
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE Fecha ='"+fechaDiaAnterior+"' ");
+    public static String getUltimoSaldo() {
+        ArrayList<String> Saldos = new ArrayList<>();
+        try {
+            SQLconection.SqlConection();
 
+        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow");
         ResultSet result = statement.executeQuery();
 
-        ArrayList<String> Saldos = new ArrayList<>();
+
 
         while (result.next()) {
             Saldos.clear();
             Saldos.add(result.getString("Saldo"));
         }
-        //String SaldoInicial = Saldos.get(Saldos.size()-1);
-        System.out.println(Saldos);
-        //System.out.println(SaldoInicial);
-        //String SaldoInicial = "a";
-        return Saldos.get(0);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Saldos.isEmpty()? "0":Saldos.get(0);
     }
 
     public static void modifyPasive(String id, String NuevoSaldo, String NuevoNumeroCuotas) throws SQLException {
@@ -476,4 +477,34 @@ public class SQLconection {
         return ArrayFinancialSpaceDB;
     }
 
+    public static void SaveCashFlow(Form form) {
+        try {
+            SqlConection();
+            String saldo = calcularNuevoSaldo(form);
+            PreparedStatement consulta;
+            consulta = con.prepareStatement("INSERT INTO " + "tablacashflow" +
+                    "(Fecha,Id, Valor,Saldo) VALUES(?,?,?,?)");
+            consulta.setString(1,form.getRegistryDate() );
+            consulta.setString(2, form.getId() );
+            consulta.setString(3, String.valueOf(form.getPurchaseValue()));
+            consulta.setString(4, saldo);
+            consulta.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    private static String calcularNuevoSaldo(Form form) {
+        int ultimoSaldo = Integer.valueOf(getUltimoSaldo());
+        if (form.getFormType() == Constants.RENEUE_FORM_TYPE) {
+            ultimoSaldo+= form.getPurchaseValue();
+        }else             ultimoSaldo-= form.getPurchaseValue();
+        return String.valueOf(ultimoSaldo);
+
+    }
 }

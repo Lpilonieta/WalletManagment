@@ -9,8 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import static Model.SQLconection.SaldoInicial;
-import static Model.SQLconection.con;
+import static Model.SQLconection.*;
 
 
 public class DailyCashFlow extends ArrayList {
@@ -20,13 +19,34 @@ public class DailyCashFlow extends ArrayList {
     private String Fecha, FechaDiaAnterior;
     private String SaldoInicial, SaldoFinal;
 
+    public ArrayList<Form> getExpensesForms() {
+        return ExpensesForms;
+    }
+
+    public ArrayList<Form> getRevenuesForms() {
+        return RevenuesForms;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public String getSaldoInicial() {
+        return SaldoInicial;
+    }
+
+    public String getSaldoFinal() {
+        return SaldoFinal;
+    }
 
     public void DailyRevenuesForms(){
 
         ArrayList<Form> revenuesForms = new ArrayList<>();
         for (Form form:new GeneralRegistry().getAllRevenuesForms()
              ) {
-            if (form.getRegistryDate() == Fecha)revenuesForms.add(form);
+            if (form.getRegistryDate().equals(Fecha)){
+                revenuesForms.add(form);
+            }
         }
         RevenuesForms=revenuesForms;
     }
@@ -34,7 +54,7 @@ public class DailyCashFlow extends ArrayList {
         ArrayList<Form> expensesForms = new ArrayList<>();
         for (Form form: new GeneralRegistry().getAllExpensesForms()
              ) {
-            if (form.getRegistryDate() == Fecha)expensesForms.add(form);
+            if (form.getRegistryDate().equals(Fecha))expensesForms.add(form);
         }
         ExpensesForms = expensesForms;
     }
@@ -97,10 +117,27 @@ public class DailyCashFlow extends ArrayList {
         DailyRevenuesForms();
         DailyExpensesForms();
         SaldoFinal = calcSaldoFinal();
-        System.out.println(FechaDiaAnterior);
-        System.out.println(Fecha);
+    }
 
-        }
+    private String SaldoInicial(String fechaDiaAnterior) {
+        ArrayList<String>saldo=new ArrayList<>(2);
+        try {
+
+            SQLconection.SqlConection();
+
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow WHERE Fecha='"+fechaDiaAnterior+"'");
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()){
+                saldo.clear();
+                saldo.add(result.getString("Saldo"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }return saldo.isEmpty()? "0":saldo.get(0);
+    }
+
+
 
 }
 

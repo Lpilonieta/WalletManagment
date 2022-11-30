@@ -30,7 +30,7 @@ public class WeeklyCashFlow {
 
     }
 
-    private void printCashFlow() {
+    public void printCashFlow() {
         String[] keys = {  "Lunes",
                            "Martes",
                            "Miércoles",
@@ -41,7 +41,17 @@ public class WeeklyCashFlow {
         };
         for (String key :
                 keys) {
-            if (WeeklyCashFlow.get(key).)
+            System.out.println("----------------------------------------------------------");
+            System.out.println("Saldo Inicial "+key +": "+WeeklyCashFlow.get(key).getSaldoInicial());
+            if (WeeklyCashFlow.get(key).getExpensesForms().isEmpty()) {
+                System.out.println("no hay gastos");
+            } else if (WeeklyCashFlow.get(key).getRevenuesForms().isEmpty()) {
+                System.out.println("no hay ingresos");
+            }else {
+                System.out.println(WeeklyCashFlow.get(key).getRevenuesForms().toString());
+                System.out.println(WeeklyCashFlow.get(key).getExpensesForms().toString());
+            }
+            System.out.println("Saldo final "+key+": "+WeeklyCashFlow.get(key).getSaldoFinal());
         }
     }
 

@@ -38,6 +38,7 @@ public class RegistryNewAssetComponent implements ActionListener {
                 comboBoxFuenteInString, Constants.RENEUE_FORM_TYPE, Manager.getFinEspId(),name_assetInString,description_assetInString,
                 Constants.CURRENT,Integer.valueOf(percetRentibyliyInString));
         SQLconection.SaveSqlAssets(asset);
+        SQLconection.SaveCashFlow(asset);
         System.out.println(name_assetInString + " " + description_assetInString + " " + type_assetInString + " " + percetRentibyliyInString + " " + textFieldValorInString
         + " " + comboBoxMotivoInString + " " + comboBoxFuenteInString);
 

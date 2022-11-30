@@ -41,6 +41,7 @@ public class IngresosComponent implements ActionListener {
         }else {
             Form form = new Form(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,comboBoxMotivoInString, Constants.RENEUE_FORM_TYPE, Manager.getFinEspId());
             SQLconection.SaveSqlForms(form);
+            SQLconection.SaveCashFlow(form);
         }
         System.out.println(textFieldValorInString + ", " + comboBoxMotivoInString + ", " + comboBoxFuenteInString);
 

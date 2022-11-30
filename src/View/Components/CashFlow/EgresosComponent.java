@@ -41,6 +41,7 @@ public class EgresosComponent implements ActionListener {
                 Constants.EXPENSE_FORM_TYPE,
                 Manager.getFinEspId());
         SQLconection.SaveSqlForms(form);
+        SQLconection.SaveCashFlow(form);
 
 
     }

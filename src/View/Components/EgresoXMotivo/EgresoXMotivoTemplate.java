@@ -27,7 +27,7 @@ public class EgresoXMotivoTemplate extends JPanel{
     private JTable table;
     private JTableHeader header;
     private DefaultTableModel modelEgresos;
-    private String [] cabecera={"id", "Egreso", "Motivo"};
+    private String [] cabecera={"Egreso", "Motivo"};
 
 
     //Obj. Decorador

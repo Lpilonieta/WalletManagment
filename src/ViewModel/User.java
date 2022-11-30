@@ -53,7 +53,7 @@ public class User extends Stats {
         mustDeclareRentTax = checkRentTaxRequirements();
         mustIvaTax = checkIvaTaxRequirements();
         nearestPasivePayment = Pasives.checkNearPasivePayment();
-        calcStats();
+       // calcStats();
     }
 
     private boolean checkIvaTaxRequirements() {

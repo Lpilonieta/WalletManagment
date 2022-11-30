@@ -7,11 +7,14 @@ import View.Components.ModelAux.Services.EgresoXMotivoServices;
 import View.Components.ModelAux.Services.IngresosxMotivoService;
 import View.MainPanel.MainPanelComponent;
 import View.Services.RecursosService;
+import ViewModel.Stats;
+import ViewModel.User;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.*;
+import java.util.Map;
 
 public class EgresoxMotivoComponent implements ActionListener, MouseListener, FocusListener {
 
@@ -22,6 +25,8 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
    private EgresoXMotivoServices egresoXMotivoServices;
 
    private EgresoXMotivo egresoXMotivo;
+
+   private User user = new User();
 
     private String [] placeHolers = {"Egreso", "Motivo", "Filtrar"};
 
@@ -39,6 +44,8 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
         if (e.getSource() == egresoXMotivoTemplate.getbShow()){
             showRegistros();
+            System.out.println(user.getTotalRevenuesByMotive().toString());
+            System.out.println(user.getTotalExpensesByMotive().toString());
         } else if (e.getSource() == egresoXMotivoTemplate.getbInsert()){
             insertDataTable();
         } else if (e.getSource() == egresoXMotivoTemplate.getbModify()){
@@ -122,12 +129,9 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
     public void showRegistros(){
 
-        for (int i = 0; i < egresoXMotivoServices.devolverCantidadEgresosxMotivo(); i++) {
-           egresoXMotivo = egresoXMotivoServices.devolverEgresoxMotivo(i);
-            this.addDta(egresoXMotivo);
-        }
+       this.addDta(user);
 
-       egresoXMotivoTemplate.getlIdValue().setText(egresoXMotivoServices.devolverCantidadEgresosxMotivo()+"");
+        egresoXMotivoTemplate.getlIdValue().setText("");
         egresoXMotivoTemplate.getbShow().setEnabled(false);
     }
 
@@ -137,7 +141,7 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
         egresoXMotivo .setIdEgreso(egresoXMotivoServices.devolverCantidadEgresosxMotivo());
         egresoXMotivo .setEgreso(egresoXMotivoTemplate.gettEgreso().getText());
         egresoXMotivo .setMotivoEgreso(egresoXMotivoTemplate.gettMotivo().getText());
-        this.addDta(egresoXMotivo );
+        //this.addDta(egresoXMotivo);
         resetValues();
 
 
@@ -175,10 +179,11 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
         trs.setRowFilter(RowFilter.regexFilter(egresoXMotivoTemplate.gettConsult().getText()));
     }
 
-    public void addDta (EgresoXMotivo egresoXMotivo){
+    public void addDta (User user){
 
+        for (Map.Entry<?,?> entry : user.getTotalExpensesByMotive().entrySet())
         egresoXMotivoTemplate.getModelEgresos().addRow(
-                new Object[]{egresoXMotivo.getIdEgreso(), egresoXMotivo.getEgreso(), egresoXMotivo.getMotivoEgreso()}
+                new Object[]{entry.getValue(), entry.getKey()}
         );
     }
 

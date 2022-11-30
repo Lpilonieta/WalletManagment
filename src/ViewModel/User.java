@@ -1,10 +1,11 @@
 package ViewModel;
 
+import Model.GeneralRegistry;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
-import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User extends Stats {
@@ -13,7 +14,40 @@ public class User extends Stats {
     private float totalExpenses = 0;
     private float totalRevenues =0;
     HashMap<String, Float>totalExpensesByMotive = new HashMap<>();
-    HashMap<String, Float>totalRenenuesesByMotive = new HashMap<>();
+
+    HashMap<String, Float> totalRevenuesByMotive = new HashMap<>();
+
+    public HashMap<String, Float> getTotalExpensesByMotive() {
+        totalExpensesByMotive.clear();
+        String key;
+        ArrayList<Form>allRevenueForms = new GeneralRegistry().getAllExpensesForms();
+        float saldo;
+        while (!allRevenueForms.isEmpty()){
+            if (totalExpensesByMotive.containsKey(allRevenueForms.get(0).getMotive())){
+                key = allRevenueForms.get(0).getMotive();
+                saldo = totalExpensesByMotive.get(key);
+                totalExpensesByMotive.replace(key,saldo,saldo+allRevenueForms.get(0).getPurchaseValue());
+            }else totalExpensesByMotive.put(allRevenueForms.get(0).getMotive(), (float) allRevenueForms.get(0).getPurchaseValue());
+            allRevenueForms.remove(0);
+        }
+        return totalExpensesByMotive;
+    }
+
+    public HashMap<String, Float> getTotalRevenuesByMotive() {
+        totalRevenuesByMotive.clear();
+        String key;
+        ArrayList<Form>allRevenueForms = new GeneralRegistry().getAllRevenuesForms();
+        float saldo;
+        while (!allRevenueForms.isEmpty()){
+            if (totalRevenuesByMotive.containsKey(allRevenueForms.get(0).getMotive())){
+                key = allRevenueForms.get(0).getMotive();
+                saldo = totalRevenuesByMotive.get(key);
+                totalRevenuesByMotive.replace(key,saldo,saldo+allRevenueForms.get(0).getPurchaseValue());
+            }else totalRevenuesByMotive.put(allRevenueForms.get(0).getMotive(), (float) allRevenueForms.get(0).getPurchaseValue());
+            allRevenueForms.remove(0);
+        }
+        return totalRevenuesByMotive;
+    }
     private Pasives nearestPasivePayment;
     public User()   {
         mustDeclareRentTax = checkRentTaxRequirements();

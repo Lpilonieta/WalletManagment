@@ -15,10 +15,10 @@ import static Model.SQLconection.con;
 
 public class DailyCashFlow extends ArrayList {
 
-    ArrayList <Form> ExpensesForms;
-    ArrayList <Form> RevenuesForms;
-    String Fecha, FechaDiaAnterior;
-    String SaldoInicial, SaldoFinal;
+    private ArrayList <Form> ExpensesForms;
+    private ArrayList <Form> RevenuesForms;
+    private String Fecha, FechaDiaAnterior;
+    private String SaldoInicial, SaldoFinal;
 
 
     public void DailyRevenuesForms(){

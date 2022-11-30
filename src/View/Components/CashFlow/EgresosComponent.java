@@ -34,12 +34,14 @@ public class EgresosComponent implements ActionListener {
 
         this.getDataIngresosForm();
         this.checkValidadtion();
-        if (egresosTemplate.getCheckOpcionesAvanzadas().isSelected()){
+        Form form = new Form(Form.parseDatetoString(),
+                Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,
+                comboBoxMotivoInString,
+                Constants.EXPENSE_FORM_TYPE,
+                Manager.getFinEspId());
+        SQLconection.SaveSqlForms(form);
 
-        }else {
-            Form form = new Form(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,comboBoxMotivoInString, Constants.EXPENSE_FORM_TYPE, Manager.getFinEspId());
-            SQLconection.SaveSqlForms(form);
-        }
 
     }
 

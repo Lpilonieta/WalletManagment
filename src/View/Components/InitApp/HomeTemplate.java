@@ -5,7 +5,7 @@ import View.Components.InfoUtil.InfoUtilTemplate;
 import View.Components.Cards.CardComponent;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
-import ViewModel.Stats;
+import ViewModel.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +20,10 @@ public class HomeTemplate extends JPanel {
 
     private JPanel pFlujoDeCaja, pIngresos, pEgresos, pEstadisticas, pOtros;
     private JLabel infoUtil;
-    private JButton bFlujoDeCaja, bEstadisticas, bEgresos, bIngresos, bTablaIngresosxMotivos, bTablaEgresosxMotivo, bFlujodeCaja, bInventario, bRegistroVentas;
+    private JButton bFlujoDeCaja, bEstadisticas, bEgresos, bIngresos, bTablaIngresosxMotivos, bTablaEgresosxMotivo, bInventario, bRegistroVentas;
     private ImageIcon iIngresos, iEgresos, iEstadisticas, iConsejosFinancieros,iInventarios, iTabla, iClashFlow, iRegistroVentas;
+
+    private User user = new User();
 
     public HomeTemplate(HomeComponent homeComponent, String ingresosTotales, String egresosTotales) {
 
@@ -34,7 +36,7 @@ public class HomeTemplate extends JPanel {
         this.builtDecorativesObject();
         this.builtpIngresosComponents(ingresosTotales);
         this.builtpEgresosComponents(egresosTotales);
-        this.builtpConsejosFinancierosComponents();
+        this.builtFlujoDeCajaComponents();
         this.builtpEstadisticasComponents();
         this.builtButtons();
         this.builtActions();
@@ -86,6 +88,8 @@ public class HomeTemplate extends JPanel {
         this.bEstadisticas.addActionListener(homeComponent);
         this.pEstadisticas.add(bEstadisticas);
     }
+
+
     public void builtDecorativesObject (){
 
         this.iIngresos = new ImageIcon("Graphics/MainPanel/iIngresos.png");
@@ -106,16 +110,16 @@ public class HomeTemplate extends JPanel {
     }
     public void builtpIngresosComponents (String ingresosTotales){
 
-        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + new Stats().getTotalRevenue() + "</body></html>", "Registrar").getCardTemplate());
+        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + user.getTotalRevenue() + "</body></html>", "Registrar").getCardTemplate());
 
     }
 
     public void builtpEgresosComponents (String egresosTotales){
 
-        this.pEgresos.add(new CardComponent("Egresos", iEgresos, "<html><body> Tus ingresos totales: <br>" + egresosTotales + "</body></html>", "Registrar").getCardTemplate());
+        this.pEgresos.add(new CardComponent("Egresos", iEgresos, "<html><body> Tus ingresos totales: <br>" + user.getTotalRevenue() + "</body></html>", "Registrar").getCardTemplate());
 
     }
-    public void builtpConsejosFinancierosComponents (){
+    public void builtFlujoDeCajaComponents(){
 
         this.pFlujoDeCaja.add(new CardComponent(
                 "Flujo de caja",
@@ -178,31 +182,21 @@ public class HomeTemplate extends JPanel {
     public JButton getbEstadisticas() {
         return bEstadisticas;
     }
-
     public JButton getbEgresos() {
         return bEgresos;
     }
-
     public JButton getbIngresos() {
         return bIngresos;
     }
-
     public JButton getbRegistroVentas() {
         return bRegistroVentas;
     }
-
     public JButton getbTablaIngresosxMotivos() {
         return bTablaIngresosxMotivos;
     }
-
     public JButton getbTablaEgresosxMotivo() {
         return bTablaEgresosxMotivo;
     }
-
-    public JButton getbFlujodeCaja() {
-        return bFlujodeCaja;
-    }
-
     public JButton getbInventario() {
         return bInventario;
     }

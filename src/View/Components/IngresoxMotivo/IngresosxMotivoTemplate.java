@@ -15,19 +15,20 @@ public class IngresosxMotivoTemplate extends JPanel {
     private RecursosService recursosService;
 
     private IngresoxMotivoComponent ingresoxMotivoComponent;
+
     //Obj. Graficos
 
     private JPanel pOptions, pData;
 
     //Obj. Graficos
-    private JLabel lTitle, lTitle2, lInstructions, lEslogan, lId, lIdValue, lMotivo, lIngreso;
-    private JButton bShow, bInsert, bFiltrar, bModify, bDelete;
+    private JLabel lTitle, lInstructions, lEslogan, lId, lIdValue, lMotivo, lIngreso;
+    private JButton bShow, bFiltrar;
     private JTextField tConsult, tIngreso, tMotivo;
     private JScrollPane pTable;
     private JTable table;
     private JTableHeader header;
     private DefaultTableModel model;
-    private String [] cabecera={"id", "Ingreso", "Motivo"};
+    private String [] cabecera={"Ingreso", "Motivo"};
 
 
     //Obj. Decorador
@@ -92,7 +93,7 @@ public class IngresosxMotivoTemplate extends JPanel {
                 recursosService.getLightFont(), recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
         bFiltrar.addFocusListener(ingresoxMotivoComponent);
         bFiltrar.addActionListener(ingresoxMotivoComponent);
-       //pOptions.add(bFiltrar);
+       pOptions.add(bFiltrar);
 
         //BOTON MOSTRAR
 
@@ -102,29 +103,7 @@ public class IngresosxMotivoTemplate extends JPanel {
         bShow.addActionListener(ingresoxMotivoComponent);
         pOptions.add(bShow);
 
-        //BOTON INSERTAR
 
-        bInsert = objGraficosService.builtButton("Insertar", 160,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bInsert.addFocusListener(ingresoxMotivoComponent);
-        bInsert.addActionListener(ingresoxMotivoComponent);
-        pOptions.add(bInsert);
-
-       // BOTON MODIFICAR
-
-        bModify = objGraficosService.builtButton("Modificar", 300,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bModify.addFocusListener(ingresoxMotivoComponent);
-        bModify.addActionListener(ingresoxMotivoComponent);
-        pOptions.add(bModify);
-
-        //BOTON ELIMINAR
-
-        bDelete = objGraficosService.builtButton("Eliminar", 440,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bDelete.addFocusListener(ingresoxMotivoComponent);
-        bDelete.addActionListener(ingresoxMotivoComponent);
-        pOptions.add(bDelete);
     }
 
     public void builtpDatos (){
@@ -171,20 +150,8 @@ public class IngresosxMotivoTemplate extends JPanel {
         return bShow;
     }
 
-    public JButton getbInsert() {
-        return bInsert;
-    }
-
     public JButton getbFiltrar() {
         return bFiltrar;
-    }
-
-    public JButton getbModify() {
-        return bModify;
-    }
-
-    public JButton getbDelete() {
-        return bDelete;
     }
 
     public JTextField gettConsult() {

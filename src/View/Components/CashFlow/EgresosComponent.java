@@ -13,11 +13,8 @@ import java.awt.event.ActionListener;
 public class EgresosComponent implements ActionListener {
 
     private EgresosTemplate egresosTemplate;
-
     private String textFieldValorInString, comboBoxFuenteInString, comboBoxMotivoInString;
-
     private GetDebtsTemplate getDebtsTemplate;
-
     private MainPanelComponent mainPanelComponent;
     public EgresosComponent (MainPanelComponent mainPanelComponent){
 
@@ -34,6 +31,7 @@ public class EgresosComponent implements ActionListener {
 
         this.getDataIngresosForm();
         this.checkValidadtion();
+
         if (!egresosTemplate.getCheckOpcionesAvanzadas().isSelected()) {
             Form form = new Form(Form.parseDatetoString(),
                     Integer.valueOf(textFieldValorInString),
@@ -46,13 +44,23 @@ public class EgresosComponent implements ActionListener {
         }
 
 
+
+        Form form = new Form(Form.parseDatetoString(),
+                Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,
+                comboBoxMotivoInString,
+                Constants.EXPENSE_FORM_TYPE,
+                Manager.getFinEspId());
+        SQLconection.SaveSqlForms(form);
+        SQLconection.SaveCashFlow(form);
+
     }
 
     public void getDataIngresosForm (){
 
-        textFieldValorInString = egresosTemplate.getTextFieldValor().getText();
-        comboBoxFuenteInString = ((String) egresosTemplate.getComboBoxFuente().getSelectedItem());
-        comboBoxMotivoInString = ((String) egresosTemplate.getComboBoxMotivo().getSelectedItem());
+        this.textFieldValorInString = egresosTemplate.getTextFieldValor().getText().trim();
+        this.comboBoxFuenteInString = ((String) egresosTemplate.getComboBoxFuente().getSelectedItem());
+        this.comboBoxMotivoInString = ((String) egresosTemplate.getComboBoxMotivo().getSelectedItem());
 
     }
 

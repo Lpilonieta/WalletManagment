@@ -111,35 +111,35 @@ public class GetDebtsTemplate extends JPanel {
 
       //Fila 1
         this.textFielDeudor= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 435, 100, 200, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFielDeudor);
 
         this.textFieldNombre= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 435, 190, 200, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldNombre);
 
         this.textFieldDescripcion= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 400, 280, 200, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldDescripcion);
 
       //Fila 2
 
         this.textFieldPorcentajeInteres= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 100, 200, 100, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldPorcentajeInteres);
 
         this.textFieldFecha1erPago = sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 100, 350, 200, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldFecha1erPago);
 
 
       //Fila 3
         this.textFieldNumCoutas = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 250, 100, 200, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldNumCoutas);
 
         this.textFieldPeriodicidadEspecifica = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 250, 280, 100, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldPeriodicidadEspecifica );
 
     }

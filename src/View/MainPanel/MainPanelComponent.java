@@ -2,6 +2,7 @@ package View.MainPanel;
 
 
 import View.Components.CashFlow.*;
+import View.Components.CashFlowTable.CashFlowTableComponent;
 import View.Components.EgresoXMotivo.EgresoxMotivoComponent;
 import View.Components.InitApp.HomeComponent;
 import View.Components.NewItemInventory.NewItemInventoryComponent;
@@ -27,25 +28,18 @@ public class MainPanelComponent {
     private TitleBarComponent titleBarComponent;
     private LoginComponent loginComponent;
     private UserBrowsingComponent userBrowsingComponent;
-
     private EgresosComponent egresosComponent;
-
     private IngresosComponent ingresosComponent;
-
     private NewItemInventoryComponent newItemInventoryComponent;
-
     private GroupsComponent groupsComponent;
-
     private PersonalAreaComponent personalAreaComponent;
-
     private SeeGroupsComponent seeGroupsComponent;
-
     private IngresoxMotivoComponent ingresoxMotivoComponent;
-
     private EgresoxMotivoComponent egresoxMotivoComponent;
 
-    public MainPanelComponent (LoginComponent loginComponent){
-        this.loginComponent = loginComponent;
+    private CashFlowTableComponent cashFlowTableComponent;
+
+    public MainPanelComponent (){
         this.mainPanelTemplate = new MainPanelTemplate(this);
         this.titleBarComponent = new TitleBarComponent(this);
         this.userBrowsingComponent = new UserBrowsingComponent(this);
@@ -103,12 +97,6 @@ public class MainPanelComponent {
 
                  break;
 
-        case "Consejos Financieros":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Consejos financieros en maintemplate");
-
-            break;
-
         case "Egresos":
             if (this.egresosComponent == null) {
                 mainPanelTemplate.getpShowData().removeAll();
@@ -160,8 +148,10 @@ public class MainPanelComponent {
             break;
 
         case "Flujo de caja":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Flujo de caja en maintemplate");
+
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new CashFlowTableComponent(this).getCashFlowTableTemplate());
+                System.out.println("Flujo de caja en maintemplate");
 
             break;
 

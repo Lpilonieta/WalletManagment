@@ -44,14 +44,6 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
         if (e.getSource() == egresoXMotivoTemplate.getbShow()){
             showRegistros();
-            System.out.println(user.getTotalRevenuesByMotive().toString());
-            System.out.println(user.getTotalExpensesByMotive().toString());
-        } else if (e.getSource() == egresoXMotivoTemplate.getbInsert()){
-            insertDataTable();
-        } else if (e.getSource() == egresoXMotivoTemplate.getbModify()){
-            modifyDataTable();
-        } else if (e.getSource() == egresoXMotivoTemplate.getbDelete()){
-            deleteDataTable();
         } else if (e.getSource() == egresoXMotivoTemplate.getbFiltrar()){
             filterDataTable();
         }
@@ -79,14 +71,7 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() instanceof  JTable){
-            int row = egresoXMotivoTemplate.getTable().getSelectedRow();
-            egresoXMotivo = egresoXMotivoServices.devolverEgresoxMotivo(row);
-            egresoXMotivoTemplate.getlIdValue().setText(egresoXMotivo.getIdEgreso()+"");;
-            egresoXMotivoTemplate.gettEgreso().setText(egresoXMotivo.getEgreso());
-            egresoXMotivoTemplate.gettMotivo().setText(egresoXMotivo.getMotivoEgreso());
 
-        }
     }
 
     @Override
@@ -119,57 +104,13 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
     }
 
-    public void resetValues (){
-
-        egresoXMotivoTemplate.getlIdValue().setText(egresoXMotivoServices.devolverCantidadEgresosxMotivo()+"");
-        egresoXMotivoTemplate.gettEgreso().setText(placeHolers[1]);
-        egresoXMotivoTemplate.gettMotivo().setText(placeHolers[2]);
-
-    }
 
     public void showRegistros(){
 
        this.addDta(user);
 
-        egresoXMotivoTemplate.getlIdValue().setText("");
+        egresoXMotivoTemplate.getlIdValue().setText(user.getTotalExpensesByMotive().size()+"");
         egresoXMotivoTemplate.getbShow().setEnabled(false);
-    }
-
-    public void insertDataTable (){
-
-        egresoXMotivo = new EgresoXMotivo();
-        egresoXMotivo .setIdEgreso(egresoXMotivoServices.devolverCantidadEgresosxMotivo());
-        egresoXMotivo .setEgreso(egresoXMotivoTemplate.gettEgreso().getText());
-        egresoXMotivo .setMotivoEgreso(egresoXMotivoTemplate.gettMotivo().getText());
-        //this.addDta(egresoXMotivo);
-        resetValues();
-
-
-    }
-
-    public void modifyDataTable (){
-
-        int filaSelected = egresoXMotivoTemplate.getTable().getSelectedRow();
-        if (filaSelected !=-1){
-            egresoXMotivoTemplate.getModelEgresos().setValueAt(
-                    egresoXMotivoTemplate.gettEgreso().getText(), filaSelected, 1);
-            egresoXMotivoTemplate.getModelEgresos().setValueAt(
-                    egresoXMotivoTemplate.gettMotivo().getText(), filaSelected, 2);
-
-        }else {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error" , JOptionPane.ERROR_MESSAGE);
-        }
-
-
-    }
-    public void deleteDataTable (){
-
-        int filaSelect = egresoXMotivoTemplate.getTable().getSelectedRow();
-        if (filaSelect != -1){
-            egresoXMotivoTemplate.getModelEgresos().removeRow(filaSelect);
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Error" , JOptionPane.ERROR_MESSAGE);
-        }
     }
 
     public void filterDataTable (){

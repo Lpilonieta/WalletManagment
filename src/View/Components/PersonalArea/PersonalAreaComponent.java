@@ -30,10 +30,8 @@ public class PersonalAreaComponent implements ActionListener {
         Object optionSelected = e.getSource();
         String optionSelectedInString = "null";
 
-        if (optionSelected == personalAreaTemplate.getbFlujoDeCaja()) {
-            optionSelectedInString = "Consejos Financieros";
-            System.out.println(optionSelectedInString);
-        } else if (optionSelected == personalAreaTemplate.getbEgresos()) {
+
+         if (optionSelected == personalAreaTemplate.getbEgresos()) {
             optionSelectedInString = "Egresos";
             System.out.println(optionSelectedInString);
         } else if (optionSelected == personalAreaTemplate.getbIngresos()) {

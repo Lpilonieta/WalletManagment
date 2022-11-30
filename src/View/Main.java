@@ -2,6 +2,7 @@ package View;
 
 import Model.SQLconection;
 import View.Login.LoginComponent;
+import View.MainPanel.MainPanelComponent;
 import ViewModel.Spaces.Manager;
 
 import javax.swing.*;
@@ -20,8 +21,8 @@ public class Main {
             @Override
             public void run() {
 
-                LoginComponent loginComponent =new LoginComponent();
-                loginComponent.getClass();
+                MainPanelComponent mainPanelComponent = new MainPanelComponent();
+                mainPanelComponent.getClass();
 
             }
         };

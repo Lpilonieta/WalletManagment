@@ -21,7 +21,7 @@ public class EgresoXMotivoTemplate extends JPanel{
 
     //Obj. Graficos
     private JLabel lTitle, lInstructions, lEslogan, lId, lIdValue, lMotivo, lEgreso;
-    private JButton bShow, bInsert, bFiltrar, bModify, bDelete;
+    private JButton bShow,bFiltrar;
     private JTextField tConsult, tEgreso, tMotivo;
     private JScrollPane pTable;
     private JTable table;
@@ -92,7 +92,7 @@ public class EgresoXMotivoTemplate extends JPanel{
                 recursosService.getLightFont(), recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
         bFiltrar.addFocusListener(egresoxMotivoComponent);
         bFiltrar.addActionListener(egresoxMotivoComponent);
-        //pOptions.add(bFiltrar);
+        pOptions.add(bFiltrar);
 
         //BOTON MOSTRAR
 
@@ -102,29 +102,6 @@ public class EgresoXMotivoTemplate extends JPanel{
         bShow.addActionListener(egresoxMotivoComponent);
         pOptions.add(bShow);
 
-        //BOTON INSERTAR
-
-        bInsert = objGraficosService.builtButton("Insertar", 160,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bInsert.addFocusListener(egresoxMotivoComponent);
-        bInsert.addActionListener(egresoxMotivoComponent);
-        pOptions.add(bInsert);
-
-        // BOTON MODIFICAR
-
-        bModify = objGraficosService.builtButton("Modificar", 300,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bModify.addFocusListener(egresoxMotivoComponent);
-        bModify.addActionListener(egresoxMotivoComponent);
-        pOptions.add(bModify);
-
-        //BOTON ELIMINAR
-
-        bDelete = objGraficosService.builtButton("Eliminar", 440,145,120,35,recursosService.getCursoMano(), recursosService.getLightFont()
-                ,recursosService.getMainColor(), Color.WHITE, null, null, true, "null");
-        bDelete.addFocusListener(egresoxMotivoComponent);
-        bDelete.addActionListener(egresoxMotivoComponent);
-        pOptions.add(bDelete);
     }
 
     public void builtpDatosEgresos (){
@@ -163,9 +140,6 @@ public class EgresoXMotivoTemplate extends JPanel{
 
     }
 
-    public JButton getbInsert() {
-        return bInsert;
-    }
 
     public JTable getTable() {
         return table;
@@ -178,15 +152,6 @@ public class EgresoXMotivoTemplate extends JPanel{
     public JButton getbFiltrar() {
         return bFiltrar;
     }
-
-    public JButton getbModify() {
-        return bModify;
-    }
-
-    public JButton getbDelete() {
-        return bDelete;
-    }
-
     public JTextField gettConsult() {
         return tConsult;
     }

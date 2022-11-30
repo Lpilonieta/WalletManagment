@@ -89,4 +89,36 @@ public class WeeklyCashFlow {
 
         }return String.valueOf(SS+"-"+DD+"-"+MM+"-"+AA);
     }
+
+    public HashMap<String, DailyCashFlow> getWeeklyCashFlow() {
+        return WeeklyCashFlow;
+    }
+
+    public DailyCashFlow getLunes() {
+        return lunes;
+    }
+
+    public DailyCashFlow getMartes() {
+        return martes;
+    }
+
+    public DailyCashFlow getMiercoles() {
+        return miercoles;
+    }
+
+    public DailyCashFlow getJueves() {
+        return jueves;
+    }
+
+    public DailyCashFlow getViernes() {
+        return viernes;
+    }
+
+    public DailyCashFlow getSabado() {
+        return sabado;
+    }
+
+    public DailyCashFlow getDomingo() {
+        return domingo;
+    }
 }

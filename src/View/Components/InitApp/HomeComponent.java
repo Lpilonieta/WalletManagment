@@ -29,13 +29,7 @@ public class HomeComponent implements ActionListener {
 
         Object optionSelected = e.getSource();
         String optionSelectedInString = "null";
-
-
-        if (optionSelected == homeTemplate.getbFlujoDeCaja()) {
-
-            optionSelectedInString = "Consejos Financieros";
-            System.out.println(optionSelectedInString);
-        } else if (optionSelected == homeTemplate.getbEgresos()) {
+       if (optionSelected == homeTemplate.getbEgresos()) {
             optionSelectedInString = "Egresos";
             System.out.println(optionSelectedInString);
         } else if (optionSelected == homeTemplate.getbIngresos()) {
@@ -53,7 +47,7 @@ public class HomeComponent implements ActionListener {
         } else if (optionSelected == homeTemplate.getbInventario()) {
             optionSelectedInString = "Inventario";
             System.out.println(optionSelectedInString);
-        } else if (optionSelected == homeTemplate.getbFlujodeCaja()){
+        } else if (optionSelected == homeTemplate.getbFlujoDeCaja()){
             optionSelectedInString = "Flujo de caja";
             System.out.println(optionSelectedInString);
         } else if (optionSelected == homeTemplate.getbRegistroVentas()){

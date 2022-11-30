@@ -67,7 +67,7 @@ public class EgresosTemplate extends JPanel {
         this.standar.add(lFuente);
 
         this.textFieldValor= sOjGraficosService.construirJTextFiel((1300 - 260)/2, 100, 400, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                null, Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.standar.add(textFieldValor);
 
         this.comboBoxFuente = new JComboBox<>();

@@ -5,6 +5,7 @@ import View.Components.InfoUtil.InfoUtilComponent;
 import View.Components.InfoUtil.InfoUtilTemplate;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
+import ViewModel.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,8 @@ public class PersonalAreaTemplate extends JPanel {
     private JLabel infoUtil;
     private JButton bFlujoDeCaja, bEstadisticas, bEgresos, bIngresos, bTablaIngresosxMotivos, bTablaEgresosxMotivo;
     private ImageIcon iIngresos, iEgresos, iEstadisticas, iConsejosFinancieros,iInventarios, iTabla, iClashFlow, iRegistroVentas;
+
+    private User user = new User();
 
     public PersonalAreaTemplate (PersonalAreaComponent personalAreaComponent, String ingresosTotales, String egresosTotales){
 
@@ -105,13 +108,13 @@ public class PersonalAreaTemplate extends JPanel {
     }
     public void builtpIngresosComponents (String ingresosTotales){
 
-        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + ingresosTotales + "</body></html>", "Registrar").getCardTemplate());
+        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + user.getTotalRevenue() + "</body></html>", "Registrar").getCardTemplate());
 
     }
 
     public void builtpEgresosComponents (String egresosTotales){
 
-        this.pEgresos.add(new CardComponent("Egresos", iEgresos, "<html><body> Tus ingresos totales: <br>" + egresosTotales + "</body></html>", "Registrar").getCardTemplate());
+        this.pEgresos.add(new CardComponent("Egresos", iEgresos, "<html><body> Tus ingresos totales: <br>" + user.getTotalExpenses() + "</body></html>", "Registrar").getCardTemplate());
 
     }
     public void builtpConsejosFinancierosComponents (){

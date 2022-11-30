@@ -1,9 +1,11 @@
 package View.Login;
 
+import View.Components.ModelAux.IngresoxMotivo;
 import View.MainPanel.MainPanelComponent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class LoginComponent implements ActionListener {
 
@@ -13,9 +15,11 @@ public class LoginComponent implements ActionListener {
 
     private MainPanelComponent mainPanel;
 
-    public LoginComponent (){
+    public LoginComponent() {
         this.loginUITemplate = new LoginUITemplate(this);
     }
+
+    private String verificationInitLogin;
 
     private String nameUser, claveUser, check;
 
@@ -25,48 +29,78 @@ public class LoginComponent implements ActionListener {
         Object op = e.getSource();
 
         if (op == loginUITemplate.getBloginI()) {
-
+            System.out.println(verificationInitLogin);
+            try {
+                this.validationInit();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             System.out.println("Iniciando sesión");
             this.showDataUser();
-            this.login ();
-
-        } else if (op == loginUITemplate.getbRegistry()){
+        } else if (op == loginUITemplate.getbRegistry()) {
             System.out.println("Registrandose");
         }
 
     }
 
-    public void showDataUser (){
+    public void showDataUser() {
 
         nameUser = loginUITemplate.getTextNombreUsuario().getText();
-        claveUser = new String (loginUITemplate.gettClaveUser().getPassword());
+        claveUser = new String(loginUITemplate.gettClaveUser().getPassword());
         check = "";
-        if (loginUITemplate.getCheckSi().isSelected()){
+        if (loginUITemplate.getCheckSi().isSelected()) {
             check = "si";
-        } else if (loginUITemplate.getCheckNo().isSelected()){
+        } else if (loginUITemplate.getCheckNo().isSelected()) {
             check = "no";
         }
 
         System.out.println(nameUser + " " + claveUser + " " + check + " ");
     }
 
-    public void login (){
 
-        if(mainPanel == null){
-            this.mainPanel = new MainPanelComponent(this);
-            loginUITemplate.setVisible(false);
-        } else {
-            this.mainPanel.getMainPanelTemplate().setVisible(false);
-            loginUITemplate.setVisible(true);
+    public void cargarDatos() {
+        String verificationInitLogin;
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            archivo = new File("archives/ValidationInitLogin.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] atributos = linea.split(",");
+                verificationInitLogin = atributos[0];
+                this.verificationInitLogin = verificationInitLogin;
+            }
+            fr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
-    public void validationLogin (){
-       /*
-        if (nameUser == ){
 
+    public void validationInit() throws IOException {
+
+        this.cargarDatos();
+        System.out.println(verificationInitLogin);
+        if (verificationInitLogin != "false") {
+            loginUITemplate.setVisible(true);
+            this.sobreEscritura();
+        } else {
+            if (mainPanel == null) {
+                this.mainPanel = new MainPanelComponent();
+                System.out.println(verificationInitLogin);
+                loginUITemplate.setVisible(false);
+                System.out.println("Esta aqui");
+            }
         }
-        */
+    }
+
+    public void sobreEscritura() throws IOException {
+
+        File newFile = new File("/archives/ValidationInitLogininn.txt");
+
     }
 }
+

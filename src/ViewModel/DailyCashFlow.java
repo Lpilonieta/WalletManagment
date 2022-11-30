@@ -21,6 +21,7 @@ public class DailyCashFlow extends ArrayList {
     private Form noExpensesForms = new Form();
 
 
+
     public DailyCashFlow(String saldoInicial, String fecha) {
         this.Fecha=fecha;
         SaldoInicial = saldoInicial;
@@ -29,10 +30,10 @@ public class DailyCashFlow extends ArrayList {
         SaldoFinal = calcSaldoFinal();
     }
 
+
     public ArrayList<Form> getExpensesForms() {
         return ExpensesForms;
     }
-
     public ArrayList<Form> getRevenuesForms() {
         return RevenuesForms;
     }

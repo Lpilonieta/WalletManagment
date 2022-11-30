@@ -6,10 +6,9 @@ import Model.SQLconection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import static Model.SQLconection.*;
+import static Model.SQLconection.con;
 
 
 public class DailyCashFlow extends ArrayList {
@@ -19,12 +18,38 @@ public class DailyCashFlow extends ArrayList {
     private String Fecha, FechaDiaAnterior;
     private String SaldoInicial, SaldoFinal;
 
+    public DailyCashFlow(String saldoInicial, String fecha) {
+        this.Fecha=fecha;
+        SaldoInicial = saldoInicial;
+        DailyRevenuesForms();
+        DailyExpensesForms();
+        SaldoFinal = calcSaldoFinal();
+    }
+
     public ArrayList<Form> getExpensesForms() {
         return ExpensesForms;
     }
 
     public ArrayList<Form> getRevenuesForms() {
         return RevenuesForms;
+    }
+    public ArrayList<String>getExpensesValues(){
+        ArrayList<String> expensesValues = new ArrayList<>();
+
+        for (Form form :
+                ExpensesForms) {
+            expensesValues.add(String.valueOf(form.getPurchaseValue()));
+        }if (expensesValues.isEmpty())expensesValues.add("0");
+        return expensesValues;
+    }
+    public ArrayList<String>getRevenueValues(){
+        ArrayList<String> renevueValues = new ArrayList<>();
+
+        for (Form form :
+                RevenuesForms) {
+            renevueValues.add(String.valueOf(form.getPurchaseValue()));
+        }if (renevueValues.isEmpty())renevueValues.add("0");
+        return renevueValues;
     }
 
     public String getFecha() {
@@ -96,7 +121,7 @@ public class DailyCashFlow extends ArrayList {
     }
 
     private String calcSaldoFinal(){
-        float totalDailyRevenue = 0;
+        float totalDailyRevenue = Float.parseFloat(getSaldoInicial());
         float totalDailyExpenses = 0;
         for (Form form:ExpensesForms
              ) {

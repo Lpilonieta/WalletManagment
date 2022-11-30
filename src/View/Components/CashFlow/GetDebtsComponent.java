@@ -37,12 +37,30 @@ public class GetDebtsComponent implements ActionListener {
                 Constants.EXPENSE_FORM_TYPE,
                 Manager.getFinEspId(),textFieldNombre,
                 textFieldDescripcion,
-                Constants.CURRENT,
+                setType(comboBoxTipoCorrienteNoCorriente),
                 Integer.valueOf(textFieldPorcentajeInteres),
-                Integer.valueOf(textFieldValorInString),
+                setSaldoDeuda(textFieldValorInString,textFieldPorcentajeInteres,comboBoxTipoInteres),
                 Integer.valueOf(textFieldNumCoutas),0,Constants.DAILY,Integer.valueOf(textFieldPeriodicidadEspecifica));
         SQLconection.SaveSqlPasives(pasive);
         SQLconection.SaveCashFlow(pasive);
+    }
+
+    private int setSaldoDeuda(String textFieldValorInString, String textFieldPorcentajeInteres, String comboBoxTipoInteres) {
+        if (textFieldPorcentajeInteres == "0" || textFieldPorcentajeInteres==""||textFieldPorcentajeInteres==" ")textFieldPorcentajeInteres="1";
+
+        if (comboBoxTipoInteres == "Compuesto"){
+            return -1; //TODO: calcular cuota con intrés compuesto
+        } else {
+            float porcentajeDeInteres=Integer.valueOf(textFieldPorcentajeInteres);
+            float valorBase = Integer.valueOf(textFieldValorInString);
+            return (int)(valorBase + (valorBase*(porcentajeDeInteres/100)));
+        }
+    }
+
+    private byte setType(String comboBoxTipoCorrienteNoCorriente) {
+        if (comboBoxTipoCorrienteNoCorriente == "Corriente"){
+            return Constants.CURRENT;
+        }else return Constants.NO_CURRENT;
     }
 
 

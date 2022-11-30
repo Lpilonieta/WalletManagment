@@ -85,7 +85,7 @@ public class SQLconection {
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
-                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad) VALUES(?,?,?,?,?,?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad,isAsset) VALUES(?,?,?,?,?,?,?,?,?,?)");
 
             consulta.setString(1, assets.getRegistryDate());
             consulta.setString(2, assets.getId());
@@ -96,6 +96,7 @@ public class SQLconection {
             consulta.setString(7, assets.getDescription());
             consulta.setByte(8, assets.getType());
             consulta.setInt(9, assets.getRentability());
+            consulta.setString(10,"true");
 
 
 
@@ -111,7 +112,7 @@ public class SQLconection {
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO "+ "tablaregistros" +
-                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, SaldoDeuda, PorcentajeInteres, NumeroCuotas, ValorSiguienteCuota, Periodicidad, periodicidadEspecifica) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, SaldoDeuda, PorcentajeInteres, NumeroCuotas, ValorSiguienteCuota, Periodicidad, periodicidadEspecifica,isPasive) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             consulta.setString(1, pasives.getRegistryDate());
             consulta.setString(2, pasives.getId());
@@ -127,6 +128,7 @@ public class SQLconection {
             consulta.setFloat(12, pasives.getInstallmentValue());
             consulta.setInt(13, pasives.getPeriodicy());
             consulta.setInt(14, pasives.getEspecificPeriodicy());
+            consulta.setString(10,"true");
 
 
 

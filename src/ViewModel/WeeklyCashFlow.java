@@ -11,12 +11,12 @@ public class WeeklyCashFlow {
     public WeeklyCashFlow(String fechaInicial) throws SQLException {
         this.fechaInicial = fechaInicial;
         this.lunes = new DailyCashFlow(fechaInicial);
-        this.martes = new DailyCashFlow(sumarDiasAfecha(fechaInicial,1));
-        this.miercoles = new DailyCashFlow(sumarDiasAfecha(fechaInicial,2));
-        this.jueves = new DailyCashFlow(sumarDiasAfecha(fechaInicial,4));
-        this.viernes = new DailyCashFlow(sumarDiasAfecha(fechaInicial,4));
-        this.sabado = new DailyCashFlow(sumarDiasAfecha(fechaInicial,5));
-        this.domingo = new DailyCashFlow(sumarDiasAfecha(fechaInicial,6));
+        this.martes = new DailyCashFlow(lunes.getSaldoFinal(),sumarDiasAfecha(fechaInicial,1));
+        this.miercoles = new DailyCashFlow(martes.getSaldoFinal(),sumarDiasAfecha(fechaInicial,2));
+        this.jueves = new DailyCashFlow(miercoles.getSaldoFinal(),sumarDiasAfecha(fechaInicial,4));
+        this.viernes = new DailyCashFlow(jueves.getSaldoFinal(),sumarDiasAfecha(fechaInicial,4));
+        this.sabado = new DailyCashFlow(viernes.getSaldoFinal(),sumarDiasAfecha(fechaInicial,5));
+        this.domingo = new DailyCashFlow(sabado.getSaldoFinal(),sumarDiasAfecha(fechaInicial,6));
         WeeklyCashFlow.put("Lunes"      , lunes);
         WeeklyCashFlow.put("Martes"     ,    martes);
         WeeklyCashFlow.put("Miércoles"  ,miercoles);

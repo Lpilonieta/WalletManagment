@@ -5,6 +5,7 @@ import View.Components.InfoUtil.InfoUtilTemplate;
 import View.Components.Cards.CardComponent;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
+import ViewModel.Stats;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,7 +106,7 @@ public class HomeTemplate extends JPanel {
     }
     public void builtpIngresosComponents (String ingresosTotales){
 
-        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + ingresosTotales + "</body></html>", "Registrar").getCardTemplate());
+        this.pIngresos.add(new CardComponent("Ingresos", iIngresos, "<html><body> Tus ingresos totales: <br>" + new Stats().getTotalRevenue() + "</body></html>", "Registrar").getCardTemplate());
 
     }
 

@@ -20,7 +20,6 @@ public class User extends Stats {
         mustIvaTax = checkIvaTaxRequirements();
         nearestPasivePayment = Pasives.checkNearPasivePayment();
         calcStats();
-
     }
 
     private boolean checkIvaTaxRequirements() {

@@ -27,7 +27,7 @@ public class Manager  {
             for (Form form:SQLconection.getallFormsDB()){
                 String[] splitId = form.getId().split("-");
                 if (Form.getLastID()<=Integer.valueOf(splitId[1])){
-                    Form.setLastID(Integer.valueOf(splitId[1]));
+                    Form.setLastID(Integer.valueOf(splitId[1]+1));
                 }
             }
             FinancialSpace financialSpace;

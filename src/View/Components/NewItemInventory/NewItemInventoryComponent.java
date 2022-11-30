@@ -38,14 +38,14 @@ public class NewItemInventoryComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 
-        System.out.println("Boton selecionado");
         this.getDataFormRegistrarInventario();
+
         Inventory item = new Inventory(Form.parseDatetoString(),0,"source","motive", Constants.EXPENSE_FORM_TYPE, Manager.getFinEspId(),name_Product,description_Product,Constants.CURRENT,0,Integer.valueOf(valorStock_Product),0F,0,100,(byte) 0);
         SQLconection.SaveSqlInventory(item);
         //Prueba de que se ajunten los datos a las variables
         System.out.println(name_Product + ", " + description_Product + ", " + type_Product + ", " + category_Product + ", " + valorXUnidad_Product + ", " + valorStock_Product + ", "
-        + comboBoxNegociosInString);
-
+                + comboBoxNegociosInString);
+        System.out.println("Boton selecionado");
     }
 
     public void getDataFormRegistrarInventario (){

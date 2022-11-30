@@ -1,9 +1,11 @@
 package View.Components.InitApp;
 
 import View.MainPanel.MainPanelComponent;
+import ViewModel.Stats;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 public class HomeComponent implements ActionListener {
 

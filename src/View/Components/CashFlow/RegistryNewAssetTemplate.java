@@ -86,10 +86,8 @@ public class RegistryNewAssetTemplate extends JPanel {
     public void builtJComboBox (){
 
         this.comboBoxType= new JComboBox<>();
-        this.comboBoxType.addItem("5");
-        this.comboBoxType.addItem("6");
-        this.comboBoxType.addItem("7");
-        this.comboBoxType.addItem("8");
+        this.comboBoxType.addItem("Corriente");
+        this.comboBoxType.addItem("No corriente");
         this.comboBoxType.setSize(200,40);
         this.comboBoxType.setLocation((1300 - 260)/2, 250);
         this.comboBoxType.setForeground(Color.DARK_GRAY);

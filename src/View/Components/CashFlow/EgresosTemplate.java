@@ -71,10 +71,9 @@ public class EgresosTemplate extends JPanel {
         this.standar.add(textFieldValor);
 
         this.comboBoxFuente = new JComboBox<>();
-        this.comboBoxFuente.addItem("1");
-        this.comboBoxFuente.addItem("2");
-        this.comboBoxFuente.addItem("3");
-        this.comboBoxFuente.addItem("4");
+        this.comboBoxFuente.addItem("Efectivo");
+        this.comboBoxFuente.addItem("Transferencia");
+        this.comboBoxFuente.addItem("Tarjeta de credito");
         this.comboBoxFuente.setSize(200,40);
         this.comboBoxFuente.setLocation((1300 - 260)/2, 150);
         this.comboBoxFuente.setForeground(Color.DARK_GRAY);
@@ -85,8 +84,8 @@ public class EgresosTemplate extends JPanel {
 
 
         this.comboBoxMotivo= new JComboBox<>();
-        this.comboBoxMotivo.addItem("5");
-        this.comboBoxMotivo.addItem("6");
+        this.comboBoxMotivo.addItem("Ninguno");
+        this.comboBoxMotivo.addItem("Bienes y servicios");
         this.comboBoxMotivo.addItem("7");
         this.comboBoxMotivo.addItem("8");
         this.comboBoxMotivo.setSize(200,40);

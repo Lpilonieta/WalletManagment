@@ -19,7 +19,6 @@ public class LoginComponent implements ActionListener {
 
     private String nameUser, claveUser, check;
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -63,4 +62,11 @@ public class LoginComponent implements ActionListener {
 
     }
 
+    public void validationLogin (){
+       /*
+        if (nameUser == ){
+
+        }
+        */
+    }
 }

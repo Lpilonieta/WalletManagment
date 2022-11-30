@@ -38,6 +38,7 @@ public class Stats implements Liquidity, Solvency, Rentability{
     private float rentabilidadSobreVentas;
 
 
+
     public void calcStats() {
         calculateTotalRevenue();
         calculateTotalExpenses();
@@ -192,7 +193,7 @@ public class Stats implements Liquidity, Solvency, Rentability{
     @Override
     public String statusGrossProfitMargin() {
         String meaning = "Los productos de su inventario le dejan un margen de utilidad Bruta de: ";
-        String cant="No se puede calcular";
+        String cant= "No se puede calcular";
         if (calcGrossProfitMargin() == Constants.NONE) return cant;
         return meaning + calcGrossProfitMargin();
     }

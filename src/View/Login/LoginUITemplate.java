@@ -18,8 +18,6 @@ public class LoginUITemplate extends JFrame {
 
     private JPasswordField tClaveUser;
 
-
-
     private JButton bloginI, bRegistry;
 
     private JCheckBox checkSi, checkNo;

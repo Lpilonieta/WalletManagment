@@ -87,24 +87,19 @@ public class NewItemInventoryTemplate extends JPanel {
     public void builtJTextField (){
 
         this.textFieldName = sOjGraficosService.construirJTextFiel((1300 - 260)/2, 200, 400, 40,
-                " ", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldName);
 
 
-        this.textFieldDescription = sOjGraficosService.construirJTextFiel((1300 - 260)/2, 250, 400, 40, " "
+        this.textFieldDescription = sOjGraficosService.construirJTextFiel((1300 - 260)/2, 250, 400, 40, ""
                 , Color.DARK_GRAY, recursosService.getLightFont(), "null", recursosService.getCursoTexto());
         this.add(textFieldDescription );
 
-        this.textFielValorStock = sOjGraficosService.construirJTextFiel((1300 - 260)/2 , 400, 100, 40, " "
+        this.textFielValorStock = sOjGraficosService.construirJTextFiel((1300 - 260)/2 , 400, 100, 40, ""
                 , Color.DARK_GRAY, recursosService.getLightFont(), "null", recursosService.getCursoTexto());
         this.add(textFielValorStock);
 
-
-        this.textFielValorxUnidad = sOjGraficosService.construirJTextFiel((1300 - 260)/2 , 450, 100, 40, " "
-                ,Color.DARK_GRAY, recursosService.getLightFont(), "null", recursosService.getCursoTexto());
-        this.add(textFielValorxUnidad);
-
-        this.textFielValorxUnidad = sOjGraficosService.construirJTextFiel((1300 - 260)/2 , 450, 100, 40, " "
+        this.textFielValorxUnidad = sOjGraficosService.construirJTextFiel((1300 - 260)/2 , 450, 100, 40, ""
                 ,Color.DARK_GRAY, recursosService.getLightFont(), "null", recursosService.getCursoTexto());
         this.add(textFielValorxUnidad);
 

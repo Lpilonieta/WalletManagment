@@ -73,10 +73,8 @@ public class IngresosTemplate extends JPanel {
         this.standar.add(textFieldValor);
 
         this.comboBoxFuente = new JComboBox<>();
-        this.comboBoxFuente.addItem("1");
-        this.comboBoxFuente.addItem("2");
-        this.comboBoxFuente.addItem("3");
-        this.comboBoxFuente.addItem("4");
+        this.comboBoxFuente.addItem("Efectivo");
+        this.comboBoxFuente.addItem("Transferencia");
         this.comboBoxFuente.setSize(200,40);
         this.comboBoxFuente.setLocation((1300 - 260)/2, 150);
         this.comboBoxFuente.setForeground(Color.DARK_GRAY);
@@ -87,10 +85,10 @@ public class IngresosTemplate extends JPanel {
 
 
         this.comboBoxMotivo= new JComboBox<>();
-        this.comboBoxMotivo.addItem("");
-        this.comboBoxMotivo.addItem("6");
-        this.comboBoxMotivo.addItem("7");
-        this.comboBoxMotivo.addItem("8");
+        this.comboBoxMotivo.addItem("Ninguno");
+        this.comboBoxMotivo.addItem("Salario");
+        this.comboBoxMotivo.addItem("Regalo");
+        this.comboBoxMotivo.addItem("Venta Activo");
         this.comboBoxMotivo.setSize(200,40);
         this.comboBoxMotivo.setLocation((1300 - 260)/2, 200);
         this.comboBoxMotivo.setForeground(Color.DARK_GRAY);

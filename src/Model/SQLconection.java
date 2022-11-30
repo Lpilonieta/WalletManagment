@@ -308,9 +308,10 @@ public class SQLconection {
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
-            String[] idSplit = result.getString("Id").split("-");
+            String[] idSplit= result.getString("Id").split("-");
             String Fecha = result.getString("Fecha");
             String Id = result.getString("Id");
+            byte formType = Byte.valueOf(idSplit[0]);
             String Valor = result.getString("Valor");
             String Fuente = result.getString("Fuente");
             String Motivo = result.getString("Motivo");
@@ -318,6 +319,7 @@ public class SQLconection {
 
             Form form = new Form();
             form.setRegistryDate(Fecha);
+            form.setFormType(formType);
             form.setId(Id);
             form.setFormType(Byte.parseByte(idSplit[0]));
             form.setPurchaseValue(Integer.parseInt(Valor));

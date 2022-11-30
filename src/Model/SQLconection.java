@@ -176,7 +176,7 @@ public class SQLconection {
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
-
+            String[] idSplit = result.getString("Id").split("-");
             String Fecha = result.getString("Fecha");
             String Id = result.getString("Id");
             String Valor = result.getString("Valor");
@@ -194,6 +194,7 @@ public class SQLconection {
             Inventory inventory=new Inventory();
             inventory.setRegistryDate(Fecha);
             inventory.setId(Id);
+            inventory.setFormType(Byte.parseByte(idSplit[0]));
             inventory.setPurchaseValue(Integer.parseInt(Valor));
             inventory.setSource(Fuente);
             inventory.setMotive(Motivo);
@@ -219,7 +220,7 @@ public class SQLconection {
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
-
+            String[] idSplit = result.getString("Id").split("-");
             String Fecha = result.getString("Fecha");
             String Id = result.getString("Id");
             String Valor = result.getString("Valor");
@@ -239,6 +240,7 @@ public class SQLconection {
             Pasives pasives=new Pasives();
             pasives.setRegistryDate(Fecha);
             pasives.setId(Id);
+            pasives.setFormType(Byte.parseByte(idSplit[0]));
             pasives.setPurchaseValue(Integer.parseInt(Valor));
             pasives.setSource(Fuente);
             pasives.setMotive(Motivo);
@@ -268,6 +270,8 @@ public class SQLconection {
 
         while (result.next()) {
 
+
+            String[] idSplit = result.getString("Id").split("-");
             String Fecha = result.getString("Fecha");
             String Id = result.getString("Id");
             String Valor = result.getString("Valor");
@@ -282,6 +286,7 @@ public class SQLconection {
             Assets assets=new Assets();
             assets.setRegistryDate(Fecha);
             assets.setId(Id);
+            assets.setFormType(Byte.parseByte(idSplit[0]));
             assets.setPurchaseValue(Integer.parseInt(Valor));
             assets.setSource(Fuente);
             assets.setMotive(Motivo);
@@ -303,7 +308,7 @@ public class SQLconection {
         ResultSet result = statement.executeQuery();
 
         while (result.next()) {
-
+            String[] idSplit = result.getString("Id").split("-");
             String Fecha = result.getString("Fecha");
             String Id = result.getString("Id");
             String Valor = result.getString("Valor");
@@ -314,6 +319,7 @@ public class SQLconection {
             Form form = new Form();
             form.setRegistryDate(Fecha);
             form.setId(Id);
+            form.setFormType(Byte.parseByte(idSplit[0]));
             form.setPurchaseValue(Integer.parseInt(Valor));
             form.setSource(Fuente);
             form.setMotive(Motivo);

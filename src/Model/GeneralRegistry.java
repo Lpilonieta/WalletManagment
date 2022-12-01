@@ -118,12 +118,16 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
 
     public ArrayList<Form> getAllRevenuesForms()  {
         ArrayList<Form> Revenues = new ArrayList<>(1);
-        for (Form form : getAllForms()
-        ) {
-            String[] idForm = form.getId().split("-");
-            if (Integer.valueOf(idForm[0]) == Constants.RENEUE_FORM_TYPE) {
-                Revenues.add(form);
+        try {
+            for (Form form : SQLconection.getallFormsDB()
+            ) {
+                String[] idForm = form.getId().split("-");
+                if (Integer.valueOf(idForm[0]) == Constants.RENEUE_FORM_TYPE) {
+                    Revenues.add(form);
+                }
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return Revenues;
     }

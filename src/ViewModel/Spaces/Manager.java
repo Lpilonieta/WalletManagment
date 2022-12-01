@@ -30,14 +30,7 @@ public class Manager  {
                     Form.setLastID(Integer.valueOf(splitId[1])+1);
                 }
             }
-            FinancialSpace financialSpace;
-            while (financialSpaceIterator.hasNext()){
-                financialSpace = financialSpaceIterator.next();
-                if (financialSpace.getId() > currentID){
-                   // currentFinancialSpace = financialSpace;
-                    currentID= financialSpace.getId();
-                }
-            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } ;

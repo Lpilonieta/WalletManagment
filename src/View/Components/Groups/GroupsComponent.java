@@ -1,5 +1,7 @@
 package View.Components.Groups;
 
+import ViewModel.Spaces.FinancialSpace;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -43,6 +45,8 @@ public class GroupsComponent implements ActionListener {
 
     public void addInToArrayList (){
         this.negociosCreados.add(name_Negocio);
+        FinancialSpace financialSpace = new FinancialSpace();
+
 
     }
 

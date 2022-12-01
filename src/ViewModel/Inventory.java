@@ -1,6 +1,8 @@
 package ViewModel;
 
 import Model.GeneralRegistry;
+import Model.SQLconection;
+import ViewModel.Spaces.FinancialSpace;
 
 import java.sql.SQLException;
 
@@ -11,9 +13,11 @@ public class Inventory extends Assets {
     private float totalItemValue;//
     private float unitValue;
 
-    private static float inventoryValue;
-    private byte category;
+    private String finSpaceName;
 
+    private static float inventoryValue;
+
+    private byte category;
 
     public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, float stockNumber, float saleNumbers, float totalItemValue, float unitValue, byte category) {
         super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered, name, description, type, rentability);
@@ -22,9 +26,28 @@ public class Inventory extends Assets {
         this.totalItemValue = totalItemValue;
         this.unitValue = unitValue;
         this.category = category;
+        this.finSpaceName = setFinSpaceName(financialSpaceIdRegistered);
+    }
+
+    private String setFinSpaceName(int financialSpaceIdRegistered) {
+        try {
+            for (FinancialSpace financialSpace : SQLconection.getAllFinancialSpacesBD()
+            ) {
+                if (financialSpace.getId() ==this.getFinancialSpaceIdRegistered() ){
+                    return financialSpace.getName();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Constants.AREA_PERSONAL.getName();
     }
 
     public Inventory() {
+    }
+
+    public String getFinSpaceName() {
+        return finSpaceName;
     }
 
     public float getStockNumber() {

@@ -144,7 +144,7 @@ public class SQLconection {
         PreparedStatement consulta;
         try {
             consulta = SQLconection.con.prepareStatement("INSERT INTO " + "tablaregistros" +
-                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria, isInventory) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "(Fecha,Id, Valor, Fuente, Motivo, Nombre, Descripcion, Tipo, PorcentajeRentabilidad, NumeroStock, VentasTotales, ValorUnidad, Categoria, FinSpaceNombre, isInventory) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             consulta.setString(1, inventory.parseDatetoString());
             consulta.setString(2, inventory.getId());
@@ -159,7 +159,8 @@ public class SQLconection {
             consulta.setFloat(11, inventory.getSaleNumbers());
             consulta.setFloat(12, inventory.getUnitValue());
             consulta.setInt(13, inventory.getCategory());
-            consulta.setString(14, "true");
+            consulta.setString(14, inventory.getFinSpaceName());
+            consulta.setString(15, "true");
 
 
             consulta.executeUpdate();

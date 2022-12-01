@@ -31,9 +31,11 @@ public class DailyCashFlow extends ArrayList {
     }
 
     private ArrayList<Form> mergeForms() {
-        ArrayList<Form>totalforms = this.RevenuesForms;
-        for (Form form :
-                this.ExpensesForms) {
+        ArrayList<Form>totalforms = new ArrayList<>();
+        for (Form form : RevenuesForms) {
+            totalforms.add(form);
+        }
+        for (Form form : ExpensesForms) {
             totalforms.add(form);
         }return totalforms;
     }
@@ -50,7 +52,7 @@ public class DailyCashFlow extends ArrayList {
 
         for (Form form :
                 totalForms) {
-            totalValues.add(String.valueOf("-"+form.getPurchaseValue()));
+            totalValues.add(String.valueOf(form.getPurchaseValue()));
         }if (totalValues.isEmpty())totalValues.add("0");
         return totalValues;
     }//TODO
@@ -82,7 +84,10 @@ public class DailyCashFlow extends ArrayList {
         ArrayList<Form> expensesForms = new ArrayList<>();
         for (Form form: new GeneralRegistry().getAllExpensesForms()
              ) {
-            if (form.getRegistryDate().equals(Fecha))expensesForms.add(form);
+            if (form.getRegistryDate().equals(Fecha)){
+                form.setPurchaseValue(-form.getPurchaseValue());
+                expensesForms.add(form);
+            }
         }
         return expensesForms;
     }

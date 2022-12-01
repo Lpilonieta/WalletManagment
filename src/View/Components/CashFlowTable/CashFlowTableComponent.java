@@ -1,6 +1,7 @@
 package View.Components.CashFlowTable;
 
 import View.MainPanel.MainPanelComponent;
+import ViewModel.DailyCashFlow;
 import ViewModel.WeeklyCashFlow;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CashFlowTableComponent implements ActionListener, MouseListener, FocusListener {
@@ -19,13 +21,13 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
     private WeeklyCashFlow weeklyCashFlow;
 
-    {
-        try {
-            weeklyCashFlow = new WeeklyCashFlow("3-30-11-2022");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    {
+//        try {
+//            weeklyCashFlow = new WeeklyCashFlow("3-30-11-2022");
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
     public CashFlowTableComponent(MainPanelComponent mainPanelComponent) {
@@ -90,10 +92,10 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
         this.addDta(weeklyCashFlow);
 
-        cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size() + "");
-        cashFlowTableTemplate.gettSaldoIncial().setText(weeklyCashFlow.getLunes().getSaldoInicial());
-        cashFlowTableTemplate.gettSaldoFinal().setText(weeklyCashFlow.getLunes().getSaldoFinal());
-        cashFlowTableTemplate.getbShow().setEnabled(false);
+        //cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size() + "");
+        //cashFlowTableTemplate.gettSaldoIncial().setText(weeklyCashFlow.getLunes().getSaldoInicial());
+        //cashFlowTableTemplate.gettSaldoFinal().setText(weeklyCashFlow.getLunes().getSaldoFinal());
+        //cashFlowTableTemplate.getbShow().setEnabled(false);
     }
 
     public void filterDataTable() {
@@ -104,13 +106,25 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
     }
 
     public void addDta(WeeklyCashFlow weeklyCashFlow) {
-        ArrayList<String> column = weeklyCashFlow.getLunes().getTotalValues();
+        ArrayList<String> column = null;
+        try {
+            column = new DailyCashFlow("3-30-11-2022").getTotalValues();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        Map<String, String> mapTemp = new HashMap<>();
+        for (String value :
+                column) {
+            mapTemp.clear();
+            mapTemp.put("Fecha", value);
+            //TODO: map temp tiene una clave y un valor
 
-            for (Map.Entry<?, ?> entry : weeklyCashFlow.getWeeklyCashFlow().entrySet())
+
+            for (Map.Entry<?, ?> entry : mapTemp.entrySet())
                 cashFlowTableTemplate.getModel().addRow(
-                        new Object[]{null, entry.getKey(), weeklyCashFlow.getMiercoles(), weeklyCashFlow.getJueves(),
-                                weeklyCashFlow.getViernes(), weeklyCashFlow.getSabado(), weeklyCashFlow.getDomingo()}
+                        new Object[]{entry.getValue(),entry.getKey()}
                 );
         }
+    }
     }
 

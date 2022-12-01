@@ -7,6 +7,7 @@ import View.Components.Groups.GroupsComponent;
 import ViewModel.Constants;
 import ViewModel.Form;
 import ViewModel.Inventory;
+import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
 
@@ -40,12 +41,50 @@ public class NewItemInventoryComponent implements ActionListener {
 
         this.getDataFormRegistrarInventario();
 
-        Inventory item = new Inventory(Form.parseDatetoString(),0,"source","motive", Constants.EXPENSE_FORM_TYPE, Manager.getFinEspId(),name_Product,description_Product,Constants.CURRENT,0,Integer.valueOf(valorStock_Product),0F,0,100,(byte) 0);
+        Inventory item = new Inventory(Form.parseDatetoString(),
+                0,
+                "source",
+                "motive",
+                Constants.EXPENSE_FORM_TYPE,
+                setInvId(),
+                name_Product,
+                description_Product,
+                setType(),
+                0,
+                Integer.valueOf(valorStock_Product),
+                0F,
+                Float.valueOf(valorXUnidad_Product),
+                category_Product,
+                setCategory());
         SQLconection.SaveSqlInventory(item);
+        SQLconection.SaveCashFlow(item);
         //Prueba de que se ajunten los datos a las variables
         System.out.println(name_Product + ", " + description_Product + ", " + type_Product + ", " + category_Product + ", " + valorXUnidad_Product + ", " + valorStock_Product + ", "
                 + comboBoxNegociosInString);
         System.out.println("Boton selecionado");
+    }
+
+    private byte setCategory() {
+        for (String category :
+                Constants.ProductosConIVA) {
+            if (category_Product.equals(category)){
+                return 1;
+            }
+        }return 0;
+    }
+
+    private byte setType() {
+        if (type_Product == "Corriente"){
+            return Constants.CURRENT;
+        }else return Constants.NO_CURRENT;
+    }
+
+    private int setInvId() {
+        String nameSelected = comboBoxNegociosInString;
+        for (FinancialSpace financialSpace :
+                Manager.getAllFinancialSpaces()) {
+            if (nameSelected.equals(financialSpace.getName()))return financialSpace.getId();
+        }return 0;
     }
 
     public void getDataFormRegistrarInventario (){

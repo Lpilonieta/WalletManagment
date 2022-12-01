@@ -107,8 +107,8 @@ public class NewItemInventoryTemplate extends JPanel {
     }
 
     public void builtJComboBox (){
-
-        this.comboBoxCategory = new JComboBox<>(Constants.ProductosConIVA);
+        Constants constants= new Constants();
+        this.comboBoxCategory = new JComboBox<>(constants.TODAS_LAS_CATEGORIAS.toArray());
         //this.comboBoxCategory.add(Constants.ProductosSinIVA);
         this.comboBoxCategory.setSize(220,40);
         this.comboBoxCategory.setLocation((1300 - 260)/2, 350);
@@ -120,10 +120,8 @@ public class NewItemInventoryTemplate extends JPanel {
 
 
         this.comboBoxType = new JComboBox<>();
-        this.comboBoxType.addItem("5");
-        this.comboBoxType.addItem("6");
-        this.comboBoxType.addItem("7");
-        this.comboBoxType.addItem("8");
+        this.comboBoxType.addItem("Corriente");
+        this.comboBoxType.addItem("No corriente");
         this.comboBoxType.setSize(220,40);
         this.comboBoxType.setLocation((1300 - 260)/2, 300);
         this.comboBoxType.setForeground(Color.DARK_GRAY);
@@ -132,11 +130,7 @@ public class NewItemInventoryTemplate extends JPanel {
         ((JLabel) comboBoxType.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
         this.add(comboBoxType);
 
-        this.comboBoxNegocio = new JComboBox<>();
-        this.comboBoxNegocio.addItem("Sin negocio asociado");
-        for (int i = 0; i < GroupsComponent.negociosCreados.size() ; i++) {
-            this.comboBoxNegocio.addItem(GroupsComponent.negociosCreados.get(i));
-        }
+        this.comboBoxNegocio = new JComboBox<>(GroupsComponent.updateFromDB().toArray());
         this.comboBoxNegocio.setSize(220,40);
         this.comboBoxNegocio.setLocation((1300 - 260)/2, 500);
         this.comboBoxNegocio.setForeground(Color.DARK_GRAY);

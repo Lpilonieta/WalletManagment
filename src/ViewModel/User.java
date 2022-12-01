@@ -72,10 +72,10 @@ public class User extends Stats {
     return false;
     }
 
-    public void newFinancianSpace(String name, String group){
-        FinancialSpace newFinancialSpace = new FinancialSpace(name, group);
+    public static void newFinancianSpace(String name){
+        FinancialSpace newFinancialSpace = new FinancialSpace(name);
         Manager.save(newFinancialSpace);
-        Manager.switchFinancialSpace(newFinancialSpace);
+        //Manager.switchFinancialSpace(newFinancialSpace);
     }
     public void openFinancialSpace(FinancialSpace financialSpace){
 

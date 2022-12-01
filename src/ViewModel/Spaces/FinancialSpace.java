@@ -32,11 +32,11 @@ public class FinancialSpace {
         Manager.save(this);
     }
 
-    public FinancialSpace(String name, String group) {
+    public FinancialSpace(String name) {
         this.name = name;
-        this.group = group;
+        this.group = "default";
         this.id = lastIdFromDataBase();
-        Manager.save(this);
+        //Manager.save(this);
     }
     //setters y getters
 

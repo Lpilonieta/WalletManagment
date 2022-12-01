@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class Manager  {
     private static ArrayList<FinancialSpace> allFinancialSpacesInDB;
     private static int currentID = Constants.AREA_PERSONAL_ID;
-    private static FinancialSpace currentFinancialSpace = Constants.AREA_PERSONAL;
+   // private static FinancialSpace currentFinancialSpace = Constants.AREA_PERSONAL;
 
 
 
@@ -34,7 +34,7 @@ public class Manager  {
             while (financialSpaceIterator.hasNext()){
                 financialSpace = financialSpaceIterator.next();
                 if (financialSpace.getId() > currentID){
-                    currentFinancialSpace = financialSpace;
+                   // currentFinancialSpace = financialSpace;
                     currentID= financialSpace.getId();
                 }
             }
@@ -74,21 +74,21 @@ public class Manager  {
 
     public static void save(FinancialSpace financialSpace) {
         SQLconection.SaveSqlFinancialSpaces(financialSpace);
-        update();
+        //update();
 
     }
 
     public static void switchFinancialSpaceByID(FinancialSpace financialSpace){
         if (allFinancialSpacesInDB.contains(financialSpace)){
             currentID = financialSpace.getId();
-            currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(financialSpace);
+           // currentFinancialSpace = GeneralRegistry.getFinancialSpaceHashMap().get(financialSpace);
         }else {
             System.out.println("\nKEY incorrecta\n");
         }
     }
 
     public static void switchFinancialSpace(FinancialSpace financialSpace) {
-        currentFinancialSpace = financialSpace;
+       // currentFinancialSpace = financialSpace;
         currentID = financialSpace.getId();
     }
     public static ArrayList<FinancialSpace> getAllFinancialSpaces() {

@@ -2,10 +2,17 @@ package ViewModel;
 
 import ViewModel.Spaces.FinancialSpace;
 
-public class Constants {
-    public static final byte NONE = -125;
-    public static final FinancialSpace AREA_PERSONAL= new FinancialSpace();
+import java.util.ArrayList;
+import java.util.Collections;
 
+public class Constants {
+    public Constants (){
+        TODAS_LAS_CATEGORIAS =setAllCategories();
+
+    }
+    public static final byte NONE = -125;
+
+    public static final FinancialSpace AREA_PERSONAL= new FinancialSpace();
     public static final int AREA_PERSONAL_ID = 0x0;
     // asset-pasive types
     public static final byte NO_CURRENT = 0;
@@ -21,16 +28,16 @@ public class Constants {
     //form types
     public static final byte RENEUE_FORM_TYPE = 8;
     public static final byte EXPENSE_FORM_TYPE = 9;
-    public static final String DEFAULT_GROUP = "default";
 
+    public static final String DEFAULT_GROUP = "default";
     public static final float MAX_BRUTE_WORTH = 163386000;
     public static final float MAX_BRUTE_REVENUES = 50831000;
     public static final float MAX_CREDIT_CARD_EXPENSES = 50831000;
     public static final float MAX_EXPENSES = 50831000;
     public static final float MAX_TRANSACTIONS_EXPENSES = 50831000;
     public static final float MAX_IVA_EXPENSES = 14000000;
-    public static final float MAX_IVA_REVUNES = 14000000;
 
+    public static final float MAX_IVA_REVUNES = 14000000;
 
     public static final String[] ProductosSinIVA={
             "Arroz", "Pan", "OtrosProductosPanaderia", "Papa", "Yuca", "OtrosTuberculos", "Platano", "Cebolla", "Tomate", "Zanahoria", "RevueltoVerde", "OtrasOrtalizasyLegumbresFrescas",
@@ -58,4 +65,11 @@ public class Constants {
 
     };
 
+    public ArrayList<String> TODAS_LAS_CATEGORIAS;
+    private ArrayList<String> setAllCategories() {
+        ArrayList<String> todasLasCategorias = new ArrayList<>();
+        Collections.addAll(todasLasCategorias, ProductosConIVA);
+        Collections.addAll(todasLasCategorias, ProductosSinIVA);
+        return  todasLasCategorias;
+    }
 }

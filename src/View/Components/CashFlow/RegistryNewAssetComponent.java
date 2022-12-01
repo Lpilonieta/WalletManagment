@@ -4,6 +4,7 @@ import Model.SQLconection;
 import ViewModel.Assets;
 import ViewModel.Constants;
 import ViewModel.Form;
+import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
 
 import java.awt.event.ActionEvent;
@@ -50,6 +51,13 @@ public class RegistryNewAssetComponent implements ActionListener {
         + " " + comboBoxMotivoInString + " " + comboBoxFuenteInString);
 
     }
+//    private int setInvId() {
+//        String nameSelected = comboBoxNegociosInString;
+//        for (FinancialSpace financialSpace :
+//                Manager.getAllFinancialSpaces()) {
+//            if (nameSelected.equals(financialSpace.getName()))return financialSpace.getId();
+//        }return 0;
+//    }
 
     public void getDataRegistroActivoForm (){
 

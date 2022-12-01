@@ -10,7 +10,6 @@ public class Inventory extends Assets {
 
     private float stockNumber;
     private float saleNumbers;
-    private float totalItemValue;//
     private float unitValue;
 
     private String finSpaceName;
@@ -19,11 +18,10 @@ public class Inventory extends Assets {
 
     private byte category;
 
-    public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, float stockNumber, float saleNumbers, float totalItemValue, float unitValue, byte category) {
+    public Inventory(String registryDate, int purchaseValue, String source, String motive, byte formType, int financialSpaceIdRegistered, String name, String description, byte type, int rentability, float stockNumber, float saleNumbers, float unitValue,String categ, byte category) {
         super(registryDate, purchaseValue, source, motive, formType, financialSpaceIdRegistered, name, description, type, rentability);
         this.stockNumber = stockNumber;
         this.saleNumbers = saleNumbers;
-        this.totalItemValue = totalItemValue;
         this.unitValue = unitValue;
         this.category = category;
         this.finSpaceName = setFinSpaceName(financialSpaceIdRegistered);
@@ -66,13 +64,6 @@ public class Inventory extends Assets {
         this.saleNumbers = saleNumbers;
     }
 
-    public float getTotalItemValue() {
-        return totalItemValue;
-    }
-
-    public void setTotalItemValue(float totalItemValue) {
-        this.totalItemValue = totalItemValue;
-    }
 
     public float getUnitValue() {
         return unitValue;

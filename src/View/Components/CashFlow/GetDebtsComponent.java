@@ -32,17 +32,43 @@ public class GetDebtsComponent implements ActionListener {
 
         this.getDataAquirirDeudaForm();
         //aqui
-        Pasives pasive = new Pasives(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),
-                comboBoxFuenteInString,comboBoxMotivoInString,
-                Constants.EXPENSE_FORM_TYPE,
-                Manager.getFinEspId(),textFieldNombre,
+        Pasives pasive = new Pasives(Form.parseDatetoString(),
+                Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,
+                comboBoxMotivoInString,
+                Constants.RENEUE_FORM_TYPE,
+                Manager.getFinEspId(),
+                textFieldNombre,
                 textFieldDescripcion,
                 setType(comboBoxTipoCorrienteNoCorriente),
                 Integer.valueOf(textFieldPorcentajeInteres),
                 setSaldoDeuda(textFieldValorInString,textFieldPorcentajeInteres,comboBoxTipoInteres),
-                Integer.valueOf(textFieldNumCoutas),0,Constants.DAILY,Integer.valueOf(textFieldPeriodicidadEspecifica));
+                Integer.valueOf(textFieldNumCoutas),
+                setValorCuota(),
+                setPeriodicidad(),
+                Integer.valueOf(textFieldPeriodicidadEspecifica));
         SQLconection.SaveSqlPasives(pasive);
         SQLconection.SaveCashFlow(pasive);
+    }
+
+    private byte setPeriodicidad() {
+        if (comboBoxPeriodicidad == "Diaria"){
+            return Constants.DAILY;
+        } else if (comboBoxPeriodicidad == "Semanal") {
+            return Constants.WEEKLY;
+        } else if (comboBoxPeriodicidad == "Mensual") {
+            return Constants.MONTHLY;
+        }else return Constants.YEARLY;
+    }
+
+    private float setValorCuota() {
+        float valorBase= Float.valueOf(textFieldValorInString);
+        float porcentajeDeInteres=Integer.valueOf(textFieldPorcentajeInteres);
+        int numCuota = Integer.parseInt(textFieldNumCoutas);
+        if (comboBoxTipoInteres =="Normal"){
+            float cuota = (valorBase+(valorBase*porcentajeDeInteres))/numCuota;
+        }
+            return 0;
     }
 
     private int setSaldoDeuda(String textFieldValorInString, String textFieldPorcentajeInteres, String comboBoxTipoInteres) {

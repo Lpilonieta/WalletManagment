@@ -128,7 +128,7 @@ public class SQLconection {
             consulta.setFloat(12, pasives.getInstallmentValue());
             consulta.setInt(13, pasives.getPeriodicy());
             consulta.setInt(14, pasives.getEspecificPeriodicy());
-            consulta.setString(10,"true");
+            consulta.setString(15,"true");
 
 
 
@@ -342,23 +342,22 @@ public class SQLconection {
     }
 
     public static String getUltimoSaldo() {
-        ArrayList<String> Saldos = new ArrayList<>();
-        try {
-            SQLconection.SqlConection();
+        ArrayList<String> saldo = new ArrayList<>();
+        try { SQLconection.SqlConection();
 
-        PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow");
-        ResultSet result = statement.executeQuery();
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM tablacashflow");
+            ResultSet result = statement.executeQuery();
 
-
-
-        while (result.next()) {
-            Saldos.clear();
-            Saldos.add(result.getString("Saldo"));
-        }
-        } catch (SQLException e) {
+            while (result.next()){
+                String[] idSplit = result.getString("Id").split("-");
+                if (Integer.valueOf(idSplit[1])==Form.getLastID()-2){
+                    saldo.clear();
+                    saldo.add(result.getString("Saldo"));
+                }
+            }} catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return Saldos.isEmpty()? "0":Saldos.get(0);
+        return saldo.isEmpty()? "0":saldo.get(0);
     }
 
     public static void modifyPasive(String id, String NuevoSaldo, String NuevoNumeroCuotas) throws SQLException {
@@ -505,7 +504,7 @@ public class SQLconection {
         int ultimoSaldo = Integer.valueOf(getUltimoSaldo());
         if (form.getFormType() == Constants.RENEUE_FORM_TYPE) {
             ultimoSaldo+= form.getPurchaseValue();
-        }else             ultimoSaldo-= form.getPurchaseValue();
+        }else ultimoSaldo-= form.getPurchaseValue();
         return String.valueOf(ultimoSaldo);
 
     }

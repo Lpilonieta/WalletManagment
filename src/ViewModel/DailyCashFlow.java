@@ -17,12 +17,15 @@ public class DailyCashFlow extends ArrayList {
     private ArrayList <Form> RevenuesForms;
     private String Fecha, FechaDiaAnterior;
     private String SaldoInicial, SaldoFinal;
+    private Form noRevenueForms = new Form();
+    private Form noExpensesForms = new Form();
+
 
     public DailyCashFlow(String saldoInicial, String fecha) {
         this.Fecha=fecha;
         SaldoInicial = saldoInicial;
-        DailyRevenuesForms();
-        DailyExpensesForms();
+        this.RevenuesForms =DailyRevenuesForms();
+        this.ExpensesForms=DailyExpensesForms();
         SaldoFinal = calcSaldoFinal();
     }
 
@@ -38,7 +41,7 @@ public class DailyCashFlow extends ArrayList {
 
         for (Form form :
                 ExpensesForms) {
-            expensesValues.add(String.valueOf(form.getPurchaseValue()));
+            expensesValues.add(String.valueOf("-"+form.getPurchaseValue()));
         }if (expensesValues.isEmpty())expensesValues.add("0");
         return expensesValues;
     }
@@ -64,7 +67,7 @@ public class DailyCashFlow extends ArrayList {
         return SaldoFinal;
     }
 
-    public void DailyRevenuesForms(){
+    public ArrayList<Form> DailyRevenuesForms(){
 
         ArrayList<Form> revenuesForms = new ArrayList<>();
         for (Form form:new GeneralRegistry().getAllRevenuesForms()
@@ -73,15 +76,15 @@ public class DailyCashFlow extends ArrayList {
                 revenuesForms.add(form);
             }
         }
-        RevenuesForms=revenuesForms;
+        return revenuesForms;
     }
-    public void DailyExpensesForms(){
+    public ArrayList<Form> DailyExpensesForms(){
         ArrayList<Form> expensesForms = new ArrayList<>();
         for (Form form: new GeneralRegistry().getAllExpensesForms()
              ) {
             if (form.getRegistryDate().equals(Fecha))expensesForms.add(form);
         }
-        ExpensesForms = expensesForms;
+        return expensesForms;
     }
 
 
@@ -139,8 +142,8 @@ public class DailyCashFlow extends ArrayList {
         this.Fecha=fecha;
         FechaDiaAnterior = DiaAnteriorFecha();
         SaldoInicial = SaldoInicial(FechaDiaAnterior);
-        DailyRevenuesForms();
-        DailyExpensesForms();
+        this.RevenuesForms = DailyRevenuesForms();
+        this.ExpensesForms =DailyExpensesForms();
         SaldoFinal = calcSaldoFinal();
     }
 
@@ -154,8 +157,11 @@ public class DailyCashFlow extends ArrayList {
             ResultSet result = statement.executeQuery();
 
             while (result.next()){
-                saldo.clear();
-                saldo.add(result.getString("Saldo"));
+                String[] idSplit = result.getString("Id").split("-");
+                if (Integer.valueOf(idSplit[1])==Form.getLastID()-1){
+                    saldo.clear();
+                    saldo.add(result.getString("Saldo"));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

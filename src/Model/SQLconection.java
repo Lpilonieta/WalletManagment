@@ -364,7 +364,7 @@ public class SQLconection {
     public static void modifyPasive(String id, String NuevoSaldo, String NuevoNumeroCuotas) throws SQLException {
         SQLconection.SqlConection();
 
-        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaregistros"+" SET SaldoDeuda= ' "+NuevoSaldo+" ' ,NumeroCuotas= ' "+NuevoNumeroCuotas+" ' WHERE Id ="+id);
+        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaregistros"+" SET SaldoDeuda= ' "+NuevoSaldo+"' ,NumeroCuotas= '"+NuevoNumeroCuotas+" ' WHERE Id ="+id);
 
         pps.executeUpdate();
         JOptionPane.showMessageDialog(null, "Datos actualizados");
@@ -373,7 +373,7 @@ public class SQLconection {
     public static void modifyInventory(String id, String NuevoNumeroStock, String NuevasVentasTotales) throws SQLException {
         SQLconection.SqlConection();
 
-        PreparedStatement pps = con.prepareStatement("UPDATE"+ "tablaregistros"+" SET NumeroStock= ' "+NuevoNumeroStock+" ' ,VentasTotales= ' "+NuevasVentasTotales+" ' WHERE Id ="+id);
+        PreparedStatement pps = con.prepareStatement("UPDATE tablaregistros SET NumeroStock='"+NuevoNumeroStock+"',VentasTotales='"+NuevasVentasTotales+"' WHERE Id='"+id+"'");
 
         pps.executeUpdate();
         JOptionPane.showMessageDialog(null, "Datos actualizados");
@@ -492,7 +492,7 @@ public class SQLconection {
             consulta.setString(4, saldo);
             consulta.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
+            //JOptionPane.showMessageDialog(null, "Registro agregado exitosamente");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

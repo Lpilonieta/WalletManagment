@@ -1,13 +1,17 @@
 package View.Components.SalesRegistry;
 
 
+import Model.SQLconection;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
 import View.Components.Groups.GroupsComponent;
+import ViewModel.Inventory;
 
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SalesRegistryTemplate extends JPanel {
 
@@ -63,7 +67,7 @@ public class SalesRegistryTemplate extends JPanel {
         this.add(numVentas);
 
         this.lNegocio = sOjGraficosService.construirJLabel("Negocio", (1300 - 260)/2 - 200,
-                300, 260,40, Color.DARK_GRAY, null, recursosService.getCursivafont(), null, null, null, "null"
+                300, 260,40, Color.WHITE, null, recursosService.getCursivafont(), null, null, null, "null"
         );
         this.add(lNegocio);
 
@@ -81,12 +85,19 @@ public class SalesRegistryTemplate extends JPanel {
     }
 
     public void builtJComboBox (){
+        ArrayList<Inventory>arrayList = null;
+        try {
+            arrayList = SQLconection.getallInventoryFromDB();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<String>invName = new ArrayList<>();
+        for (Inventory inv :
+                arrayList) {
+            invName.add(inv.getName());
+        }
 
-        this.comboBoxlSelectItem = new JComboBox<>();
-        this.comboBoxlSelectItem.addItem("5");
-        this.comboBoxlSelectItem.addItem("6");
-        this.comboBoxlSelectItem.addItem("7");
-        this.comboBoxlSelectItem.addItem("8");
+        this.comboBoxlSelectItem = new JComboBox<>(invName.toArray());
         this.comboBoxlSelectItem.setSize(200,40);
         this.comboBoxlSelectItem.setLocation((1300 - 260)/2, 200);
         this.comboBoxlSelectItem.setForeground(Color.DARK_GRAY);
@@ -95,18 +106,18 @@ public class SalesRegistryTemplate extends JPanel {
         ((JLabel) comboBoxlSelectItem.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
         this.add(comboBoxlSelectItem);
 
-        this.comboBoxNegocio = new JComboBox<>();
-        this.comboBoxNegocio.addItem("Sin negocio asociado");
-        for (int i = 0; i < GroupsComponent.negociosCreados.size() ; i++) {
-            this.comboBoxNegocio.addItem(GroupsComponent.negociosCreados.get(i));
-        }
-        this.comboBoxNegocio.setSize(220,40);
-        this.comboBoxNegocio.setLocation((1300 - 260)/2, 300);
-        this.comboBoxNegocio.setForeground(Color.DARK_GRAY);
-        this.comboBoxNegocio.setBackground(Color.WHITE);
-        this.comboBoxNegocio.setCursor(recursosService.getCursoMano());
-        ((JLabel) comboBoxNegocio.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
-        this.add(comboBoxNegocio);
+//        this.comboBoxNegocio = new JComboBox<>();
+//        this.comboBoxNegocio.addItem("Sin negocio asociado");
+//        for (int i = 0; i < GroupsComponent.negociosCreados.size() ; i++) {
+//            this.comboBoxNegocio.addItem(GroupsComponent.negociosCreados.get(i));
+//        }
+//        this.comboBoxNegocio.setSize(220,40);
+//        this.comboBoxNegocio.setLocation((1300 - 260)/2, 300);
+//        this.comboBoxNegocio.setForeground(Color.DARK_GRAY);
+//        this.comboBoxNegocio.setBackground(Color.WHITE);
+//        this.comboBoxNegocio.setCursor(recursosService.getCursoMano());
+//        ((JLabel) comboBoxNegocio.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
+//        this.add(comboBoxNegocio);
     }
 
     public void builtButton (){

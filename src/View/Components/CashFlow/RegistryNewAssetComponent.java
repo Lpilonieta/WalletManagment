@@ -34,9 +34,16 @@ public class RegistryNewAssetComponent implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
      this.getDataRegistroActivoForm();
-        Assets asset = new Assets(Form.parseDatetoString(),Integer.valueOf(textFieldValorInString),comboBoxFuenteInString,
-                comboBoxFuenteInString, Constants.RENEUE_FORM_TYPE, Manager.getFinEspId(),name_assetInString,description_assetInString,
-                Constants.CURRENT,Integer.valueOf(percetRentibyliyInString));
+        Assets asset = new Assets(Form.parseDatetoString(),
+                Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,
+                comboBoxFuenteInString,
+                Constants.EXPENSE_FORM_TYPE,
+                Manager.getFinEspId(),
+                name_assetInString,
+                description_assetInString,
+                Constants.CURRENT,
+                Integer.valueOf(percetRentibyliyInString));
         SQLconection.SaveSqlAssets(asset);
         SQLconection.SaveCashFlow(asset);
         System.out.println(name_assetInString + " " + description_assetInString + " " + type_assetInString + " " + percetRentibyliyInString + " " + textFieldValorInString

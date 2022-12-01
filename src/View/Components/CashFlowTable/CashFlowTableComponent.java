@@ -104,10 +104,11 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
     }
 
     public void addDta(WeeklyCashFlow weeklyCashFlow) {
+        ArrayList<String> column = weeklyCashFlow.getLunes().getTotalValues();
 
             for (Map.Entry<?, ?> entry : weeklyCashFlow.getWeeklyCashFlow().entrySet())
                 cashFlowTableTemplate.getModel().addRow(
-                        new Object[]{null, weeklyCashFlow.getMartes(), weeklyCashFlow.getMiercoles(), weeklyCashFlow.getJueves(),
+                        new Object[]{null, entry.getKey(), weeklyCashFlow.getMiercoles(), weeklyCashFlow.getJueves(),
                                 weeklyCashFlow.getViernes(), weeklyCashFlow.getSabado(), weeklyCashFlow.getDomingo()}
                 );
         }

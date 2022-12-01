@@ -15,10 +15,9 @@ public class DailyCashFlow extends ArrayList {
 
     private ArrayList <Form> ExpensesForms;
     private ArrayList <Form> RevenuesForms;
+    private ArrayList <Form> totalForms;
     private String Fecha, FechaDiaAnterior;
     private String SaldoInicial, SaldoFinal;
-    private Form noRevenueForms = new Form();
-    private Form noExpensesForms = new Form();
 
 
 
@@ -27,7 +26,16 @@ public class DailyCashFlow extends ArrayList {
         SaldoInicial = saldoInicial;
         this.RevenuesForms =DailyRevenuesForms();
         this.ExpensesForms=DailyExpensesForms();
+        this.totalForms = mergeForms();
         SaldoFinal = calcSaldoFinal();
+    }
+
+    private ArrayList<Form> mergeForms() {
+        ArrayList<Form>totalforms = this.RevenuesForms;
+        for (Form form :
+                this.ExpensesForms) {
+            totalforms.add(form);
+        }return totalforms;
     }
 
 
@@ -37,24 +45,15 @@ public class DailyCashFlow extends ArrayList {
     public ArrayList<Form> getRevenuesForms() {
         return RevenuesForms;
     }
-    public ArrayList<String>getExpensesValues(){
-        ArrayList<String> expensesValues = new ArrayList<>();
+    public ArrayList<String>getTotalValues(){
+        ArrayList<String> totalValues = new ArrayList<>();
 
         for (Form form :
-                ExpensesForms) {
-            expensesValues.add(String.valueOf("-"+form.getPurchaseValue()));
-        }if (expensesValues.isEmpty())expensesValues.add("0");
-        return expensesValues;
-    }
-    public ArrayList<String>getRevenueValues(){
-        ArrayList<String> renevueValues = new ArrayList<>();
-
-        for (Form form :
-                RevenuesForms) {
-            renevueValues.add(String.valueOf(form.getPurchaseValue()));
-        }if (renevueValues.isEmpty())renevueValues.add("0");
-        return renevueValues;
-    }
+                totalForms) {
+            totalValues.add(String.valueOf("-"+form.getPurchaseValue()));
+        }if (totalValues.isEmpty())totalValues.add("0");
+        return totalValues;
+    }//TODO
 
     public String getFecha() {
         return Fecha;
@@ -145,6 +144,8 @@ public class DailyCashFlow extends ArrayList {
         SaldoInicial = SaldoInicial(FechaDiaAnterior);
         this.RevenuesForms = DailyRevenuesForms();
         this.ExpensesForms =DailyExpensesForms();
+        this.totalForms = mergeForms();
+
         SaldoFinal = calcSaldoFinal();
     }
 

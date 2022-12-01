@@ -6,7 +6,6 @@ import ViewModel.Constants;
 import ViewModel.Form;
 import ViewModel.Spaces.FinancialSpace;
 import ViewModel.Spaces.Manager;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,9 +13,7 @@ public class RegistryNewAssetComponent implements ActionListener {
 
     private RegistryNewAssetTemplate registryNewAssetTemplate;
     private IngresosTemplate ingresosTemplate;
-
     private IngresosComponent ingresosComponent;
-
     private String name_assetInString, description_assetInString, type_assetInString, percetRentibyliyInString, textFieldValorInString, comboBoxFuenteInString, comboBoxMotivoInString;
 
     public RegistryNewAssetComponent (IngresosComponent ingresosComponent, IngresosTemplate ingresosTemplate){

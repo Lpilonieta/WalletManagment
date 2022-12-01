@@ -14,9 +14,7 @@ public class IngresoxMotivoComponent implements ActionListener, MouseListener, F
 
 
     private IngresosxMotivoTemplate ingresosxMotivoTemplate;
-
-
-
+    
     private String[] placeHolers = {"Ingreso", "Motivo", "Filtrar"};
 
     private User user = new User();
@@ -116,6 +114,7 @@ public class IngresoxMotivoComponent implements ActionListener, MouseListener, F
     }
 
     public void addDta(User user) {
+
 
         for (Map.Entry<?, ?> entry :user.getTotalRevenuesByMotive().entrySet()) {
             ingresosxMotivoTemplate.getModel().addRow(

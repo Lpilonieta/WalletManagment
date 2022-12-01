@@ -4,7 +4,6 @@ import Model.SQLconection;
 import View.MainPanel.MainPanelComponent;
 import ViewModel.Constants;
 import ViewModel.Form;
-import ViewModel.Pasives;
 import ViewModel.Spaces.Manager;
 
 import java.awt.event.ActionEvent;
@@ -42,8 +41,6 @@ public class EgresosComponent implements ActionListener {
             SQLconection.SaveSqlForms(form);
             SQLconection.SaveCashFlow(form);
         }
-
-
     }
 
     public void getDataIngresosForm (){
@@ -62,7 +59,6 @@ public class EgresosComponent implements ActionListener {
                 egresosTemplate.getAdvanced().add(new GetDebtsComponent(this, egresosTemplate).getGetDebtsTemplate());
                 egresosTemplate.getAdvanced().repaint();
                 System.out.println("Entró");
-
             }
         }
     }

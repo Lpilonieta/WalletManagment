@@ -2,8 +2,8 @@ package View.Components.CashFlowTable;
 
 import View.MainPanel.MainPanelComponent;
 import ViewModel.DailyCashFlow;
+import ViewModel.Form;
 import ViewModel.WeeklyCashFlow;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -21,20 +21,13 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
     private WeeklyCashFlow weeklyCashFlow;
 
-//    {
-//        try {
-//            weeklyCashFlow = new WeeklyCashFlow("3-30-11-2022");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
+    private DailyCashFlow dailyCashFlow = new DailyCashFlow();
 
     public CashFlowTableComponent(MainPanelComponent mainPanelComponent) {
 
         this.cashFlowTableTemplate = new CashFlowTableTemplate(this);
-        this.mainPanelComponent = mainPanelComponent;
 
+        this.mainPanelComponent = mainPanelComponent;
 
     }
 
@@ -92,10 +85,17 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
         this.addDta(weeklyCashFlow);
 
+
         //cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size() + "");
         //cashFlowTableTemplate.gettSaldoIncial().setText(weeklyCashFlow.getLunes().getSaldoInicial());
         //cashFlowTableTemplate.gettSaldoFinal().setText(weeklyCashFlow.getLunes().getSaldoFinal());
         //cashFlowTableTemplate.getbShow().setEnabled(false);
+
+        cashFlowTableTemplate.getlIdValue().setText("");
+        cashFlowTableTemplate.gettSaldoIncial().setText(dailyCashFlow.getSaldoInicial());
+        cashFlowTableTemplate.gettSaldoFinal().setText(dailyCashFlow.getSaldoFinal());
+        cashFlowTableTemplate.getbShow().setEnabled(false);
+
     }
 
     public void filterDataTable() {
@@ -106,10 +106,21 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
     }
 
     public void addDta(WeeklyCashFlow weeklyCashFlow) {
+
         ArrayList<String> column = null;
+        String dateByDefault = Form.parseDatetoString();
+
+        if (cashFlowTableTemplate.gettConsult().getText() != null){
+            dateByDefault = cashFlowTableTemplate.gettConsult().getText();
+            System.out.println(dateByDefault);
+        }  else {
+
+        }
+
         try {
-            column = new DailyCashFlow("3-30-11-2022").getTotalValues();
+            column = new DailyCashFlow(dateByDefault).getTotalValues();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Coloca un elemento para filtrar", "ALERTA", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException(e);
         }
         Map<String, String> mapTemp = new HashMap<>();
@@ -118,13 +129,14 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
             mapTemp.clear();
             mapTemp.put("Fecha", value);
             //TODO: map temp tiene una clave y un valor
-
-
-            for (Map.Entry<?, ?> entry : mapTemp.entrySet())
                 cashFlowTableTemplate.getModel().addRow(
-                        new Object[]{entry.getValue(),entry.getKey()}
+                        new Object[]{column}
                 );
         }
+
     }
-    }
+}
+
+
+
 

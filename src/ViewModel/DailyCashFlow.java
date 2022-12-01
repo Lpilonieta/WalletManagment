@@ -49,7 +49,6 @@ public class DailyCashFlow extends ArrayList {
     }
     public ArrayList<String>getTotalValues(){
         ArrayList<String> totalValues = new ArrayList<>();
-
         for (Form form :
                 totalForms) {
             totalValues.add(String.valueOf(form.getPurchaseValue()));
@@ -141,7 +140,9 @@ public class DailyCashFlow extends ArrayList {
         }return String.valueOf(totalDailyRevenue-totalDailyExpenses);
     }
 
+       public DailyCashFlow (){
 
+     }
     public DailyCashFlow(String fecha) throws SQLException {
 
         this.Fecha=fecha;
@@ -176,6 +177,8 @@ public class DailyCashFlow extends ArrayList {
     }
 
 
-
+    public ArrayList<Form> getTotalForms() {
+        return totalForms;
+    }
 }
 

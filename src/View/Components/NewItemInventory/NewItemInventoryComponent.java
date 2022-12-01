@@ -22,7 +22,8 @@ public class NewItemInventoryComponent implements ActionListener {
     private GroupsComponent groupsComponent;
 
     //Obj. de clase
-   private String name_Product,  description_Product, type_Product, category_Product, valorStock_Product, valorXUnidad_Product, comboBoxNegociosInString;
+   private String name_Product,  description_Product, type_Product, category_Product, valorStock_Product,
+            valorXUnidad_Product, comboBoxNegociosInString, comboBoxFuenteInString, comboBoxMotivoInString, textFieldValorInString;
 
     public NewItemInventoryComponent (MainPanelComponent mainPanelComponent){
 
@@ -96,6 +97,9 @@ public class NewItemInventoryComponent implements ActionListener {
       valorStock_Product = newItemInventoryTemplate.getTextFielValorStock().getText();
       valorXUnidad_Product = newItemInventoryTemplate.getTextFielValorxUnidad().getText();
       comboBoxNegociosInString = ((String) newItemInventoryTemplate.getComboBoxNegocio().getSelectedItem());
-    }
+      comboBoxFuenteInString = (String) newItemInventoryTemplate.getComboBoxFuente().getSelectedItem();
+      comboBoxMotivoInString = (String) newItemInventoryTemplate.getComboBoxMotivo().getSelectedItem();
+      textFieldValorInString = newItemInventoryTemplate.getTextFieldValor().getText();
 
+    }
 }

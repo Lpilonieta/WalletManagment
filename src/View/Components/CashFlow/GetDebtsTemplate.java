@@ -111,35 +111,35 @@ public class GetDebtsTemplate extends JPanel {
 
       //Fila 1
         this.textFielDeudor= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 435, 100, 200, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin deudor", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFielDeudor);
 
         this.textFieldNombre= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 435, 190, 200, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin nombre", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldNombre);
 
         this.textFieldDescripcion= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 400, 280, 200, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin descripción", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldDescripcion);
 
       //Fila 2
 
         this.textFieldPorcentajeInteres= sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 100, 200, 100, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "0", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldPorcentajeInteres);
 
         this.textFieldFecha1erPago = sOjGraficosService.construirJTextFiel((1300 - 260)/2 - 100, 350, 200, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin fecha", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldFecha1erPago);
 
 
       //Fila 3
         this.textFieldNumCoutas = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 250, 100, 200, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "0", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldNumCoutas);
 
         this.textFieldPeriodicidadEspecifica = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 350, 280, 100, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "0", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldPeriodicidadEspecifica );
 
     }
@@ -194,43 +194,33 @@ public class GetDebtsTemplate extends JPanel {
         this.add(saveData);
 
     }
-
     public JTextField getTextFielDeudor() {
         return textFielDeudor;
     }
-
     public JTextField getTextFieldNombre() {
         return textFieldNombre;
     }
-
     public JTextField getTextFieldDescripcion() {
         return textFieldDescripcion;
     }
-
     public JTextField getTextFieldPorcentajeInteres() {
         return textFieldPorcentajeInteres;
     }
-
     public JTextField getTextFieldNumCoutas() {
         return textFieldNumCoutas;
     }
-
     public JTextField getTextFieldPeriodicidadEspecifica() {
         return textFieldPeriodicidadEspecifica;
     }
-
     public JTextField getTextFieldFecha1erPago() {
         return textFieldFecha1erPago;
     }
-
     public JComboBox getComboBoxTipoInteres() {
         return comboBoxTipoInteres;
     }
-
     public JComboBox getComboBoxTipoCorrienteNoCorriente() {
         return comboBoxTipoCorrienteNoCorriente;
     }
-
     public JComboBox getComboBoxPeriodicidad() {
         return comboBoxPeriodicidad;
     }

@@ -2,6 +2,7 @@ package View.Components.CashFlowTable;
 
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
+import ViewModel.DailyCashFlow;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,17 +24,20 @@ public class CashFlowTableTemplate extends JPanel {
     private JLabel lTitle, lTitle2, lInstructions, lEslogan, lId, lIdValue, lMotivo, lSaldoInicial, tSaldoIncial, tSaldoFinal, lSaldoFinal;
     private JButton bShow, bInsert, bFiltrar, bModify, bDelete;
 
+    private String tFiltro;
+
     private JTextField tConsult;
 
     private JScrollPane pTable;
     private JTable table;
     private JTableHeader header;
     private DefaultTableModel model;
-    private String [] cabecera={"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+
+    private DailyCashFlow dailyCashFlow = new DailyCashFlow();
+    private String [] cabecera={"Total"};
 
 
     //Obj. Decorador
-
     private Color colorGray;
 
 
@@ -209,5 +213,9 @@ public class CashFlowTableTemplate extends JPanel {
 
     public JLabel gettSaldoFinal() {
         return tSaldoFinal;
+    }
+
+    public String gettFiltro() {
+        return tFiltro;
     }
 }

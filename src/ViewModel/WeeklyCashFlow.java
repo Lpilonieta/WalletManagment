@@ -39,7 +39,7 @@ public class WeeklyCashFlow {
         for (String key :
                 keys) {
             System.out.println("----------------------------------------------------------");
-            System.out.println("Saldo Inicial "+key +": "+WeeklyCashFlow.get(key).getSaldoInicial());
+            System.out.println("Saldo Inicial "+key +": "+ WeeklyCashFlow.get(key).getSaldoInicial());
             if (WeeklyCashFlow.get(key).getExpensesForms().isEmpty()) {
                 System.out.println("no hay gastos");
             }if (WeeklyCashFlow.get(key).getRevenuesForms().isEmpty()) {

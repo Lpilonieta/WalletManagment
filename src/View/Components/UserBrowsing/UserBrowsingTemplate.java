@@ -20,7 +20,7 @@ public class UserBrowsingTemplate extends JPanel {
 
     private JPanel pUpper, pLower;
     private JLabel lFinanceSpaces, lEslogan, lIconUser, lNameUser, lUserImage;
-    private JButton addFinanceSpace, seeMyFinanceSpaces, seeMyPersonalArea, home, seeAdvanceArea;
+    private JButton addFinanceSpace, seeMyPersonalArea, seeAdvanceArea;
 
 
     // Obj. Decoradores
@@ -138,7 +138,7 @@ public class UserBrowsingTemplate extends JPanel {
 
         this.addFinanceSpace.addActionListener(userBrowsingComponent);
         this.pLower.add(addFinanceSpace);
-
+/*
         this.seeMyFinanceSpaces = objGraficosService.builtButton(
 
                 "Ver negocios",
@@ -149,7 +149,7 @@ public class UserBrowsingTemplate extends JPanel {
 
         this.seeMyFinanceSpaces.addActionListener(userBrowsingComponent);
         this.pLower.add(seeMyFinanceSpaces);
-
+*/
         this.seeMyPersonalArea = objGraficosService.builtButton(
 
                 "Ver area personal",

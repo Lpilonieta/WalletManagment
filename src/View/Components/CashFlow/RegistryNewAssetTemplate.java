@@ -70,15 +70,15 @@ public class RegistryNewAssetTemplate extends JPanel {
     public void builtJTextField (){
 
         this.textFieldName= sOjGraficosService.construirJTextFiel((1300 - 260)/2, 150, 400, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin nombre", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldName);
 
         this.textFieldDescription= sOjGraficosService.construirJTextFiel((1300 - 260)/2, 200, 400, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "Sin descripción", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldDescription);
 
         this.textFieldRentability= sOjGraficosService.construirJTextFiel((1300 - 260)/2, 300, 100, 40,
-                "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "0", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldRentability);
 
     }

@@ -123,22 +123,6 @@ public class IngresosxMotivoTemplate extends JPanel {
                 30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getLightFont(), null, null, null, "RIGHT");
         this.pData.add(lIdValue);
 
-        lIngreso = objGraficosService.construirJLabel("Ingreso", 20,200,160,
-                30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getMainFont(), null, null, null, "LEFT");
-        this.pData.add(lIngreso);
-
-        tIngreso = objGraficosService.construirJTextFiel(30, 250, 240, 30, "Ingreso", colorGray,
-                recursosService.getLightFont(),"null", recursosService.getCursoTexto());
-        this.pData.add(tIngreso);
-
-        lMotivo = objGraficosService.construirJLabel("Motivo", 20,350,160,
-                30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getMainFont(), null, null, null, "LEFT");
-        this.pData.add(lMotivo);
-
-        tMotivo = objGraficosService.construirJTextFiel(30, 390, 240, 30, "Motivo", colorGray,
-                recursosService.getLightFont(),"null", recursosService.getCursoTexto());
-        this.pData.add(tMotivo );
-
     }
 
     public JLabel getlIdValue() {

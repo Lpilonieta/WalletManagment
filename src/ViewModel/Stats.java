@@ -45,8 +45,8 @@ public class Stats implements Liquidity, Solvency, Rentability{
         calculateNethWorth();
         calculateBruteWorth();
         calculateBruteRevenues();
-        calculateIvaExpenses();
-        calculateIvaRevenues();
+        //calculateIvaExpenses();
+        //calculateIvaRevenues();
         fondoDeManiobra = calcWorkingCapital();
         razonCorriente = calcCurrentReason();
         pruebaAcida = calcAcidTest();
@@ -331,5 +331,49 @@ public class Stats implements Liquidity, Solvency, Rentability{
         if (calcWorkingCapital()==Constants.NONE){
             return cant;
         }return calcWorkingCapital() > 0 ? good : bad;
+    }
+
+    public float getFondoDeManiobra() {
+        return fondoDeManiobra;
+    }
+
+    public float getRazonCorriente() {
+        return razonCorriente;
+    }
+
+    public float getPruebaAcida() {
+        return pruebaAcida;
+    }
+
+    public float getEndeudamientoTotal() {
+        return endeudamientoTotal;
+    }
+
+    public float getEndeudamientoCortoPlazo() {
+        return endeudamientoCortoPlazo;
+    }
+
+    public float getEndeudamientoLargoPlazo() {
+        return endeudamientoLargoPlazo;
+    }
+
+    public float getApalancamientoTotal() {
+        return apalancamientoTotal;
+    }
+
+    public float getMargenDeUtilidadBruta() {
+        return margenDeUtilidadBruta;
+    }
+
+    public float getRentabilidadSobreActivos() {
+        return rentabilidadSobreActivos;
+    }
+
+    public float getRentabilidadSobrePatrimonio() {
+        return rentabilidadSobrePatrimonio;
+    }
+
+    public float getRentabilidadSobreVentas() {
+        return rentabilidadSobreVentas;
     }
 }

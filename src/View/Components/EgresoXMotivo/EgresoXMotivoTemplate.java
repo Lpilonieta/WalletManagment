@@ -122,22 +122,6 @@ public class EgresoXMotivoTemplate extends JPanel{
                 30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getLightFont(), null, null, null, "RIGHT");
         this.pData.add(lIdValue);
 
-        lEgreso = objGraficosService.construirJLabel("Egreso", 20,200,160,
-                30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getMainFont(), null, null, null, "LEFT");
-        this.pData.add(lEgreso);
-
-        tEgreso = objGraficosService.construirJTextFiel(30, 250, 240, 30, "Ingreso", colorGray,
-                recursosService.getLightFont(),"null", recursosService.getCursoTexto());
-        this.pData.add(tEgreso);
-
-        lMotivo = objGraficosService.construirJLabel("Motivo", 20,350,160,
-                30,recursosService.getColorGrisOscuro(), Color.WHITE,recursosService.getMainFont(), null, null, null, "LEFT");
-        this.pData.add(lMotivo);
-
-        tMotivo = objGraficosService.construirJTextFiel(30, 390, 240, 30, "Motivo", colorGray,
-                recursosService.getLightFont(),"null", recursosService.getCursoTexto());
-        this.pData.add(tMotivo );
-
     }
 
 

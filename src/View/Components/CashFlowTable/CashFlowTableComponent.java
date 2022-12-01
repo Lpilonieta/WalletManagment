@@ -83,7 +83,7 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
     public void showRegistros() {
 
-       // this.addDta(weeklyCashFlow);
+        this.addDta(weeklyCashFlow);
 
 
         //cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size() + "");
@@ -127,12 +127,10 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
         for (String value :
                 column) {
             mapTemp.clear();
-            mapTemp.put("key", value);
+            mapTemp.put("Fecha", value);
             //TODO: map temp tiene una clave y un valor
-
-
-            cashFlowTableTemplate.getModel().addRow(
-                        new Object[]{mapTemp.get("key")}
+                cashFlowTableTemplate.getModel().addRow(
+                        new Object[]{mapTemp.get("Fecha")}
                 );
         }
 

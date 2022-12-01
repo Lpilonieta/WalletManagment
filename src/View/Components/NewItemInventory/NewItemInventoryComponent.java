@@ -43,9 +43,9 @@ public class NewItemInventoryComponent implements ActionListener {
         this.getDataFormRegistrarInventario();
 
         Inventory item = new Inventory(Form.parseDatetoString(),
-                0,
-                "source",
-                "motive",
+                Integer.valueOf(textFieldValorInString),
+                comboBoxFuenteInString,
+                comboBoxMotivoInString,
                 Constants.EXPENSE_FORM_TYPE,
                 setInvId(),
                 name_Product,

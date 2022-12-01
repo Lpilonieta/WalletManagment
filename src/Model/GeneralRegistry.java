@@ -46,8 +46,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
             ArrayList<Form>sortedForms = new ArrayList<>();
             for (Form form: allForms
                  ) {
-                String splitId[] = form.getId().split("-");
-                if (Integer.valueOf(splitId[2])== Manager.getFinEspId())sortedForms.add(form);
+                sortedForms.add(form);
             }
             return sortedForms;
         } catch (SQLException e) {
@@ -62,8 +61,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
             ArrayList<Assets>sortedAssets = new ArrayList<>();
             for (Assets assets: allForms
             ) {
-                String splitId[] = assets.getId().split("-");
-                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedAssets.add(assets);
+                sortedAssets.add(assets);
             }
             return SQLconection.getallAssetsDB();
         } catch (SQLException e) {
@@ -78,8 +76,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
             ArrayList<Pasives>sortedForms = new ArrayList<>();
             for (Pasives pasives: allForms
             ) {
-                String splitId[] = pasives.getId().split("-");
-                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedForms.add(pasives);
+                sortedForms.add(pasives);
             }
             return SQLconection.getallPasivesDB();
         } catch (SQLException e) {
@@ -94,8 +91,7 @@ public class GeneralRegistry implements FinacialSpaceRegistry {
             ArrayList<Inventory>sortedForms = new ArrayList<>();
             for (Inventory inventory: allForms
             ) {
-                String splitId[] = inventory.getId().split("-");
-                if (Integer.valueOf(splitId[2]) == Manager.getFinEspId()) sortedForms.add(inventory);
+                sortedForms.add(inventory);
             }
             return SQLconection.getallInventoryFromDB();
         } catch (SQLException e) {

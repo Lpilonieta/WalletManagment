@@ -24,13 +24,15 @@ public class GetDebtsComponent implements ActionListener {
         this.egresosTemplate = egresosTemplate;
         this.getDebtsTemplate = new GetDebtsTemplate(this);
 
+        this.getDataAquirirDeudaForm();
+        this.verificationInteres();
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        this.getDataAquirirDeudaForm();
         //aqui
         Pasives pasive = new Pasives(Form.parseDatetoString(),
                 Integer.valueOf(textFieldValorInString),
@@ -106,6 +108,17 @@ public class GetDebtsComponent implements ActionListener {
         this.textFieldValorInString = egresosTemplate.getTextFieldValor().getText();
         this.comboBoxFuenteInString = (String) egresosTemplate.getComboBoxFuente().getSelectedItem();
         this.comboBoxMotivoInString = (String) egresosTemplate.getComboBoxMotivo().getSelectedItem();
+    }
+
+    public void verificationInteres (){
+
+        if (comboBoxTipoInteres == "Ninguno"){
+
+            this.getDebtsTemplate.getTextFieldPorcentajeInteres().setEnabled(true);
+        } else {
+            this.getDebtsTemplate.getTextFieldPorcentajeInteres().setEnabled(false);
+
+        }
     }
 
     public GetDebtsTemplate getGetDebtsTemplate() {

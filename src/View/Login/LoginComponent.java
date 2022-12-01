@@ -1,6 +1,5 @@
 package View.Login;
 
-import View.Components.ModelAux.IngresoxMotivo;
 import View.MainPanel.MainPanelComponent;
 
 import java.awt.event.ActionEvent;

@@ -67,7 +67,7 @@ public class EgresosTemplate extends JPanel {
         this.standar.add(lFuente);
 
         this.textFieldValor= sOjGraficosService.construirJTextFiel((1300 - 260)/2, 100, 400, 40,
-                null, Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
+                "0", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.standar.add(textFieldValor);
 
         this.comboBoxFuente = new JComboBox<>();
@@ -86,8 +86,8 @@ public class EgresosTemplate extends JPanel {
         this.comboBoxMotivo= new JComboBox<>();
         this.comboBoxMotivo.addItem("Ninguno");
         this.comboBoxMotivo.addItem("Bienes y servicios");
-        this.comboBoxMotivo.addItem("7");
-        this.comboBoxMotivo.addItem("8");
+        this.comboBoxMotivo.addItem("Alimentos");
+        this.comboBoxMotivo.addItem("Ropa");
         this.comboBoxMotivo.setSize(200,40);
         this.comboBoxMotivo.setLocation((1300 - 260)/2, 200);
         this.comboBoxMotivo.setForeground(Color.DARK_GRAY);

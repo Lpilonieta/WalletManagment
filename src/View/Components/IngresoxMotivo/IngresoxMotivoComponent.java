@@ -1,8 +1,6 @@
 package View.Components.IngresoxMotivo;
 
 import View.MainPanel.MainPanelComponent;
-import View.Components.ModelAux.IngresoxMotivo;
-import View.Components.ModelAux.Services.IngresosxMotivoService;
 import View.Services.RecursosService;
 import ViewModel.User;
 
@@ -14,11 +12,10 @@ import java.util.Map;
 
 public class IngresoxMotivoComponent implements ActionListener, MouseListener, FocusListener {
 
-    private IngresosxMotivoService ingresosxMotivoService;
 
     private IngresosxMotivoTemplate ingresosxMotivoTemplate;
 
-    private IngresoxMotivo ingresoxMotivo;
+
 
     private String[] placeHolers = {"Ingreso", "Motivo", "Filtrar"};
 
@@ -28,7 +25,6 @@ public class IngresoxMotivoComponent implements ActionListener, MouseListener, F
     public IngresoxMotivoComponent(MainPanelComponent mainPanelComponent) {
 
         this.ingresosxMotivoTemplate = new IngresosxMotivoTemplate(this);
-        ingresosxMotivoService = IngresosxMotivoService.getService();
 
     }
 

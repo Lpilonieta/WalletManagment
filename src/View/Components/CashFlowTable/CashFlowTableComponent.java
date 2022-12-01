@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CashFlowTableComponent implements ActionListener, MouseListener, FocusListener {
@@ -18,15 +19,19 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
     private WeeklyCashFlow weeklyCashFlow;
 
-    public CashFlowTableComponent (MainPanelComponent mainPanelComponent){
-
-        this.cashFlowTableTemplate = new CashFlowTableTemplate(this);
-        this.mainPanelComponent = mainPanelComponent;
+    {
         try {
-            this.weeklyCashFlow = new WeeklyCashFlow("3-30-11-2022");
+            weeklyCashFlow = new WeeklyCashFlow("3-30-11-2022");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public CashFlowTableComponent(MainPanelComponent mainPanelComponent) {
+
+        this.cashFlowTableTemplate = new CashFlowTableTemplate(this);
+        this.mainPanelComponent = mainPanelComponent;
 
 
     }
@@ -37,9 +42,9 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cashFlowTableTemplate.getbShow()){
+        if (e.getSource() == cashFlowTableTemplate.getbShow()) {
             showRegistros();
-        } else if (e.getSource() == cashFlowTableTemplate.getbFiltrar()){
+        } else if (e.getSource() == cashFlowTableTemplate.getbFiltrar()) {
             filterDataTable();
         }
 
@@ -80,25 +85,31 @@ public class CashFlowTableComponent implements ActionListener, MouseListener, Fo
     public void mouseExited(MouseEvent e) {
 
     }
-    public void showRegistros(){
+
+    public void showRegistros() {
 
         this.addDta(weeklyCashFlow);
 
-        cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size()+"");
+        cashFlowTableTemplate.getlIdValue().setText(weeklyCashFlow.getWeeklyCashFlow().size() + "");
+        cashFlowTableTemplate.gettSaldoIncial().setText(weeklyCashFlow.getLunes().getSaldoInicial());
+        cashFlowTableTemplate.gettSaldoFinal().setText(weeklyCashFlow.getLunes().getSaldoFinal());
         cashFlowTableTemplate.getbShow().setEnabled(false);
     }
-    public void filterDataTable (){
+
+    public void filterDataTable() {
 
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(cashFlowTableTemplate.getModel());
         cashFlowTableTemplate.getTable().setRowSorter(trs);
         trs.setRowFilter(RowFilter.regexFilter(cashFlowTableTemplate.gettConsult().getText()));
     }
-    public void addDta (WeeklyCashFlow weeklyCashFlow){
 
-        for (Map.Entry<?,?> entry : weeklyCashFlow.getWeeklyCashFlow().entrySet())
-            cashFlowTableTemplate.getModel().addRow(
-                    new Object[]{weeklyCashFlow.getLunes().getExpensesValues().toString(), weeklyCashFlow.getMartes(), weeklyCashFlow.getMiercoles(), weeklyCashFlow.getJueves(),
-                            weeklyCashFlow.getViernes(), weeklyCashFlow.getSabado(),weeklyCashFlow.getDomingo()}
-        );
+    public void addDta(WeeklyCashFlow weeklyCashFlow) {
+
+            for (Map.Entry<?, ?> entry : weeklyCashFlow.getWeeklyCashFlow().entrySet())
+                cashFlowTableTemplate.getModel().addRow(
+                        new Object[]{null, weeklyCashFlow.getMartes(), weeklyCashFlow.getMiercoles(), weeklyCashFlow.getJueves(),
+                                weeklyCashFlow.getViernes(), weeklyCashFlow.getSabado(), weeklyCashFlow.getDomingo()}
+                );
+        }
     }
-}
+

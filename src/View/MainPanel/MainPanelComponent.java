@@ -8,6 +8,7 @@ import View.Components.InitApp.HomeComponent;
 import View.Components.NewItemInventory.NewItemInventoryComponent;
 import View.Components.PersonalArea.PersonalAreaComponent;
 import View.Components.SalesRegistry.SalesRegistryComponent;
+import View.Components.Stats.StatsComponent;
 import View.Components.TitleBar.TitleBarComponent;
 import View.Components.UserBrowsing.UserBrowsingComponent;
 import View.Login.LoginComponent;
@@ -38,6 +39,8 @@ public class MainPanelComponent {
     private EgresoxMotivoComponent egresoxMotivoComponent;
 
     private CashFlowTableComponent cashFlowTableComponent;
+
+    private StatsComponent statsComponent;
 
     public MainPanelComponent (){
         this.mainPanelTemplate = new MainPanelTemplate(this);
@@ -116,9 +119,11 @@ public class MainPanelComponent {
             break;
 
         case "Estadisticas finanacieras":
-            mainPanelTemplate.getpShowData().removeAll();
-            System.out.println("Estadisticas en maintemplate");
-
+            if (this.statsComponent== null) {
+                mainPanelTemplate.getpShowData().removeAll();
+                mainPanelTemplate.getpShowData().add(new StatsComponent(this).getStatsTemplate());
+                System.out.println("Ingreso x motiva tabla");
+            }
             break;
 
         case "TablaIngresos":
@@ -148,11 +153,11 @@ public class MainPanelComponent {
             break;
 
         case "Flujo de caja":
-
+            if (this.cashFlowTableComponent== null) {
                 mainPanelTemplate.getpShowData().removeAll();
                 mainPanelTemplate.getpShowData().add(new CashFlowTableComponent(this).getCashFlowTableTemplate());
                 System.out.println("Flujo de caja en maintemplate");
-
+            }
             break;
 
         case "Registro de ventas":

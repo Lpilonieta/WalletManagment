@@ -43,8 +43,6 @@ public class EgresosComponent implements ActionListener {
             SQLconection.SaveCashFlow(form);
         }
 
-
-
         Form form = new Form(Form.parseDatetoString(),
                 Integer.valueOf(textFieldValorInString),
                 comboBoxFuenteInString,

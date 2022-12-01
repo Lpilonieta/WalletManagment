@@ -202,4 +202,12 @@ public class CashFlowTableTemplate extends JPanel {
     public DefaultTableModel getModel() {
         return model;
     }
+
+    public JLabel gettSaldoIncial() {
+        return tSaldoIncial;
+    }
+
+    public JLabel gettSaldoFinal() {
+        return tSaldoFinal;
+    }
 }

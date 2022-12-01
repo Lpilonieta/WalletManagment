@@ -138,7 +138,7 @@ public class GetDebtsTemplate extends JPanel {
                 "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldNumCoutas);
 
-        this.textFieldPeriodicidadEspecifica = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 250, 280, 100, 40,
+        this.textFieldPeriodicidadEspecifica = sOjGraficosService.construirJTextFiel((1300 - 260)/2 + 350, 280, 100, 40,
                 "", Color.DARK_GRAY, recursosService.getLightFont(), "null",recursosService.getCursoTexto());
         this.add(textFieldPeriodicidadEspecifica );
 
@@ -149,13 +149,13 @@ public class GetDebtsTemplate extends JPanel {
         this.comboBoxTipoInteres= new JComboBox<>();
         this.comboBoxTipoInteres.addItem("Ninguno");
         this.comboBoxTipoInteres.addItem("Normal");
-        this.comboBoxTipoInteres.addItem("Compuesto");
         this.comboBoxTipoInteres.setSize(200,40);
         this.comboBoxTipoInteres.setLocation((1300 - 260)/2 - 100, 100);
         this.comboBoxTipoInteres.setForeground(Color.DARK_GRAY);
         this.comboBoxTipoInteres.setBackground(Color.WHITE);
         this.comboBoxTipoInteres.setCursor(recursosService.getCursoMano());
         ((JLabel)comboBoxTipoInteres.getRenderer()).setHorizontalAlignment(SwingUtilities.CENTER);
+        this.comboBoxTipoInteres.addActionListener(comboBoxTipoInteres);
         this.add(comboBoxTipoInteres);
 
         this.comboBoxTipoCorrienteNoCorriente= new JComboBox<>();

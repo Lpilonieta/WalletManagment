@@ -1,10 +1,5 @@
 package View.Components.EgresoXMotivo;
 
-import View.Components.IngresoxMotivo.IngresosxMotivoTemplate;
-import View.Components.ModelAux.EgresoXMotivo;
-import View.Components.ModelAux.IngresoxMotivo;
-import View.Components.ModelAux.Services.EgresoXMotivoServices;
-import View.Components.ModelAux.Services.IngresosxMotivoService;
 import View.MainPanel.MainPanelComponent;
 import View.Services.RecursosService;
 import ViewModel.Stats;
@@ -22,9 +17,6 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
    private MainPanelComponent mainPanelComponent;
 
-   private EgresoXMotivoServices egresoXMotivoServices;
-
-   private EgresoXMotivo egresoXMotivo;
 
    private User user = new User();
 
@@ -34,7 +26,6 @@ public class EgresoxMotivoComponent implements ActionListener, MouseListener, Fo
 
        this.egresoXMotivoTemplate = new EgresoXMotivoTemplate(this);
        this.mainPanelComponent = mainPanelComponent;
-       this.egresoXMotivoServices = EgresoXMotivoServices.getService();
 
    }
 

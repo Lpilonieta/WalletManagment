@@ -1,6 +1,5 @@
 package View.Components.IngresoxMotivo;
 
-import View.Components.ModelAux.IngresoxMotivo;
 import View.Services.ObjGraficosService;
 import View.Services.RecursosService;
 

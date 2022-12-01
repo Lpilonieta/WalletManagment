@@ -25,9 +25,6 @@ public class WeeklyCashFlow {
         WeeklyCashFlow.put("Sábado"     ,sabado);
         WeeklyCashFlow.put("Domingo"    ,domingo);
         printCashFlow();
-
-
-
     }
 
     public void printCashFlow() {

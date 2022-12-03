@@ -11,10 +11,9 @@ import View.Components.SalesRegistry.SalesRegistryComponent;
 import View.Components.Stats.StatsComponent;
 import View.Components.TitleBar.TitleBarComponent;
 import View.Components.UserBrowsing.UserBrowsingComponent;
-import View.Login.LoginComponent;
 import View.Components.IngresoxMotivo.IngresoxMotivoComponent;
 import View.Components.Groups.GroupsComponent;
-import View.Components.SeeGroups.SeeGroupsComponent;
+
 
 
 
@@ -47,7 +46,7 @@ public class MainPanelComponent {
     private NewItemInventoryComponent newItemInventoryComponent;
     private GroupsComponent groupsComponent;
     private PersonalAreaComponent personalAreaComponent;
-    private SeeGroupsComponent seeGroupsComponent;
+
     private IngresoxMotivoComponent ingresoxMotivoComponent;
     private EgresoxMotivoComponent egresoxMotivoComponent;
 
@@ -73,14 +72,6 @@ public class MainPanelComponent {
             }
             break;
 
-        case "Ver negocios":
-            if (this.seeGroupsComponent == null){
-                mainPanelTemplate.getpShowData().removeAll();
-                mainPanelTemplate.getpShowData().add(new SeeGroupsComponent().getSeeFinalcialSpacesTemplate());
-
-                System.out.println("Viendo espacio financiero");
-            }
-            break;
 
         case "Ver area personal" :
 

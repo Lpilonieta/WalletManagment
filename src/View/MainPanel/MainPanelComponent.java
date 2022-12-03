@@ -24,24 +24,6 @@ public class MainPanelComponent {
     private MainPanelTemplate mainPanelTemplate;
 
 
-    //Componentes
-
-    private TitleBarComponent titleBarComponent;
-    private LoginComponent loginComponent;
-    private UserBrowsingComponent userBrowsingComponent;
-    private EgresosComponent egresosComponent;
-    private IngresosComponent ingresosComponent;
-    private NewItemInventoryComponent newItemInventoryComponent;
-    private GroupsComponent groupsComponent;
-    private PersonalAreaComponent personalAreaComponent;
-    private SeeGroupsComponent seeGroupsComponent;
-    private IngresoxMotivoComponent ingresoxMotivoComponent;
-    private EgresoxMotivoComponent egresoxMotivoComponent;
-
-    private CashFlowTableComponent cashFlowTableComponent;
-
-    private StatsComponent statsComponent;
-
     public MainPanelComponent (){
         this.mainPanelTemplate = new MainPanelTemplate(this);
         this.titleBarComponent = new TitleBarComponent(this);
@@ -55,7 +37,23 @@ public class MainPanelComponent {
         mainPanelTemplate.getpShowData().add(personalAreaComponent.getPersonalAreaTemplate());
 
     }
+    //Componentes
 
+    private TitleBarComponent titleBarComponent;
+    //private LoginComponent loginComponent;
+    private UserBrowsingComponent userBrowsingComponent;
+    private EgresosComponent egresosComponent;
+    private IngresosComponent ingresosComponent;
+    private NewItemInventoryComponent newItemInventoryComponent;
+    private GroupsComponent groupsComponent;
+    private PersonalAreaComponent personalAreaComponent;
+    private SeeGroupsComponent seeGroupsComponent;
+    private IngresoxMotivoComponent ingresoxMotivoComponent;
+    private EgresoxMotivoComponent egresoxMotivoComponent;
+
+    private CashFlowTableComponent cashFlowTableComponent;
+
+    private StatsComponent statsComponent;
     public MainPanelTemplate getMainPanelTemplate() {
         return mainPanelTemplate;
     }

@@ -15,8 +15,6 @@ public class MainPanelTemplate extends JFrame {
 
     private JPanel pBarraLateral, pShowData, pBarraSuperior;
 
-
-
     public MainPanelTemplate(MainPanelComponent mainPanelComponent){
 
         //Obtención de servicios

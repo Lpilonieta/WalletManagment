@@ -37,7 +37,8 @@ public class CardTemplate extends JPanel {
                 recursosService.getMainFont(), null, null, null, "CENTER");
         this.add(lTitle);
 
-        this.lText = ObjGraficosService.getService().construirJLabel(text, 5,76,206,120, Color.DARK_GRAY, Color.WHITE, recursosService.getLightFont(), null, null, null, "CENTER");
+        this.lText = ObjGraficosService.getService().construirJLabel(text, 5,76,206,120, Color.DARK_GRAY, Color.WHITE,
+                recursosService.getLightFont(), null, null, null, "CENTER");
         this.add(lText);
 
         this.setSize(200, 180);
